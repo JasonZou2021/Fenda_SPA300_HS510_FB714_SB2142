@@ -176,19 +176,13 @@ const BYTE DRC_Table_C[CHANNEL_SETTING_DATA * CHANNEL_SETTING_MAX] =
     0x75, 0x00, 0x00, 0x00, 0x00,//##DRC7_gain ;
 };
 
-#ifdef PRJ_HS510
+
 static const BYTE *DRC_Map[] = 
 {
 	DRC_Table_LR,
 	DRC_Table_C,
 };
-#else
-static const BYTE *DRC_Map[] = 
-{
-	DRC_Table_LR,
-	DRC_Table_LR, //DRC_Table_C,
-};
-#endif
+
 
 // ===============================================================================
 
@@ -801,15 +795,15 @@ static const BYTE EQ_Table_FLAT[EQ_DATA_MAX*EQ_DATA_LEVEL] =
 const BYTE *EQ_Map[2][EQ_MAX]= 
 {
 	{
-		EQ_Table_Movie_LR, 
-		EQ_Table_Music_LR, 
-		EQ_Table_News_LR, 
+		EQ_Table_FLAT, 
+		EQ_Table_FLAT, 
+		EQ_Table_FLAT, 
 	},
 
 	{
-		EQ_Table_Movie_C, 
-		EQ_Table_Music_C, 
-		EQ_Table_News_C, 
+		EQ_Table_FLAT, 
+		EQ_Table_FLAT, 
+		EQ_Table_FLAT, 
 	},
 };
 

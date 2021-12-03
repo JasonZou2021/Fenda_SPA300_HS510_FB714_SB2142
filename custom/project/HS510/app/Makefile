@@ -32,6 +32,7 @@ SOURCES	+= \
 	  hint_data_proc.c \
 	  complex_hint_proc.c \
 
+SOURCES	+= mcu_if_rsr.c
 SOURCES	+= CertTest_if.c
 
 

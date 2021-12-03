@@ -212,36 +212,6 @@ int hintDataAdd(eHint_Type Hint_Type)
 			break;
 		}
 #endif
-
-#if (SUPPORT_POWER_HINT)
-		case eHint_PowerOn:{
-			ret = Hint_SingleDataAdd(hint_data_map[eHintData_PowerOn], DEFAULT_INTEVAL_TIME);
-			if(ret < 0)
-			{
-				hint_printf("hint data init error\n");
-			}
-			break;
-		}
-
-		case eHint_PowerOff:{
-			ret = Hint_SingleDataAdd(hint_data_map[eHintData_PowerOff], DEFAULT_INTEVAL_TIME);
-			if(ret < 0)
-			{
-				hint_printf("hint data init error\n");
-			}
-			break;
-		}
-#endif
-
-		case eHint_VolMax:{
-			ret = Hint_SingleDataAdd(hint_data_map[eHintData_VolMax], DEFAULT_INTEVAL_TIME);
-			if(ret < 0)
-			{
-				hint_printf("hint data init error\n");
-			}
-			break;
-		}
-
 #if (SUPPORT_SRC_NAME)
 		case eHint_SrcUSB:{
 			ret = Hint_SingleDataAdd(hint_data_map[eHintData_SrcUSB], DEFAULT_INTEVAL_TIME);

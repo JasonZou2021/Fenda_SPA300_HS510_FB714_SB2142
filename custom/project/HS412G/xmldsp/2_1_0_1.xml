@@ -1,0 +1,1043 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device_data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xml_version value="3.1.0"/>
+    <daws_version value="3.2.0.2"/>
+    <constant>
+        <band_20_freq fs_44100="65,136,223,332,467,634,841,1098,1416,1812,2302,2909,3663,4598,5756,7194,8976,11186,13927,17326" fs_48000="47,141,234,328,469,656,844,1031,1313,1688,2250,3000,3750,4688,5813,7125,9000,11250,13875,19688"/>
+        <array_20_n192 target="-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192"/>
+        <array_20_zero target="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+    </constant>
+    <setting>
+        <product value="HA"/>
+        <default_profile value="Music"/>
+    </setting>
+    <endpoint type="internal_speaker" brand="user-editable" model="user-editable">
+        <remarks value="Remarks(100 characters limit)"/>
+        <init-info>
+            <sample-rate value="48000"/>
+            <low-latency-enable value="1"/>
+            <mi-process-disable value="0"/>
+            <virtual-bass-process-enable value="0"/>
+            <max-num-output-channels value="3"/>
+            <init-mode value="0"/>
+            <max-num-scratch-channels value="3"/>
+            <max-num-filter-states value="0"/>
+            <max-num-operations value="12"/>
+            <max-num-operation-coefficients value="0"/>
+            <max-sample-delays value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+        </init-info>
+        <speaker-config>
+            <front-count value="2"/>
+            <side-count value="0"/>
+            <height-count value="0"/>
+            <subwoofer-count value="1"/>
+            <output-count value="3"/>
+            <speaker name="Left" sbf_eq_enable="0">
+                <speaker-way output_route="0" delay="0"/>
+            </speaker>
+            <speaker name="Right" sbf_eq_enable="0">
+                <speaker-way output_route="1" delay="0"/>
+            </speaker>
+            <speaker name="Subwoofer" sbf_eq_enable="0">
+                <speaker-way output_route="2" delay="0"/>
+            </speaker>
+        </speaker-config>
+        <audio-optimizer-enable value="1"/>
+        <audio-optimizer-bands>
+            <ch_00 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_01 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_02 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_03 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_04 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_05 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_06 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_07 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_08 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_09 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_10 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_11 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+        </audio-optimizer-bands>
+        <sbf-speaker-eq-enable value="1"/>
+        <sbf-speaker-eq-bands>
+            <ch_00 value=""/>
+            <ch_01 value=""/>
+            <ch_02 value=""/>
+            <ch_03 value=""/>
+            <ch_04 value=""/>
+            <ch_05 value=""/>
+            <ch_06 value=""/>
+            <ch_07 value=""/>
+            <ch_08 value=""/>
+            <ch_09 value=""/>
+            <ch_10 value=""/>
+            <ch_11 value=""/>
+        </sbf-speaker-eq-bands>
+        <speaker-peq-enable value="1"/>
+        <speaker-peq-filters/>
+        <speaker-way-peq-enable value="1"/>
+        <speaker-way-peq-filters/>
+        <channel-optimizer-enable value="1"/>
+        <channel-optimizer-bands>
+            <ch_00 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_01 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_02 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_03 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_04 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_05 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_06 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_07 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_08 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_09 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_10 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_11 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+        </channel-optimizer-bands>
+        <regulator-enable value="1"/>
+        <regulator-overdrive value="0"/>
+        <regulator-relaxation-amount value="0"/>
+        <regulator-speaker-dist-enable value="1"/>
+        <regulator-timbre-preservation value="16"/>
+        <regulator-tuning>
+            <threshold_high value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <threshold_low value="-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192"/>
+            <isolated_band value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+        </regulator-tuning>
+        <mix_matrix value="16384,0,0,0,16384,0,11583,11583,0,0,0,5177,12645,0,0,0,12645,0,12645,0,0,0,12645,0"/>
+        <mix-matrix-peq-enable value="1"/>
+        <mix-matrix-peq-filters/>
+        <bass-extraction-lfe-gain value="0"/>
+        <bass-extraction-enable value="0"/>
+        <bass-extraction-cutoff-frequency value="200"/>
+        <volume-modeler-enable value="1"/>
+        <volume-modeler-calibration value="0"/>
+        <virtualizer-front-speaker-angle value="5"/>
+        <virtualizer-height-speaker-angle value="5"/>
+        <virtualizer-rear-surround-speaker-angle value="0"/>
+        <virtualizer-rear-height-speaker-angle value="0"/>
+        <virtualizer-surround-speaker-angle value="5"/>
+        <height-filter-mode value="1"/>
+        <rear-height-filter-mode value="0"/>
+        <virtual-bass-mode value="0"/>
+        <virtual-bass-overall-gain value="0"/>
+        <virtual-bass-subgains value="-32,-144,-192"/>
+        <virtual-bass-slope-gain value="0"/>
+        <virtual-bass-mix-freqs value="94,469"/>
+        <virtual-bass-src-freqs value="35,160"/>
+        <serialized-configs>
+            <serialized-config sample_rate="32000" virtualizer_enabled="0" base64="hiDn8AMAAAABAAMAAwAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABAAABAAAABAAEAQQAAQAAAAAACAEAAPy0AAAAAAgBBAD8tAAABAAMAQgA5FAAAAAAEAEAAZTEAAAAABQBBAGUxAAABAEAAIAAAQAAAAQBBACEAAEAAAAEAQgAiAABAIAAhACIAEAAAAAAAQP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBA/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyAAAACMAoAAAAAAA4P9w/0D/XgDVAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAFAAAABQAFAAEAAAA="/>
+            <serialized-config sample_rate="32000" virtualizer_enabled="1" base64="hiAZ8QYAAAABAAMAAwAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAQAAAQAAAAQABAEEAAEAAAAAAAgBAAD8tAAAAAAIAQQA/LQAAAQADAEIAORQAAAAABABAAGUxAAAAAAUAQQBlMQAAAAAGAEAAZTEAAAAABwBBAGUxAAABAEAAIAAAQAAAAQBBACEAAEAAAAEAQgAiAABAIAAhACIAEAAAAAAAQP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBA/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyAAAACMAoAAAAAAA4P9w/0D/XgDVAQEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAFAAAABQAFAAEAAAA="/>
+            <serialized-config sample_rate="44100" virtualizer_enabled="0" base64="hiCmDwMAAQABAAMAAwAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABAAABAAAABAAEAQQAAQAAAAAACAEAAPy0AAAAAAgBBAD8tAAABAAMAQgA5FAAAAAAEAEAAZTEAAAAABQBBAGUxAAABAEAAIAAAQAAAAQBBACEAAEAAAAEAQgAiAABAIAAhACIAEAAAAAAAQP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBA/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyAAAACMAoAAAAAAA4P9w/0D/XgDVAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAFAAAABQAFAAEAAAA="/>
+            <serialized-config sample_rate="44100" virtualizer_enabled="1" base64="hiBYDgYAAQABAAMAAwAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAQAAAQAAAAQABAEEAAEAAAAAAAgBAAD8tAAAAAAIAQQA/LQAAAQADAEIAORQAAAAABABAAGUxAAAAAAUAQQBlMQAAAAAGAEAAZTEAAAAABwBBAGUxAAABAEAAIAAAQAAAAQBBACEAAEAAAAEAQgAiAABAIAAhACIAEAAAAAAAQP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBA/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyAAAACMAoAAAAAAA4P9w/0D/XgDVAQEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAFAAAABQAFAAEAAAA="/>
+            <serialized-config sample_rate="48000" virtualizer_enabled="0" base64="hiClDwMAAgABAAMAAwAAAAoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABAAABAAAABAAEAQQAAQAAAAAACAEAAPy0AAAAAAgBBAD8tAAABAAMAQgA5FAAAAAAEAEAAZTEAAAAABQBBAGUxAAABAEAAIAAAQAAAAQBBACEAAEAAAAEAQgAiAABAIAAhACIAEAAAAAAAQP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBA/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyAAAACMAoAAAAAAA4P9w/0D/XgDVAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAFAAAABQAFAAEAAAA="/>
+            <serialized-config sample_rate="48000" virtualizer_enabled="1" base64="hiBbDgYAAgABAAMAAwAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAQAAAQAAAAQABAEEAAEAAAAAAAgBAAD8tAAAAAAIAQQA/LQAAAQADAEIAORQAAAAABABAAGUxAAAAAAUAQQBlMQAAAAAGAEAAZTEAAAAABwBBAGUxAAABAEAAIAAAQAAAAQBBACEAAEAAAAEAQgAiAABAIAAhACIAEAAAAAAAQP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgBA/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyAAAACMAoAAAAAAA4P9w/0D/XgDVAQEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAFAAAABQAFAAEAAAA="/>
+        </serialized-configs>
+        <profile type="movie" name="Movie">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="1"/>
+                <dialog-enhancer-amount value="3"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="0"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="1"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="48"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="1"/>
+                <volume-leveler-amount value="3"/>
+                <volume-leveler-in-target value="-496"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="music" name="Music">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="0"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="1"/>
+                <ieq-amount value="6"/>
+                <ieq-bands value="117,133,188,176,141,149,175,185,185,200,236,242,228,213,182,132,110,68,-27,-240"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="1"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="1"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="0"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="1"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-496"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="night" name="Night">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="1"/>
+                <dialog-enhancer-amount value="7"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="0"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="1"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="1"/>
+                <volume-leveler-amount value="7"/>
+                <volume-leveler-in-target value="-496"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="off" name="Off">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="0"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="0"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="0"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="0"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="0"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-496"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="dynamic" name="Dynamic">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="1"/>
+                <dialog-enhancer-amount value="5"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="1"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="1"/>
+                <mi-dv-leveler-steering-enable value="1"/>
+                <mi-ieq-steering-enable value="1"/>
+                <mi-surround-compressor-steering-enable value="1"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="48"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="1"/>
+                <volume-leveler-amount value="5"/>
+                <volume-leveler-in-target value="-496"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="voice" name="Voice">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="1"/>
+                <dialog-enhancer-amount value="7"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="0"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="0"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="0"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="game" name="Game">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="8"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="1"/>
+                <mi-surround-compressor-steering-enable value="1"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="1"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="personalize" name="Personalize">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="1"/>
+                <dialog-enhancer-amount value="10"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="1"/>
+                <mi-dv-leveler-steering-enable value="1"/>
+                <mi-ieq-steering-enable value="1"/>
+                <mi-surround-compressor-steering-enable value="1"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="48"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="1"/>
+                <volume-leveler-amount value="5"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="custom-a" name="Custom-A">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="5"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="0"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="0"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="custom-b" name="Custom-B">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="5"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="0"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="0"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="custom-c" name="Custom-C">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="5"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="0"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="0"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="custom-d" name="Custom-D">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="5"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="0"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="0"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+    </endpoint>
+    <endpoint type="headphones" brand="user-editable" model="user-editable">
+        <remarks value="Remarks(100 characters limit)"/>
+        <init-info>
+            <sample-rate value="48000"/>
+            <low-latency-enable value="1"/>
+            <mi-process-disable value="0"/>
+            <virtual-bass-process-enable value="0"/>
+            <max-num-output-channels value="2"/>
+            <init-mode value="0"/>
+            <max-num-scratch-channels value="2"/>
+            <max-num-filter-states value="0"/>
+            <max-num-operations value="4"/>
+            <max-num-operation-coefficients value="0"/>
+            <max-sample-delays value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+        </init-info>
+        <speaker-config>
+            <front-count value="2"/>
+            <side-count value="0"/>
+            <height-count value="0"/>
+            <subwoofer-count value="0"/>
+            <output-count value="2"/>
+            <speaker name="Left" sbf_eq_enable="0">
+                <speaker-way output_route="0" delay="0"/>
+            </speaker>
+            <speaker name="Right" sbf_eq_enable="0">
+                <speaker-way output_route="1" delay="0"/>
+            </speaker>
+        </speaker-config>
+        <audio-optimizer-enable value="0"/>
+        <audio-optimizer-bands>
+            <ch_00 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_01 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_02 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_03 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_04 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_05 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_06 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_07 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_08 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_09 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_10 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_11 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+        </audio-optimizer-bands>
+        <sbf-speaker-eq-enable value="0"/>
+        <sbf-speaker-eq-bands>
+            <ch_00 value=""/>
+            <ch_01 value=""/>
+            <ch_02 value=""/>
+            <ch_03 value=""/>
+            <ch_04 value=""/>
+            <ch_05 value=""/>
+            <ch_06 value=""/>
+            <ch_07 value=""/>
+            <ch_08 value=""/>
+            <ch_09 value=""/>
+            <ch_10 value=""/>
+            <ch_11 value=""/>
+        </sbf-speaker-eq-bands>
+        <speaker-peq-enable value="0"/>
+        <speaker-peq-filters/>
+        <speaker-way-peq-enable value="0"/>
+        <speaker-way-peq-filters/>
+        <channel-optimizer-enable value="0"/>
+        <channel-optimizer-bands>
+            <ch_00 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_01 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_02 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_03 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_04 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_05 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_06 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_07 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_08 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_09 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_10 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <ch_11 value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+        </channel-optimizer-bands>
+        <regulator-enable value="1"/>
+        <regulator-overdrive value="0"/>
+        <regulator-relaxation-amount value="0"/>
+        <regulator-speaker-dist-enable value="1"/>
+        <regulator-timbre-preservation value="16"/>
+        <regulator-tuning>
+            <threshold_high value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+            <threshold_low value="-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192,-192"/>
+            <isolated_band value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+        </regulator-tuning>
+        <mix_matrix value="16384,0,0,16384,11583,11583,0,0,12645,0,0,12645,12645,0,0,12645"/>
+        <mix-matrix-peq-enable value="1"/>
+        <mix-matrix-peq-filters/>
+        <bass-extraction-lfe-gain value="0"/>
+        <bass-extraction-enable value="0"/>
+        <bass-extraction-cutoff-frequency value="200"/>
+        <volume-modeler-enable value="0"/>
+        <volume-modeler-calibration value="0"/>
+        <virtualizer-front-speaker-angle value="0"/>
+        <virtualizer-height-speaker-angle value="0"/>
+        <virtualizer-rear-surround-speaker-angle value="0"/>
+        <virtualizer-rear-height-speaker-angle value="0"/>
+        <virtualizer-surround-speaker-angle value="0"/>
+        <height-filter-mode value="0"/>
+        <rear-height-filter-mode value="0"/>
+        <virtual-bass-mode value="0"/>
+        <virtual-bass-overall-gain value="0"/>
+        <virtual-bass-subgains value="-32,-144,-192"/>
+        <virtual-bass-slope-gain value="0"/>
+        <virtual-bass-mix-freqs value="94,469"/>
+        <virtual-bass-src-freqs value="35,160"/>
+        <serialized-configs>
+            <serialized-config sample_rate="32000" virtualizer_enabled="0" base64="hiDLpAMAAAABAAIAAgAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABAAABAAAABAAEAQQAAQAAAAAACAEAAPy0AAAAAAgBBAD8tAAAAAAQAQABlMQAAAAAFAEEAZTEAAAEAQAAgAABAAAABAEEAIQAAQCAAIQAQAAAAAABA/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAED/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADIAAAAIwCgAAAAAADg/3D/QP9eANUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=="/>
+            <serialized-config sample_rate="32000" virtualizer_enabled="1" base64="hiD1pAkAAAABAAIAAgAAAAQAAAAAAAAAAAAAAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAQAAAQAAAAQABAEEAAEAAAAEAQAAgAABAAAABAEEAIQAAQCAAIQAQAAAAAABA/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAED/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADIAAAAIwCgAAAAAADg/3D/QP9eANUBAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=="/>
+            <serialized-config sample_rate="44100" virtualizer_enabled="0" base64="hiCKWwMAAQABAAIAAgAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABAAABAAAABAAEAQQAAQAAAAAACAEAAPy0AAAAAAgBBAD8tAAAAAAQAQABlMQAAAAAFAEEAZTEAAAEAQAAgAABAAAABAEEAIQAAQCAAIQAQAAAAAABA/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAED/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADIAAAAIwCgAAAAAADg/3D/QP9eANUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=="/>
+            <serialized-config sample_rate="44100" virtualizer_enabled="1" base64="hiC0WwkAAQABAAIAAgAAAAQAAAAAAAAAAAAAAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAQAAAQAAAAQABAEEAAEAAAAEAQAAgAABAAAABAEEAIQAAQCAAIQAQAAAAAABA/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAED/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADIAAAAIwCgAAAAAADg/3D/QP9eANUBAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=="/>
+            <serialized-config sample_rate="48000" virtualizer_enabled="0" base64="hiCJWwMAAgABAAIAAgAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABAAABAAAABAAEAQQAAQAAAAAACAEAAPy0AAAAAAgBBAD8tAAAAAAQAQABlMQAAAAAFAEEAZTEAAAEAQAAgAABAAAABAEEAIQAAQCAAIQAQAAAAAABA/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAED/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADIAAAAIwCgAAAAAADg/3D/QP9eANUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=="/>
+            <serialized-config sample_rate="48000" virtualizer_enabled="1" base64="hiC3WwkAAgABAAIAAgAAAAQAAAAAAAAAAAAAAAEAAQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAQAAAQAAAAQABAEEAAEAAAAEAQAAgAABAAAABAEEAIQAAQCAAIQAQAAAAAABA/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAED/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP9A/0D/QP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADIAAAAIwCgAAAAAADg/3D/QP9eANUBAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=="/>
+        </serialized-configs>
+        <profile type="movie" name="Movie">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="1"/>
+                <dialog-enhancer-amount value="3"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="0"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="1"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="48"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="1"/>
+                <volume-leveler-amount value="3"/>
+                <volume-leveler-in-target value="-496"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="music" name="Music">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="0"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="1"/>
+                <ieq-amount value="6"/>
+                <ieq-bands value="117,133,188,176,141,149,175,185,185,200,236,242,228,213,182,132,110,68,-27,-240"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="1"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="1"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="0"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="1"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-496"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="night" name="Night">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="1"/>
+                <dialog-enhancer-amount value="7"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="0"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="1"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="1"/>
+                <volume-leveler-amount value="7"/>
+                <volume-leveler-in-target value="-496"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="off" name="Off">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="0"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="0"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="0"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="0"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="0"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-496"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="dynamic" name="Dynamic">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="1"/>
+                <dialog-enhancer-amount value="5"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="1"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="1"/>
+                <mi-dv-leveler-steering-enable value="1"/>
+                <mi-ieq-steering-enable value="1"/>
+                <mi-surround-compressor-steering-enable value="1"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="48"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="1"/>
+                <volume-leveler-amount value="5"/>
+                <volume-leveler-in-target value="-496"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="voice" name="Voice">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="1"/>
+                <dialog-enhancer-amount value="7"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="0"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="0"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="0"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="game" name="Game">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="8"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="1"/>
+                <mi-surround-compressor-steering-enable value="1"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="1"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="personalize" name="Personalize">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="1"/>
+                <dialog-enhancer-amount value="10"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="1"/>
+                <mi-dv-leveler-steering-enable value="1"/>
+                <mi-ieq-steering-enable value="1"/>
+                <mi-surround-compressor-steering-enable value="1"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="48"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="1"/>
+                <volume-leveler-amount value="5"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="custom-a" name="Custom-A">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="5"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="0"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="0"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="custom-b" name="Custom-B">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="5"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="0"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="0"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="custom-c" name="Custom-C">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="5"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="0"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="0"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+        <profile type="custom-d" name="Custom-D">
+            <tuning>
+                <bass-enhancer-enable value="0"/>
+                <bass-enhancer-boost value="0"/>
+                <bass-enhancer-cutoff-frequency value="200"/>
+                <bass-enhancer-width value="16"/>
+                <calibration-boost value="0"/>
+                <dialog-enhancer-enable value="0"/>
+                <dialog-enhancer-amount value="5"/>
+                <dialog-enhancer-ducking value="0"/>
+                <graphic-equalizer-enable value="0"/>
+                <graphic-equalizer-gains value="0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"/>
+                <ieq-enable value="0"/>
+                <ieq-amount value="10"/>
+                <ieq-bands value="157,164,219,218,204,188,192,192,212,214,219,211,197,161,136,96,72,25,-92,-283"/>
+                <mi-dialog-enhancer-steering-enable value="0"/>
+                <mi-dv-leveler-steering-enable value="0"/>
+                <mi-ieq-steering-enable value="0"/>
+                <mi-surround-compressor-steering-enable value="0"/>
+                <postgain value="0"/>
+                <pregain value="0"/>
+                <surround-boost value="0"/>
+                <surround-decoder-center-spreading-enable value="0"/>
+                <surround-decoder-enable value="1"/>
+                <system-gain value="0"/>
+                <virtualizer-enable value="1"/>
+                <volmax-boost value="0"/>
+                <volume-leveler-enable value="0"/>
+                <volume-leveler-amount value="0"/>
+                <volume-leveler-in-target value="-320"/>
+                <volume-leveler-out-target value="-320"/>
+            </tuning>
+        </profile>
+    </endpoint>
+</device_data>

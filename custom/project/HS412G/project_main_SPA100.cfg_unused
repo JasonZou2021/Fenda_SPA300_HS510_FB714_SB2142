@@ -1,0 +1,116 @@
+#----------------------------------------------------------/
+#Usage: include by other Makefile in subfolders.
+#Description: Set cfg enable/disable compile module .
+#             If there is no further description,
+#             set 1 to enable and 0 to disable
+#Author: Lichung.Liu, Xw.Sun, Daniel.Yeh
+#----------------------------------------------------------/
+# it should be a specific name, different from the PROJECT_NAME in other project.cfg
+PROJECT_NAME = sunplus_main_SPA100
+
+# prompt info. for config
+PROJECT_PROMPT = Sunplus SPA100
+
+# this tag will be transferred to a macro, plz reference it in user_def.h
+# the value of this TAG must be unique between each project file in a project folder
+USER_PROJECT_TAG = 1
+
+# system feature
+# enable clocktree. If set as 0, APIs become dummy.
+CFG_SP_PSU_CLOCKTREE_API = 1
+# define first stage isp size and dram init size.
+# sum of them is ISP_BIN_SIZE, unit is KB
+CFG_SP_ROM_SIZE_ISP = 36
+CFG_SP_ROM_SIZE_DRAMINIT = 20
+
+# unit: KB, must equal Flash sector size
+CFG_ROMBIN_MIN_BLOCKSIZE = 4
+
+#user config
+##################################
+HINTSOUND_LIB = 1
+USERBT_LIB = 1
+DISP_LIB = 1
+DISP_VFD_LIB = 1
+LED_LIB = 1
+SOUNDHINT_LIB = 1
+KARAOK_LIB = 0
+USER_STDBY_LIB = 1
+VOICEASSIST_LIB = 1
+###################################################################
+
+
+#driver cfg option
+##################################
+#hdmi , to enable HDMI module
+HDMI_LIB = 1
+
+#repeater , to enable HDMI Repeater module
+REPEATER_LIB = 1
+
+#MCU_IF
+MCU_IF_LIB = 1
+
+#fs usb
+FAT_USB_LIB = 1
+
+#fs sd
+FAT_SD_LIB = 1
+
+#cli config, command line
+CLI_LIB = 1
+
+#BT config
+#Description: 0 to disable, 1 to enable main, 3 to enable sub
+BT_LIB = 1
+#External gpio interrupt
+EXT_INTR_LIB = 1
+###################################################################
+
+
+#audio cfg
+##################################
+#Description:
+#1 for main: 0x00000000,
+#2 for main: 0xFFFFFFFF,
+AUDIO_LIB = 1
+###################################################################
+
+#Demux cfg
+##################################
+#Description: the Demux cfg here must select a corresponding DSP lib to support
+MP3_LIB = 1
+AAC_LIB = 1
+AC3_LIB = 1
+APE_LIB = 1
+DTS_LIB = 1
+FLAC_LIB = 1
+WAV_LIB = 1
+WMA_LIB = 1
+M4A_LIB = 1
+MKA_LIB = 1
+OGG_LIB = 1
+DUMMY_LIB = 1
+TS_LIB = 0
+AIFF_LIB = 0
+APPEND_LIB = 0
+###################################################################
+
+DSP_C_LIB = 1
+DSP_H_LIB = 0
+
+
+# Sunplus Area. Do Not Modify
+##################################
+include $(TOP)/custom/common/common.cfg
+
+PRODUCT_LIBS := $(BASE_LIBS) $(IOP_LIBS) $(DSP_LIBS) $(CLI_LIBS) $(FS_LIBS) \
+				$(BT_LIBS) $(AUDIO_LIBS) $(DSPTOOL_LIBS) $(CUSTOM_LIBS) \
+				$(KERNEL_LIBS)
+
+#test
+#support test libs(You can refer to src\test\libxxxx.a):
+#libspiflashtest.a libposixtest.a libpinmuxtest.a libfsifiletest.a...
+#example:need to test newlib,add the follow code
+#PRODUCT_LIBS += libxxxx.a => PRODUCT_LIBS += libnewlibtest.a
+#PRODUCT_LIBS += libxxxx.a => PRODUCT_LIBS += libfstest.a

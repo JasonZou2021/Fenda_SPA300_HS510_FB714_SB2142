@@ -444,7 +444,7 @@ QState UserApp_PowerOff(UserApp *const me, QEvt const *const e);
 int UserApp_WIRELESS_VolumeUp(UserApp *const me);
 int UserApp_WIRELESS_VolumeDown(UserApp *const me);
 #endif
-
+void UserAppDspCodecInfoFromDspC_Listener(QActive * const me, void *pParam);
 UINT8 *pbList = NULL;
 
 typedef QState (*UserappState_t)(UserApp *const me, QEvt const *const e);
@@ -1250,7 +1250,18 @@ QState UserApp_initial(UserApp *const me, QEvt const *const e)
 	EV01SE_Pair();
 #endif
 
-	//AudDspService_RegAudioInfoBroadcastListener(&me->super,UserAppDspCodecInfo_Listener);	//chihhao: to show audio format in VFD
+ 	CFG_AUD_T *pstAUD_Cfg = GET_SDK_CFG(CFG_AUD_T);
+
+	if(pstAUD_Cfg->AUDIO_FLOW == AUDFLOW_LC)
+	{
+	    AudDspService_RegAudioInfoBroadcastListener(&me->super,UserAppDspCodecInfoFromDspC_Listener);
+	}
+	else
+	{
+
+        AudDspService_RegAudioInfoBroadcastListener(&me->super,UserAppDspCodecInfo_Listener); //chihhao: to show audio format in VFD
+	}
+
 
 	/*IOSrv_RegCecEvtListener(&me->super, UserAppCecEvt_Listener);
 	SystemService_RegAudioInfoBroadcastListener(&me->super, UserAppAudioInfo_Listener);
@@ -6163,17 +6174,15 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 		case Q_INIT_SIG:
 		{
 			ap_BurnTest_log("INIT\n");
-			// TDM setting, woofer MIX LsRs
-			AudDspService_Set_CustomTDM(&me->super, ODSP_CUSTOMTDM_ENABLE, ODSP_CUSTOMTDM_LsRs);
-		
-			//--{{Added by Heaven by set EQ
-			AmpSet_EQ(me->hAmpList, me->EQMode);  // Merged from SPA300_TPV_20210205
 
 			QTimeEvt_armX(&me->timerWireless, TICKS_PER_100MS, 0);
 			QTimeEvt_armX(&me->timerSysDetect, TICKS_PER_100MS, 0);
 			QTimeEvt_armX(&me->timePassword, TICKS_PER_100MS, 0);
 			QTimeEvt_armX(&me->timeDisplayOnce, TICKS_PER_100MS, 0);
 			QTimeEvt_armX(&me->timeSrcDelay, TICKS_PER_100MS, 0);
+
+			// TDM setting, woofer MIX LsRs
+			AudDspService_Set_CustomTDM(&me->super, ODSP_CUSTOMTDM_ENABLE, ODSP_CUSTOMTDM_LsRs);
 
 
 #if 0
@@ -6310,41 +6319,34 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 
 			me->sound_menu = eSoundMax;
 
-	#ifdef PRJ_HS510
 
 			SpHdsp_Set_DownmixConfig(&me->super, SPKCONFIG_LR_BIT|SPKCONFIG_C_BIT|SPKCONFIG_LSRS_BIT|SPKCONFIG_SUB_BIT);
 			SpHdsp_Set_UpmixConfig(&me->super, SPKCONFIG_LR_BIT|SPKCONFIG_C_BIT|SPKCONFIG_LSRS_BIT|SPKCONFIG_SUB_BIT);
-	#else
-			SpHdsp_Set_DownmixConfig(&me->super, SPKCONFIG_LR_BIT|SPKCONFIG_LTFRTF_BIT|SPKCONFIG_LSRS_BIT|SPKCONFIG_SUB_BIT);
-			SpHdsp_Set_UpmixConfig(&me->super, SPKCONFIG_LR_BIT|SPKCONFIG_LTFRTF_BIT|SPKCONFIG_LSRS_BIT|SPKCONFIG_SUB_BIT);
-	
-	#endif
-
 			
 			SpHdsp_setAtmos(&me->super, SP_ATMOS_VIRT, 0, 1); // if 2.x 3.x 4.x 5.x output, must set this function, can dialsy atmos format
-			//SpHdsp_setAtmos(&me->super, SP_ATMOS_CONFIG, 0, 1);
+			SpHdsp_setAtmos(&me->super, SP_ATMOS_CONFIG, 0, 1);
 			SrcNameHint(me);
 
 			UserApp_DimmerSet(me);
 
-		//	AudDspService_Set_AppMode(&me->super, SET_MMIX, GRP_MMIX0, MODE1);
+			AudDspService_Set_AppMode(&me->super, SET_MMIX, GRP_MMIX0, MODE1);
 		//	AudDspService_Set_AppMode(&me->super, SET_EQ, GRP_FILTER1, MODE1);
 		//	AudDspService_Set_AppMode(&me->super, SET_BASS, GRP_BASS0, MODE1);
 
-			UserApp_SetBass(me, me->Bass_vol);
-			UserApp_SetTreble(me, me->Treble_vol);
-			UserApp_SetCenterVol(me, me->Centel_vol);
-			UserApp_SetLRVol(me, me->Top_vol);
-			UserApp_SetLsRsVol(me, me->Ls_vol);
+		//	UserApp_SetBass(me, me->Bass_vol);
+		//	UserApp_SetTreble(me, me->Treble_vol);
+		//	UserApp_SetCenterVol(me, me->Centel_vol);
+		//	UserApp_SetLRVol(me, me->Top_vol);
+		//	UserApp_SetLsRsVol(me, me->Ls_vol);
 
-			UserApp_SetSubwooferVol(me, me->Bass_vol);
+		//	UserApp_SetSubwooferVol(me, me->Bass_vol);
 			
 		//	AudDspService_Set_AppMode(&me->super, SET_EQ, GRP_FILTER2, MODE1);  // for subwoofer lowpass
 			
 		//  add for hdmi init src	
             		ap_printf("---power on\n");
-			status = Q_TRAN(&UserApp_PowerOn);
-		//	status = UserAppTranSrc(me, me->aUserSrc_tbl[me->iSrc]);
+		//	status = Q_TRAN(&UserApp_PowerOn);
+			status = UserAppTranSrc(me, me->aUserSrc_tbl[me->iSrc]);
 
 			break;
 		}
@@ -8589,7 +8591,7 @@ QState UserApp_active_AudioPlayer(UserApp *const me, QEvt const *const e)
 		}
 		case Q_INIT_SIG:
 		{
-			GPIO_Output_Write(34, IO_HIGH);	
+			//GPIO_Output_Write(34, IO_HIGH);	
 			me->mute = eMute_off;
 			UserAppMute(me, 0);
 			UartApp_SetKey_Sig(&me->super, SOURCE_SW_RELEASE_SIG, me->iSrc);
@@ -11973,7 +11975,7 @@ QState UserApp_PowerOff(UserApp *const me, QEvt const *const e)
 			AudDspService_Set_SourceGain(&me->super, SrcGain_Tab[me->iSrc]);
 			setHdmiMode(0);
 			UserAppMute(me, 0);
-			UserAppCallHint(me, eHint_PowerOff);
+		//	UserAppCallHint(me, eHint_PowerOff);
 
 			
 			QTimeEvt_disarmX(&me->timeSrcHintEvt);
@@ -12043,7 +12045,7 @@ QState UserApp_PowerOn(UserApp *const me, QEvt const *const e)
 			AudDspService_Flow_Play(&me->super);
 			setHdmiMode(0);
 			UserAppMute(me, 0);
-			UserAppCallHint(me, eHint_PowerOn);
+			//UserAppCallHint(me, eHint_PowerOn);
 			
 			QTimeEvt_disarmX(&me->timeSrcHintEvt);
 			QTimeEvt_armX(&me->timeSrcHintEvt, (TICKS_PER_500MS*3), 0);
@@ -12071,6 +12073,8 @@ QState UserApp_PowerOn(UserApp *const me, QEvt const *const e)
 
 		case SRC_HINT_TIME_SIG://SCROLL_BACK_TIMER_SIG:
 		{
+		
+			
 			AudDspService_Set_AppMode(&me->super, SET_MMIX, GRP_MMIX0, MODE1);
 			
 		    	ap_printf("----HINT_END_TIME_SIG\n");

@@ -259,7 +259,7 @@ static void SetAD82128Output(const AmpList *const pstAmpList, eAmpIdx eIdx)
 {
 	
 	const BYTE *setting = NULL;
-	BYTE write_enable = CFUD_W1;
+	//BYTE write_enable = CFUD_W1;
 	BYTE i=0;//, j=0;
 		
 
@@ -269,24 +269,18 @@ static void SetAD82128Output(const AmpList *const pstAmpList, eAmpIdx eIdx)
 		{
 			AD82128Write(pstAmpList->peList[eIdx], AMP_INIT_LR[i][0], &AMP_INIT_LR[i][1], 1);
 		}
-	#ifdef PRJ_HS510
 		else if(eIdx == eAmp2)  // C
 		{
 			AD82128Write(pstAmpList->peList[eIdx], AMP_INIT_C[i][0], &AMP_INIT_C[i][1], 1);
 		}
-	#else
-		else if(eIdx == eAmp2)  // C
-		{
-			AD82128Write(pstAmpList->peList[eIdx], AMP_INIT_LR[i][0], &AMP_INIT_LR[i][1], 1);
-		}
-	#endif
+
 	}
 
 	setting = DRC_Map[eIdx];
 	for(i=0; i<CHANNEL_SETTING_MAX; i++)
 	{
-		AD82128Write(pstAmpList->peList[eIdx], 0X1D, (void *)(setting+CHANNEL_SETTING_DATA * i), CHANNEL_SETTING_DATA);
-		AD82128Write(pstAmpList->peList[eIdx], 0x32, (void *)&write_enable, 1);
+	//	AD82128Write(pstAmpList->peList[eIdx], 0X1D, (void *)(setting+CHANNEL_SETTING_DATA * i), CHANNEL_SETTING_DATA);
+	//	AD82128Write(pstAmpList->peList[eIdx], 0x32, (void *)&write_enable, 1);
 	}
 
 /*

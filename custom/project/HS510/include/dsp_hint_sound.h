@@ -39,7 +39,7 @@
 #define SUPPORT_INFO 1
 #define SUPPORT_BT_SEARCH 1
 #define SUPPORT_DETECT_SEARCH 1
-#define SUPPORT_EQ_TYPE 1
+#define SUPPORT_EQ_TYPE 0
 
 #define POWER_ON_SRC_HINT 0
 
@@ -146,12 +146,6 @@ typedef enum
 
 	eHintData_EQGame,
 
-	eHintData_PowerOn,
-
-	eHintData_PowerOff,
-
-	eHintData_VolMax,
-
 	eHintData_MAX,
 }eHint_Data_ID;
 
@@ -204,12 +198,6 @@ typedef enum
 	eHint_EQMusic,
 
 	eHint_EQGame,
-
-	eHint_PowerOn,
-
-	eHint_PowerOff,
-
-	eHint_VolMax,
 
 	eHint_EQ_Max,	//EQ Type end
 

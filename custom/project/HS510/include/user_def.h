@@ -21,8 +21,6 @@
 #define CUST_CUSTOMER_CODE   (0x4fb)   //(0x007F) //for other sunplus IR controller
 #define CUST_POWER_KEY_CODE  0x20// (0x46)
 
-//#define PRJ_HS510  // 5.1
-
 
 /*---------------------------------------------------------------------------*
  *                            INCLUDE   DECLARATIONS                         *
@@ -100,6 +98,7 @@
 
 	// MCU interface enable
 	//#define MCU_IF_SP
+	#define MCU_IF_RSR
 	#ifndef AMP_AD85050_12CH
 	//#define SYNCCOM_WIRELESS
 	#endif
@@ -125,7 +124,8 @@
 	#define USERAPP_SUPPORT_HDMI_CEC
 #elif (CFG_HDMI_TAG == USER_PROJECT_REPEATER_MODE)
 	#if (CFG_REPEATER_TYPE == REPEATER_EP)
-		//#define USERAPP_SUPPORT_REPEATER (REPEATER_EP)
+		#define USERAPP_SUPPORT_REPEATER (REPEATER_EP)
+		#define USERAPP_EP_UPGRADE
 	#elif (CFG_REPEATER_TYPE == REPEATER_ITE)
 		#define USERAPP_SUPPORT_REPEATER (REPEATER_ITE)
 	#endif

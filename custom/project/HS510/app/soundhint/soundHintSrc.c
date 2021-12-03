@@ -1,7 +1,7 @@
 
 #include "types.h"
 #include "dsp_hint_sound.h"
-#include "Userapp_HintData.c"
+
 
 const unsigned char HintData_Connect [] =
 {
@@ -26123,101 +26123,6 @@ DSP_HINT_SOUND_P HINT_EQGAME =
 	.R_to_out_ch_num = DEFAULT_R_OUT_CH,
 };
 
-#if 1
-DSP_HINT_SOUND_P *hint_data_map[eHintData_MAX] =
-{
-	&hint_bt_connect,
-
-	&hint_bt_disconnect,
-
-	&HINT_BT_SEARCHING,
-
-	&HINT_DETECT_SEARCHING,
-
-	&hint_usb,
-
-	&HINT_SRC_CARD,
-
-	&hint_aux,
-
-	&HINT_SRC_LINE,
-
-	&hint_usc,
-
-	&hint_optical,
-
-	&HINT_SRC_COAX,
-
-	&hint_arc,
-
-	&HINT_SRC_EARC,
-
-	&hint_hdmi,
-
-	&HINT_SRC_HDMI1,
-
-	&HINT_SRC_HDMI2,
-
-	&hint_bt,
-
-	&HINT_LEFT,
-
-	&HINT_RIGHT,
-
-	&HINT_DOT,
-
-	&HINT_NUM_ZERO,
-
-	&HINT_NUM_ONE,
-
-	&HINT_NUM_TWO,
-
-	&HINT_NUM_THREE,
-
-	&HINT_NUM_FOUR,
-
-	&HINT_NUM_FIVE,
-
-	&HINT_NUM_SIX,
-
-	&HINT_NUM_SEVEN,
-
-	&HINT_NUM_EIGHT,
-
-	&HINT_NUM_NINE,
-
-	&HINT_DOLBY_DIGITAL,
-
-	&HINT_DOLBY_ATMOS,
-
-	&HINT_DOLBY_AUDIO,
-
-	&HINT_DOLBY_DIGITAL_PLUS,
-
-	&HINT_DOLBY_MAT,
-
-	&HINT_DOLBY_TRUEHD,
-
-	&HINT_DTS_DIGITAL_SURR,
-
-	&HINT_STEREO,
-
-	&HINT_PCM,
-
-	&hint_movie,
-
-	&hint_music,
-
-	&hint_talk,
-
-	&hint_power_on,
-
-	&hint_power_off,
-
-	&hint_volmax,
-};
-
-#else
 DSP_HINT_SOUND_P *hint_data_map[eHintData_MAX] =
 {
 	&HINT_BT_CONNECT,
@@ -26303,14 +26208,6 @@ DSP_HINT_SOUND_P *hint_data_map[eHintData_MAX] =
 	&HINT_EQMUSIC,
 
 	&HINT_EQGAME,
-
-	&hint_power_on,
-
-	&hint_power_off,
-
-	&hint_volmax,
 };
-
-#endif
 
 
