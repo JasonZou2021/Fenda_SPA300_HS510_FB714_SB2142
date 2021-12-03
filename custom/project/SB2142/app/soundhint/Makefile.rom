@@ -1,0 +1,19 @@
+include $(TOP)/build/scripts/config.mk
+
+INCLUDE_DIR	+=	-I$(OUT_SDK_INC_DIR)/audDspService \
+				-I$(OUT_SDK_INC_DIR)/qp \
+				-I$(OUT_SDK_INC_DIR)/posix \
+				-I$(OUT_SDK_INC_DIR)/driver 
+SOURCES	+= \
+      soundHintSrc.c \
+
+TARGET = libhintsound.a
+
+TARGET_MODULE = user
+
+# [optional][default ram]may one of <ram|rom>
+TARGET_STORAGE = rom
+
+#excute target build
+$(eval $(BUILD_TARGET))
+

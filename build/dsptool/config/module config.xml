@@ -1,0 +1,613 @@
+<?xml version="1.0" ?>
+<CfgSet Version="2.0.2.6">
+	<CfgG ModuleType="FilterView" ModuleNumber="2">
+		<CfgP>
+			<CfgP TypeOption="All pass;Bass;Treble;EQ;Low Pass;High Pass;" />
+			<CfgP FreqMin="20" FreqMax="20000" FreqInterval="10" />
+			<CfgP GainMin="-18" GainMax="18" GainInterval="0.1" />
+			<CfgP QMin="0.5" QMax="10" QInterval="0.1" />
+			<CfgP PhaseOption="0;180;" />
+			<CfgP SlopeOption="6;12;" />
+			<CfgP MethodOption="Butterworth;Linkwitz-Riley;" />
+			<CfgP StageOption="1;2;" />
+		</CfgP>
+		<CfgC>
+			<CfgC EnableCmd="dsp filter %d 100" />
+			<CfgC ModeChangeCmd="dsp filter %d 101" />
+			<CfgC SyncCmd="dsp sync_filter %d" />
+			<CfgC TypeCmd="dsp filter %d 0" />
+			<CfgC FreqCmd="dsp filter %d 1" />
+			<CfgC GainCmd="dsp filter %d 2" />
+			<CfgC QCmd="dsp filter %d 3" />
+			<CfgC PhaseCmd="dsp filter %d 4" />
+			<CfgC SlopeCmd="dsp filter %d 5" />
+			<CfgC MethodCmd="dsp filter %d 6" />
+			<CfgC StageCmd="dsp filter %d 7" />
+		</CfgC>
+	</CfgG>
+	<CfgG ModuleType="MatrixMixView" ModuleNumber="1">
+		<CfgP>
+			<CfgP ItemValueMin="-140" />
+			<CfgP ItemValueMax="0" />
+			<CfgP ItemValueInterval="0.1" />
+			<CfgP ItemUnit="dB" />
+		</CfgP>
+		<CfgC>
+			<CfgC EnableCmd="dsp matrix %d 100" />
+			<CfgC ModeChangeCmd="dsp matrix %d 101" />
+			<CfgC SyncCmd="dsp sync_matrix %d" />
+			<CfgC ItemValueCmd="dsp matrix %d" />
+		</CfgC>
+	</CfgG>
+	<CfgG ModuleType="DTSVirtualXView" ModuleNumber="4">
+		<CfgP>
+			<CfgP Module="GlobalControls">
+				<CfgP VXInputMode="2.0;5.1;BSD;7.1;5.1.2;5.1.4;7.1.4;" />
+				<CfgP VXOutputMode="2.0;2.1;3.0;3.1;4.0;5.1;7.1;3.1.2;5.1.2;5.1.4;" />
+				<CfgP VXInputGainMin="-48" VXInputGainMax="0" VXInputGainInterval="0.5" VXInputGainUint="dB" />
+				<CfgP VXOutputGainMin="-24" VXOutputGainMax="12" VXOutputGainInterval="0.5" VXOutputGainUint="dB" />
+				<CfgP VXHeighMixGainMin="-24" VXHeighMixGainMax="6" VXHeighMixGainInterval="0.5" VXHeighMixGainUint="dB" />
+			</CfgP>
+			<CfgP Module="LoudnessControls">
+				<CfgP LoudCtrlTargetMin="-40" LoudCtrlTargetMax="0" LoudCtrlTargetInterval="1" LoudCtrlTargetUint="dB" />
+				<CfgP LoudCtrlLateMode="0: Low;1: High;" />
+				<CfgP LoudCtrlPreset="0: Light;1: Medium;2: Aggressive;" />
+			</CfgP>
+			<CfgP Module="HeightUpmixerControls">
+				<CfgP HUDelayLMin="0" HUDelayLMax="1024" HUDelayLInterval="1" HUDelayLUint="" />
+				<CfgP HUHPBPanMin="0" HUHPBPanMax="1" HUHPBPanInterval="0.01" HUHPBPanUint="" />
+				<CfgP HUQCLSCutGainMin="-72" HUQCLSCutGainMax="0" HUQCLSCutGainInterval="0.5" HUQCLSCutGainUint="dB" />
+				<CfgP HUQCLSBoostGainMin="0" HUQCLSBoostGainMax="12" HUQCLSBoostGainInterval="0.5" HUQCLSBoostGainUint="dB" />
+			</CfgP>
+			<CfgP Module="HorizontalSurroundControls">
+				<CfgP HSSurLevelMin="0" HSSurLevelMax="1" HSSurLevelInterval="0.01" HSSurLevelUint="" />
+				<CfgP HSCTFMixMin="0" HSCTFMixMax="1" HSCTFMixInterval="0.01" HSCTFMixUint="" />
+			</CfgP>
+			<CfgP Module="TBHDxControls">
+				<CfgP THFRTMode="Mono;Stereo;" />
+				<CfgP THFRTSpkSize="40Hz;60Hz;80Hz;100Hz;120Hz;150Hz;200Hz;250Hz;300Hz;400Hz;500Hz;600Hz;Custom;" />
+				<CfgP THFRTDynmsMin="0" THFRTDynmsMax="100" THFRTDynmsInterval="0.1" THFRTDynmsUint="%" />
+				<CfgP THFRTHpOrderMin="1" THFRTHpOrderMax="8" THFRTHpOrderInterval="1" THFRTHpOrderUint="" />
+				<CfgP THFRTBassLvlMin="0.01" THFRTBassLvlMax="100" THFRTBassLvlInterval="0.01" THFRTBassLvlUint="%" />
+				<CfgP THFRTExtBassMin="0" THFRTExtBassMax="100" THFRTExtBassInterval="0.1" THFRTExtBassUint="%" />
+				<CfgP THCTRSpkSize="40Hz;60Hz;80Hz;100Hz;120Hz;150Hz;200Hz;250Hz;300Hz;400Hz;500Hz;600Hz;Custom;" />
+				<CfgP THCTRDynmsMin="0" THCTRDynmsMax="100" THCTRDynmsInterval="0.1" THCTRDynmsUint="%" />
+				<CfgP THCTRHpOrderMin="1" THCTRHpOrderMax="8" THCTRHpOrderInterval="1" THCTRHpOrderUint="" />
+				<CfgP THCTRBassLvlMin="0.01" THCTRBassLvlMax="100" THCTRBassLvlInterval="0.01" THCTRBassLvlUint="%" />
+				<CfgP THCTRExtBassMin="0" THCTRExtBassMax="100" THCTRExtBassInterval="0.1" THCTRExtBassUint="%" />
+				<CfgP THSURMode="Mono;Stereo;" />
+				<CfgP THSURSpkSize="40Hz;60Hz;80Hz;100Hz;120Hz;150Hz;200Hz;250Hz;300Hz;400Hz;500Hz;600Hz;Custom;" />
+				<CfgP THSURDynmsMin="0" THSURDynmsMax="100" THSURDynmsInterval="0.1" THSURDynmsUint="%" />
+				<CfgP THSURHpOrderMin="1" THSURHpOrderMax="8" THSURHpOrderInterval="1" THSURHpOrderUint="" />
+				<CfgP THSURBassLvlMin="0.01" THSURBassLvlMax="100" THSURBassLvlInterval="0.01" THSURBassLvlUint="%" />
+				<CfgP THSURExtBassMin="0" THSURExtBassMax="100" THSURExtBassInterval="0.1" THSURExtBassUint="%" />
+				<CfgP THLFESpkSize="40Hz;60Hz;80Hz;100Hz;120Hz;150Hz;200Hz;250Hz;300Hz;400Hz;500Hz;600Hz;Custom;" />
+				<CfgP THLFEGainMin="-12" THLFEGainMax="12" THLFEGainInterval="0.5" THLFEGainUint="dB" />
+				<CfgP THSUBBassLvlMin="0.01" THSUBBassLvlMax="100" THSUBBassLvlInterval="0.01" THSUBBassLvlUint="%" />
+				<CfgP THRearMode="Mono;Stereo;" />
+				<CfgP THRearSpkSize="40Hz;60Hz;80Hz;100Hz;120Hz;150Hz;200Hz;250Hz;300Hz;400Hz;500Hz;600Hz;Custom;" />
+				<CfgP THRearDynmsMin="0" THRearDynmsMax="100" THRearDynmsInterval="0.1" THRearDynmsUint="%" />
+				<CfgP THRearHpOrderMin="1" THRearHpOrderMax="8" THRearHpOrderInterval="1" THRearHpOrderUint="" />
+				<CfgP THRearBassLvlMin="0.01" THRearBassLvlMax="100" THRearBassLvlInterval="0.01" THRearBassLvlUint="%" />
+				<CfgP THRearExtBassMin="0" THRearExtBassMax="100" THRearExtBassInterval="0.1" THRearExtBassUint="%" />
+			</CfgP>
+			<CfgP Module="DefinitionControls">
+				<CfgP DCLvlMin="0" DCLvlMax="100" DCLvlInterval="1" DCLvlUint="%" />
+				<CfgP DFRTLvlMin="0" DFRTLvlMax="100" DFRTLvlInterval="1" DFRTLvlUint="%" />
+				<CfgP DCTRLvlMin="0" DCTRLvlMax="100" DCTRLvlInterval="1" DCTRLvlUint="%" />
+				<CfgP DSURTLvlMin="0" DSURTLvlMax="100" DSURTLvlInterval="1" DSURTLvlUint="%" />
+				<CfgP DRearLvlMin="0" DRearLvlMax="100" DRearLvlInterval="1" DRearLvlUint="%" />
+			</CfgP>
+			<CfgP Module="SpaceHpfControls">
+				<CfgP SHPFFRTFreq="80Hz;120Hz;160Hz;200Hz;240Hz;300Hz;400Hz;500Hz;600Hz;800Hz;Custom;" />
+				<CfgP SHPFSURFreq="80Hz;120Hz;160Hz;200Hz;240Hz;300Hz;400Hz;500Hz;600Hz;800Hz;Custom;" />
+				<CfgP SHPFRearFreq="80Hz;120Hz;160Hz;200Hz;240Hz;300Hz;400Hz;500Hz;600Hz;800Hz;Custom;" />
+			</CfgP>
+			<CfgP Module="TruSurroundMControls">
+				<CfgP TSMltcmCtrlMin="-72" TSMltcmCtrlMax="6" TSMltcmCtrlInterval="0.5" TSMltcmCtrlUint="dB" />
+				<CfgP TSMnaConCtrlMin="-1" TSMnaConCtrlMax="1" TSMnaConCtrlInterval="0.01" TSMnaConCtrlUint="" />
+				<CfgP TSMrearNatConCtrlMin="-1" TSMrearNatConCtrlMax="1" TSMrearNatConCtrlInterval="0.01" TSMrearNatConCtrlUint="" />
+				<CfgP TSMheightNaConCtrlMin="-1" TSMheightNaConCtrlMax="1" TSMheightNaConCtrlInterval="0.01" TSMheightNaConCtrlUint="" />
+				<CfgP TSMcenterChaGainCtrlMin="-12" TSMcenterChaGainCtrlMax="12" TSMcenterChaGainCtrlInterval="0.5" TSMcenterChaGainCtrlUint="dB" />
+				<CfgP TSMfrontHeGainCtrlMin="0" TSMfrontHeGainCtrlMax="18" TSMfrontHeGainCtrlInterval="0.5" TSMfrontHeGainCtrlUint="dB" />
+				<CfgP TSMrearHeGainCtrlMin="0" TSMrearHeGainCtrlMax="18" TSMrearHeGainCtrlInterval="0.5" TSMrearHeGainCtrlUint="dB" />
+				<CfgP TSMfrontHeMixCofcCtrlMin="0.25" TSMfrontHeMixCofcCtrlMax="2" TSMfrontHeMixCofcCtrlInterval="0.01" TSMfrontHeMixCofcCtrlUint="" />
+				<CfgP TSMrearHeMixCofcCtrlMin="0.25" TSMrearHeMixCofcCtrlMax="2" TSMrearHeMixCofcCtrlInterval="0.01" TSMrearHeMixCofcCtrlUint="" />
+				<CfgP TSMvirtualHeDeLenCtrlMin="0" TSMvirtualHeDeLenCtrlMax="512" TSMvirtualHeDeLenCtrlInterval="1" TSMvirtualHeDeLenCtrlUint="" />
+				<CfgP TSMDevLay="5 degree;10 degree;" />
+			</CfgP>
+			<CfgP Module="MCD">
+				<CfgP MBHLIOmode="2.0;2.1;3.0;3.1;4.0;5.1;7.1;3.1.2;5.1.2;5.1.4;" />
+				<CfgP MBHLMode="Limiter;Compressor;Low Band Comp;Two Band Comp;Three Band Comp;" />
+				<CfgP MBHLCroLowFre="40Hz;60Hz;100Hz;120Hz;150Hz;200Hz;250Hz;300Hz;400Hz;500Hz;600Hz;800Hz;1000Hz;1600Hz;2000Hz;3000Hz;4000Hz;5000Hz;6000Hz;8000Hz;CUSTOM;" />
+				<CfgP MBHLCroMidFre="40Hz;60Hz;100Hz;120Hz;150Hz;200Hz;250Hz;300Hz;400Hz;500Hz;600Hz;800Hz;1000Hz;1600Hz;2000Hz;3000Hz;4000Hz;5000Hz;6000Hz;8000Hz;CUSTOM;" />
+				<CfgP MBHLDelay="0P6MS;1P3MS;1P9MS;2P6MS;3P3MS;3P9MS;4P6MS;5P3MS;5P9MS;6P6MS;7P3MS;7P9MS;8P6MS;9P3MS;9P9MS;10P6MS;" />
+				<CfgP MBHLBypassGainMin="-60" MBHLBypassGainMax="0" MBHLBypassGainInterval="0.1" MBHLBypassGainUint="dB" />
+				<CfgP MBHLAnClLevelMin="0" MBHLAnClLevelMax="12" MBHLAnClLevelInterval="0.1" MBHLAnClLevelUint="dB" />
+				<CfgP MBHLCenProLevelMin="0" MBHLCenProLevelMax="24" MBHLCenProLevelInterval="0.1" MBHLCenProLevelUint="dB" />
+				<CfgP MBHLReLevelMin="-60" MBHLReLevelMax="0" MBHLReLevelInterval="0.1" MBHLReLevelUint="dB" />
+				<CfgP MBHLVolLevelMin="0" MBHLVolLevelMax="100" MBHLVolLevelInterval="0.1" MBHLVolLevelUint="%" />
+				<CfgP MBHLVolStepMin="0" MBHLVolStepMax="100" MBHLVolStepInterval="1" MBHLVolStepUint="" />
+				<CfgP MBHLBalanStepMin="-10" MBHLBalanStepMax="10" MBHLBalanStepInterval="1" MBHLBalanStepUint="" />
+				<CfgP MBHLOutputGainMin="-24" MBHLOutputGainMax="0" MBHLOutputGainInterval="0.1" MBHLOutputGainUint="dB" />
+				<CfgP MBHLBoostMin="-60" MBHLBoostMax="60" MBHLBoostInterval="0.1" MBHLBoostUint="dB" />
+				<CfgP MBHLThresholdMin="-24" MBHLThresholdMax="0" MBHLThresholdInterval="0.1" MBHLThresholdUint="dB" />
+				<CfgP MBHLSlowOffsetMin="-10" MBHLSlowOffsetMax="10" MBHLSlowOffsetInterval="0.1" MBHLSlowOffsetUint="dB" />
+				<CfgP MBHLFastAttackMin="0" MBHLFastAttackMax="10" MBHLFastAttackInterval="0.1" MBHLFastAttackUint="ms" />
+				<CfgP MBHLFastReleaseMin="10" MBHLFastReleaseMax="500" MBHLFastReleaseInterval="1" MBHLFastReleaseUint="" />
+				<CfgP MBHLSlowAttackMin="100" MBHLSlowAttackMax="1000" MBHLSlowAttackInterval="1" MBHLSlowAttackUint="" />
+				<CfgP MBHLSlowReleaseMin="100" MBHLSlowReleaseMax="2000" MBHLSlowReleaseInterval="1" MBHLSlowReleaseUint="" />
+				<CfgP MBHLEnveFreqMin="5" MBHLEnveFreqMax="500" MBHLEnveFreqInterval="1" MBHLEnveFreqUint="" />
+				<CfgP MBHLCompAttackMin="0" MBHLCompAttackMax="100" MBHLCompAttackInterval="1" MBHLCompAttackUint="ms" />
+				<CfgP MBHLCompLowRelMin="50" MBHLCompLowRelMax="2000" MBHLCompLowRelInterval="1" MBHLCompLowRelUint="ms" />
+				<CfgP MBHLCompLowRatioMin="1" MBHLCompLowRatioMax="20" MBHLCompLowRatioInterval="0.1" MBHLCompLowRatioUint="" />
+				<CfgP MBHLCompLowThreshMin="-24" MBHLCompLowThreshMax="24" MBHLCompLowThreshInterval="0.1" MBHLCompLowThreshUint="dB" />
+				<CfgP MBHLCompLowMakeupMin="-24" MBHLCompLowMakeupMax="24" MBHLCompLowMakeupInterval="0.1" MBHLCompLowMakeupUint="dB" />
+				<CfgP MBHLCompMidReleaseMin="50" MBHLCompMidReleaseMax="2000" MBHLCompMidReleaseInterval="1" MBHLCompMidReleaseUint="ms" />
+				<CfgP MBHLCompMidRatioMin="1" MBHLCompMidRatioMax="20" MBHLCompMidRatioInterval="0.1" MBHLCompMidRatioUint="" />
+				<CfgP MBHLCompMidThreshMin="-24" MBHLCompMidThreshMax="24" MBHLCompMidThreshInterval="0.1" MBHLCompMidThreshUint="dB" />
+				<CfgP MBHLCompMidMakeupMin="-24" MBHLCompMidMakeupMax="24" MBHLCompMidMakeupInterval="0.1" MBHLCompMidMakeupUint="dB" />
+				<CfgP MBHLCompHighReleaseMin="50" MBHLCompHighReleaseMax="2000" MBHLCompHighReleaseInterval="1" MBHLCompHighReleaseUint="ms" />
+				<CfgP MBHLCompHighRatioMin="1" MBHLCompHighRatioMax="20" MBHLCompHighRatioInterval="0.1" MBHLCompHighRatioUint="" />
+				<CfgP MBHLCompHighThreshMin="-24" MBHLCompHighThreshMax="24" MBHLCompHighThreshInterval="0.1" MBHLCompHighThreshUint="dB" />
+				<CfgP MBHLCompHighMakeupMin="-24" MBHLCompHighMakeupMax="24" MBHLCompHighMakeupInterval="0.1" MBHLCompHighMakeupUint="dB" />
+			</CfgP>
+		</CfgP>
+		<CfgC>
+			<CfgC EnableCmd="dsp virtualx %d 100" />
+			<CfgC ModeChangeCmd="dsp virtualx %d 101" />
+			<CfgC SoundxBitFlagCmd="dsp virtualx %d 26" />
+			<CfgC Soundx2BitFlagCmd="dsp virtualx %d 27" />
+			<CfgC MbhlBitFlagCmd="dsp virtualx %d 56" />
+			<CfgC SyncCmd="dsp sync_vxv2 %d" />
+			<CfgC Module="GlobalControls">
+				<CfgC VXInputModeCmd="dsp virtualx %d 0" />
+				<CfgC VXOutputModeCmd="dsp virtualx %d 1" />
+				<CfgC VXInputGainCmd="dsp virtualx %d 28" />
+				<CfgC VXOutputGainCmd="dsp virtualx %d 29" />
+				<CfgC VXHeighMixGainCmd="dsp virtualx %d 30" />
+			</CfgC>
+			<CfgC Module="LoudnessControls">
+				<CfgC LoudCtrlTargetCmd="dsp virtualx %d 24" />
+				<CfgC LoudCtrlPresetCmd="dsp virtualx %d 25" />
+			</CfgC>
+			<CfgC Module="HeightUpmixerControls">
+				<CfgC HUDelayLCmd="dsp virtualx %d 2" />
+				<CfgC HUHPBPanCmd="dsp virtualx %d 3" />
+				<CfgC HUQCLSCutGainCmd="dsp virtualx %d 31" />
+				<CfgC HUQCLSBoostGainCmd="dsp virtualx %d 32" />
+			</CfgC>
+			<CfgC Module="HorizontalSurroundControls">
+				<CfgC HSSurLevelCmd="dsp virtualx %d 5" />
+				<CfgC HSCTFMixCmd="dsp virtualx %d 4" />
+			</CfgC>
+			<CfgC Module="TBHDxControls">
+				<CfgC THFRTSpkSizeCmd="dsp virtualx %d 6" />
+				<CfgC THFRTDynmsCmd="dsp virtualx %d 33" />
+				<CfgC THFRTHpOrderCmd="dsp virtualx %d 7" />
+				<CfgC THFRTBassLvlCmd="dsp virtualx %d 34" />
+				<CfgC THFRTExtBassCmd="dsp virtualx %d 35" />
+				<CfgC THCTRSpkSizeCmd="dsp virtualx %d 10" />
+				<CfgC THCTRDynmsCmd="dsp virtualx %d 39" />
+				<CfgC THCTRHpOrderCmd="dsp virtualx %d 11" />
+				<CfgC THCTRBassLvlCmd="dsp virtualx %d 40" />
+				<CfgC THCTRExtBassCmd="dsp virtualx %d 41" />
+				<CfgC THSURSpkSizeCmd="dsp virtualx %d 12" />
+				<CfgC THSURDynmsCmd="dsp virtualx %d 42" />
+				<CfgC THSURHpOrderCmd="dsp virtualx %d 13" />
+				<CfgC THSURBassLvlCmd="dsp virtualx %d 43" />
+				<CfgC THSURExtBassCmd="dsp virtualx %d 44" />
+				<CfgC THLFESpkSizeCmd="dsp virtualx %d 14" />
+				<CfgC THLFEGainCmd="dsp virtualx %d 46" />
+				<CfgC THSUBBassLvlCmd="dsp virtualx %d 45" />
+				<CfgC THRearSpkSizeCmd="dsp virtualx %d 8" />
+				<CfgC THRearDynmsCmd="dsp virtualx %d 36" />
+				<CfgC THRearHpOrderCmd="dsp virtualx %d 9" />
+				<CfgC THRearBassLvlCmd="dsp virtualx %d 37" />
+				<CfgC THRearExtBassCmd="dsp virtualx %d 38" />
+			</CfgC>
+			<CfgC Module="DefinitionControls">
+				<CfgC DCLvlCmd="dsp virtualx %d 19" />
+				<CfgC DFRTLvlCmd="dsp virtualx %d 15" />
+				<CfgC DCTRLvlCmd="dsp virtualx %d 18" />
+				<CfgC DSURTLvlCmd="dsp virtualx %d 17" />
+				<CfgC DRearLvlCmd="dsp virtualx %d 16" />
+			</CfgC>
+			<CfgC Module="SpaceHpfControls">
+				<CfgC SHPFFRTFreqCmd="dsp virtualx %d 20" />
+				<CfgC SHPFSURFreqCmd="dsp virtualx %d 22" />
+				<CfgC SHPFRearFreqCmd="dsp virtualx %d 21" />
+			</CfgC>
+			<CfgC Module="TruSurroundMControls">
+				<CfgC TSMltcmCtrlCmd="dsp virtualx %d 47" />
+				<CfgC TSMnaConCtrlCmd="dsp virtualx %d 48" />
+				<CfgC TSMrearNatConCtrlCmd="dsp virtualx %d 49" />
+				<CfgC TSMheightNaConCtrlCmd="dsp virtualx %d 50" />
+				<CfgC TSMcenterChaGainCtrlCmd="dsp virtualx %d 51" />
+				<CfgC TSMfrontHeGainCtrlCmd="dsp virtualx %d 52" />
+				<CfgC TSMrearHeGainCtrlCmd="dsp virtualx %d 53" />
+				<CfgC TSMfrontHeMixCofcCtrlCmd="dsp virtualx %d 54" />
+				<CfgC TSMrearHeMixCofcCtrlCmd="dsp virtualx %d 55" />
+				<CfgC TSMvirtualHeDeLenCtrlCmd="dsp virtualx %d 23" />
+			</CfgC>
+			<CfgC Module="MCD">
+				<CfgC MBHLIOmodeCmd="dsp virtualx %d 57" />
+				<CfgC MBHLModeCmd="dsp virtualx %d 65" />
+				<CfgC MBHLCroLowFreCmd="dsp virtualx %d 66" />
+				<CfgC MBHLCroMidFreCmd="dsp virtualx %d 67" />
+				<CfgC MBHLDelayCmd="dsp virtualx %d 63" />
+				<CfgC MBHLBypassGainCmd="dsp virtualx %d 72" />
+				<CfgC MBHLAnClLevelCmd="dsp virtualx %d 80" />
+				<CfgC MBHLCenProLevelCmd="dsp virtualx %d 81" />
+				<CfgC MBHLReLevelCmd="dsp virtualx %d 73" />
+				<CfgC MBHLVolLevelCmd="dsp virtualx %d 74" />
+				<CfgC MBHLVolStepCmd="dsp virtualx %d 58" />
+				<CfgC MBHLBalanStepCmd="dsp virtualx %d 59" />
+				<CfgC MBHLOutputGainCmd="dsp virtualx %d 75" />
+				<CfgC MBHLBoostCmd="dsp virtualx %d 76" />
+				<CfgC MBHLThresholdCmd="dsp virtualx %d 77" />
+				<CfgC MBHLSlowOffsetCmd="dsp virtualx %d 78" />
+				<CfgC MBHLFastAttackCmd="dsp virtualx %d 79" />
+				<CfgC MBHLFastReleaseCmd="dsp virtualx %d 60" />
+				<CfgC MBHLSlowAttackCmd="dsp virtualx %d 61" />
+				<CfgC MBHLSlowReleaseCmd="dsp virtualx %d 62" />
+				<CfgC MBHLEnveFreqCmd="dsp virtualx %d 64" />
+				<CfgC MBHLCompAttackCmd="dsp virtualx %d 68" />
+				<CfgC MBHLCompLowRelCmd="dsp virtualx %d 69" />
+				<CfgC MBHLCompLowRatioCmd="dsp virtualx %d 82" />
+				<CfgC MBHLCompLowThreshCmd="dsp virtualx %d 83" />
+				<CfgC MBHLCompLowMakeupCmd="dsp virtualx %d 84" />
+				<CfgC MBHLCompMidReleaseCmd="dsp virtualx %d 70" />
+				<CfgC MBHLCompMidRatioCmd="dsp virtualx %d 85" />
+				<CfgC MBHLCompMidThreshCmd="dsp virtualx %d 86" />
+				<CfgC MBHLCompMidMakeupCmd="dsp virtualx %d 87" />
+				<CfgC MBHLCompHighReleaseCmd="dsp virtualx %d 71" />
+				<CfgC MBHLCompHighRatioCmd="dsp virtualx %d 88" />
+				<CfgC MBHLCompHighThreshCmd="dsp virtualx %d 89" />
+				<CfgC MBHLCompHighMakeupCmd="dsp virtualx %d 90" />
+			</CfgC>
+		</CfgC>
+	</CfgG>
+	<CfgG ModuleType="BassView" ModuleNumber="9">
+		<CfgP>
+			<CfgP Module="PreMix">
+				<CfgP Min="-140" />
+				<CfgP Max="0" />
+				<CfgP Interval="0.1" />
+			</CfgP>
+			<CfgP Module="PostMix">
+				<CfgP Min="-140" />
+				<CfgP Max="0" />
+				<CfgP Interval="0.1" />
+			</CfgP>
+			<CfgP Module="Filter">
+				<CfgP TypeOption="All pass;Bass;Treble;EQ;Low Pass;High Pass;" />
+				<CfgP FreqMin="20" FreqMax="20000" FreqInterval="10" />
+				<CfgP GainMin="-18" GainMax="18" GainInterval="0.1" />
+				<CfgP QMin="0.5" QMax="10" QInterval="0.1" />
+				<CfgP PhaseOption="0;180;" />
+				<CfgP SlopeOption="6;12;" />
+				<CfgP MethodOption="Butterworth;Linkwitz-Riley;" />
+				<CfgP StageOption="1;2;" />
+			</CfgP>
+		</CfgP>
+		<CfgC>
+			<CfgC EnableCmd="dsp bm %d 100" />
+			<CfgC PreMixModeChangeCmd="dsp bm %d 101" />
+			<CfgC PostMixModeChangeCmd="dsp bm %d 102" />
+			<CfgC FilterModeChangeCmd="dsp bm %d 103" />
+			<CfgC PreMixSyncCmd="dsp sync_bm_premix %d" />
+			<CfgC PostMixSyncCmd="dsp sync_bm_postmix %d" />
+			<CfgC FilterSyncCmd="dsp sync_bm_filter %d" />
+			<CfgC Module="PreMix">
+				<CfgC Cmd="dsp bm %d 8" />
+			</CfgC>
+			<CfgC Module="PostMix">
+				<CfgC Cmd="dsp bm %d 9" />
+			</CfgC>
+			<CfgC Module="Filter">
+				<CfgC TypeCmd="dsp bm %d 0" />
+				<CfgC FreqCmd="dsp bm %d 1" />
+				<CfgC GainCmd="dsp bm %d 2" />
+				<CfgC QCmd="dsp bm %d 3" />
+				<CfgC PhaseCmd="dsp bm %d 4" />
+				<CfgC SlopeCmd="dsp bm %d 5" />
+				<CfgC MethodCmd="dsp bm %d 6" />
+				<CfgC StageCmd="dsp bm %d 7" />
+			</CfgC>
+		</CfgC>
+	</CfgG>
+	<CfgG ModuleType="DelayView" ModuleNumber="8">
+		<CfgP>
+			<CfgP UnitS="time;sample;" UnitD="ms;counts;" />
+		</CfgP>
+		<CfgC>
+			<CfgC EnableCmd="dsp delay %d 100" />
+			<CfgC UnitCmd="dsp delay %d 102" />
+			<CfgC TypeCmd="dsp delay %d 101" />
+			<CfgC SyncCmd="dsp sync_delay %d" />
+			<CfgC ValueCMD="dsp delay %d" />
+		</CfgC>
+	</CfgG>
+	<CfgG ModuleType="SpaSoundIIIView" ModuleNumber="11">
+		<CfgP>
+			<CfgP Module="CrossFilter">
+				<CfgP SpaIIICroFilFrequencyMax="20000" SpaIIICroFilFrequencyMin="20" SpaIIICroFilFrequencyInterval="1" SpaIIICroFilFrequencyUint="Hz" />
+				<CfgP SpaIIICroFilMethod="Linkwitz-Riley;" />
+				<CfgP SpaIIICroFilSlope="6;12;18;24;" />
+			</CfgP>
+			<CfgP Module="GainCtrl">
+				<CfgP SpaIIIFrontGainMax="12" SpaIIIFrontGainMin="-40" SpaIIIFrontGainInterval="0.125" SpaIIIFrontGainUint="dB" />
+				<CfgP SpaIIIRearGainMax="12" SpaIIIRearGainMin="-40" SpaIIIRearGainInterval="0.125" SpaIIIRearGainUint="dB" />
+				<CfgP SpaIIICenterGainMax="12" SpaIIICenterGainMin="-40" SpaIIICenterGainInterval="0.125" SpaIIICenterGainUint="dB" />
+				<CfgP SpaIIISurrGainMax="0" SpaIIISurrGainMin="-40" SpaIIISurrGainInterval="0.125" SpaIIISurrGainUint="dB" />
+				<CfgP SpaIIILowFreGainMax="6" SpaIIILowFreGainMin="-40" SpaIIILowFreGainInterval="0.125" SpaIIILowFreGainUint="dB" />
+				<CfgP SpaIIIFinalOutputGainMax="12" SpaIIIFinalOutputGainMin="-12" SpaIIIFinalOutputGainInterval="0.125" SpaIIIFinalOutputGainUint="dB" />
+				<CfgP SpaIIIFrontFloorMax="0" SpaIIIFrontFloorMin="-40" SpaIIIFrontFloorInterval="0.125" SpaIIIFrontFloorUint="dB" />
+				<CfgP SpaIIIRearFloorMax="0" SpaIIIRearFloorMin="-40" SpaIIIRearFloorInterval="0.125" SpaIIIRearFloorUint="dB" />
+				<CfgP SpaIIICstrUpmix="movie;music;voice;" />
+				<CfgP SpaIIICstrIndex="0;1;2;3;4;5;" />
+				<CfgP SpaIIICstrSpeaker="0;1;2;3;4;5;" />
+			</CfgP>
+			<CfgP Module="Filter">
+				<CfgP TypeOption="Bass;Bass_Q;Treble;Treble_Q;Peak;Low Pass;High Pass;" />
+				<CfgP FreqMin="20" FreqMax="20000" FreqInterval="10" />
+				<CfgP GainMin="-24" GainMax="24" GainInterval="0.125" />
+				<CfgP QMin="0.4" QMax="10" QInterval="0.125" />
+				<CfgP SlopeOption="6;12;" />
+				<CfgP MethodOption="Butterworth;Linkwitz-Riley;" />
+				<CfgP StageOption="1;2;" />
+			</CfgP>
+		</CfgP>
+		<CfgC>
+			<CfgC EnableCmd="dsp ss3 %d 100 0 0" />
+			<CfgC CommonModeChangeCmd="dsp ss3 %d 101 0 0" />
+			<CfgC FilterModeChangeCmd="dsp ss3 %d 102" />
+			<CfgC CommonSyncCmd="dsp sync_ss3_c %d" />
+			<CfgC FilterSyncCmd="dsp sync_ss3_f %d" />
+			<CfgC Module="CrossFilter">
+				<CfgC CroFilFreCmd="dsp ss3 %d 2 0 0" />
+				<CfgC SlopeCmd="dsp ss3 %d 1 0 0" />
+				<CfgC MethodCmd="dsp ss3 %d 0 0 0" />
+			</CfgC>
+			<CfgC Module="GainCtrl">
+				<CfgC FrontGainCmd="dsp ss3 %d 4 0 0" />
+				<CfgC RearGainCmd="dsp ss3 %d 5 0 0" />
+				<CfgC CenterGainCmd="dsp ss3 %d 6 0 0" />
+				<CfgC SurrGainCmd="dsp ss3 %d 12 0 0" />
+				<CfgC LowFreGainCmd="dsp ss3 %d 13 0 0" />
+				<CfgC FinalOutputGainCmd="dsp ss3 %d 15 0 0" />
+				<CfgC FrontFloorCmd="dsp ss3 %d 10 0 0" />
+				<CfgC RearFloorCmd="dsp ss3 %d 11 0 0" />
+				<CfgC MixClaterCmd="dsp ss3 %d 3 0 0" />
+				<CfgC UpmixCmd="dsp ss3 %d 7 0 0" />
+				<CfgC IndexCmd="dsp ss3 %d 9 0 0" />
+				<CfgC SpeakerCmd="dsp ss3 %d 8 0 0" />
+			</CfgC>
+			<CfgC Module="Filter">
+				<CfgC TypeCmd="dsp ss3 %d 50" />
+				<CfgC FreqCmd="dsp ss3 %d 51" />
+				<CfgC GainCmd="dsp ss3 %d 52" />
+				<CfgC QCmd="dsp ss3 %d 53" />
+				<CfgC SlopeCmd="dsp ss3 %d 54" />
+				<CfgC MethodCmd="dsp ss3 %d 55" />
+			</CfgC>
+		</CfgC>
+	</CfgG>
+	<CfgG ModuleType="SpaSoundMSView" ModuleNumber="12">
+		<CfgP>
+			<CfgP Module="CrossFilter">
+				<CfgP SpaMSCroFilFrequencyMax="20000" SpaMSCroFilFrequencyMin="20" SpaMSCroFilFrequencyInterval="1" SpaMSCroFilFrequencyUint="Hz" />
+				<CfgP SpaMSCroFilMethod="Linkwitz-Riley;" />
+				<CfgP SpaMSCroFilSlope="6;12;18;24;" />
+			</CfgP>
+			<CfgP Module="GainCtrl">
+				<CfgP SpaMSFrontGainMax="12" SpaMSFrontGainMin="-40" SpaMSFrontGainInterval="0.125" SpaMSFrontGainUint="dB" />
+				<CfgP SpaMSRearGainMax="12" SpaMSRearGainMin="-40" SpaMSRearGainInterval="0.125" SpaMSRearGainUint="dB" />
+				<CfgP SpaMSCenterGainMax="12" SpaMSCenterGainMin="-40" SpaMSCenterGainInterval="0.125" SpaMSCenterGainUint="dB" />
+				<CfgP SpaMSFrontMidGainMax="12" SpaMSFrontMidGainMin="-40" SpaMSFrontMidGainInterval="0.125" SpaMSFrontMidGainUint="dB" />
+				<CfgP SpaMSFrontSideGainMax="12" SpaMSFrontSideGainMin="-40" SpaMSFrontSideGainInterval="0.125" SpaMSFrontSideGainUint="dB" />
+				<CfgP SpaMSFrontOriGainMax="0" SpaMSFrontOriGainMin="-40" SpaMSFrontOriGainInterval="0.125" SpaMSFrontOriGainUint="dB" />
+				<CfgP SpaMSFrontLowGainMax="0" SpaMSFrontLowGainMin="-40" SpaMSFrontLowGainInterval="0.125" SpaMSFrontLowGainUint="dB" />
+				<CfgP SpaMSFinalOutputGainMax="12" SpaMSFinalOutputGainMin="-12" SpaMSFinalOutputGainInterval="0.125" SpaMSFinalOutputGainUint="dB" />
+			</CfgP>
+			<CfgP Module="Filter">
+				<CfgP TypeOption="Bass;Bass_Q;Treble;Treble_Q;Peak;Low Pass;High Pass;" />
+				<CfgP FreqMin="20" FreqMax="20000" FreqInterval="10" />
+				<CfgP GainMin="-24" GainMax="24" GainInterval="0.125" />
+				<CfgP QMin="0.4" QMax="10" QInterval="0.125" />
+				<CfgP SlopeOption="6;12;" />
+				<CfgP MethodOption="Butterworth;Linkwitz-Riley;" />
+				<CfgP StageOption="1;2;" />
+			</CfgP>
+		</CfgP>
+		<CfgC>
+			<CfgC EnableCmd="dsp ss4 %d 100 0 0" />
+			<CfgC CommonModeChangeCmd="dsp ss4 %d 101 0 0" />
+			<CfgC FilterModeChangeCmd="dsp ss4 %d 102" />
+			<CfgC CommonSyncCmd="dsp sync_ss4_c %d" />
+			<CfgC FilterSyncCmd="dsp sync_ss4_f %d" />
+			<CfgC Module="CrossFilter">
+				<CfgC CroFilFreCmd="dsp ss4 %d 2 0 0" />
+				<CfgC SlopeCmd="dsp ss4 %d 1 0 0" />
+				<CfgC MethodCmd="dsp ss4 %d 0 0 0" />
+			</CfgC>
+			<CfgC Module="GainCtrl">
+				<CfgC FrontGainCmd="dsp ss4 %d 4 0 0" />
+				<CfgC RearGainCmd="dsp ss4 %d 5 0 0" />
+				<CfgC CenterGainCmd="dsp ss4 %d 6 0 0" />
+				<CfgC FrontMidCmd="dsp ss4 %d 7 0 0" />
+				<CfgC FrontSideCmd="dsp ss4 %d 8 0 0" />
+				<CfgC FrontOriCmd="dsp ss4 %d 9 0 0" />
+				<CfgC FrontLowCmd="dsp ss4 %d 10 0 0" />
+				<CfgC FinalOutputGainCmd="dsp ss4 %d 12 0 0" />
+				<CfgC MixClaterCmd="dsp ss4 %d 3 0 0" />
+			</CfgC>
+			<CfgC Module="Filter">
+				<CfgC TypeCmd="dsp ss4 %d 50" />
+				<CfgC FreqCmd="dsp ss4 %d 51" />
+				<CfgC GainCmd="dsp ss4 %d 52" />
+				<CfgC QCmd="dsp ss4 %d 53" />
+				<CfgC SlopeCmd="dsp ss4 %d 54" />
+				<CfgC MethodCmd="dsp ss4 %d 55" />
+			</CfgC>
+		</CfgC>
+	</CfgG>
+	<CfgG ModuleType="DRCView" ModuleNumber="7">
+		<CfgP>
+			<CfgP FilterOrder="4;2;" />
+			<CfgP CrossoverFreqMin="20" CrossoverFreqMax="20000" CrossoverFreqInterval="1" CrossoverFreqUnit="Hz" />
+			<CfgP RatioMin="0" RatioMax="100" RatioInterval="1" RatioUnit="" />
+			<CfgP LimiterMin="-40" LimiterMax="0" LimiterInterval="0.1" LimiterUnit="dB" />
+			<CfgP CompressorMin="-40" CompressorMax="0" CompressorInterval="0.1" CompressorUnit="dB" />
+			<CfgP OffsetMin="0" OffsetMax="20" OffsetInterval="0.1" OffsetUnit="dB" />
+			<CfgP AttackTMin="0.1" AttackTMax="500" AttackTInterval="0.1" AttackTUnit="ms" />
+			<CfgP RelTMin="0.1" RelTMax="500" RelTInterval="0.1" RelTUnit="ms" />
+			<CfgP EnergySyncTimer="0" EnergyInMin="0" EnergyInMax="100" EnergyOutMin="0" EnergyOutMax="100" EnergyGainMin="0" EnergyGainMax="100" />
+		</CfgP>
+		<CfgC>
+			<CfgC EnableCmd="dsp drc %d 100" />
+			<CfgC ModeChangeCmd="dsp drc %d 101" />
+			<CfgC SyncCmd="dsp sync_drc %d" />
+			<CfgC EnergySyncCmd="dsp sync_drc_energy %d" />
+			<CfgC ChannelCmd="dsp drc %d 0" />
+			<CfgC DRCModeCmd="dsp drc %d 1" />
+			<CfgC CrossoverFreqCmd="dsp drc %d 18" />
+			<CfgC FilterOrderCmd="dsp drc %d 18" />
+			<CfgC FBRatioCmd="dsp drc %d 3" />
+			<CfgC FBLimiterCmd="dsp drc %d 4" />
+			<CfgC FBCompressorCmd="dsp drc %d 5" />
+			<CfgC FBOffsetCmd="dsp drc %d 6" />
+			<CfgC FBAttackTCmd="dsp drc %d 7" />
+			<CfgC FBRelTCmd="dsp drc %d 8" />
+			<CfgC LBRatioCmd="dsp drc %d 3" />
+			<CfgC LBLimiterCmd="dsp drc %d 4" />
+			<CfgC LBCompressorCmd="dsp drc %d 5" />
+			<CfgC LBOffsetCmd="dsp drc %d 6" />
+			<CfgC LBAttackTCmd="dsp drc %d 7" />
+			<CfgC LBRelTCmd="dsp drc %d 8" />
+			<CfgC HBRatioCmd="dsp drc %d 10" />
+			<CfgC HBLimiterCmd="dsp drc %d 11" />
+			<CfgC HBCompressorCmd="dsp drc %d 12" />
+			<CfgC HBOffsetCmd="dsp drc %d 13" />
+			<CfgC HBAttackTCmd="dsp drc %d 14" />
+			<CfgC HBRelTCmd="dsp drc %d 15" />
+		</CfgC>
+	</CfgG>
+	<CfgG ModuleType="VolumeView" ModuleNumber="10">
+		<CfgC AllVolCmd="dsp vol %d 101" />
+		<CfgC SyncVolCmd="dsp sync_vol %d" />
+		<CfgC AllMVolCmd="dsp mvol %d 101" />
+		<CfgC SyncMVolCmd="dsp sync_mvol %d" />	
+		<CfgC VolValueCMD="dsp vol %d" />
+		<CfgC MVolValueCMD="dsp mvol %d" />			
+	</CfgG>
+	<CfgX ReadSize="0xffffffff"/>
+	<CfgC Node="Certification">
+		<CfgP>
+			<CfgP Module="DTS Decoder">
+				<CfgP OutMode="native;1.0;1.1;2.0;2.1;2.0(LtRt);3.0;3.1;3.0(Cs);3.1(Cs);4.0(Cs);4.1(Cs);4.0;4.1;5.1" />
+				<CfgP SubBoost="Off;On;" />
+				<CfgP StereoMode="LoRo;LtRt;" />
+			</CfgP>
+			<CfgP Module="DDP Decoder">
+				<CfgP OutMode="1.0;2.0;3.0;2/1;3/1;2/2;3/2;" />
+				<CfgP StereoMode="Auto;LtRt;LoRo;" />
+				<CfgP DRCMode="RF;LineOn;LineOff;" />
+				<CfgP LEFout="Off;On;" />
+			</CfgP>
+			<CfgP Module="Measure">
+			</CfgP>
+			<CfgP Module="ATMOS">
+				<CfgP DirectMode="Off;On;" />
+				<CfgP HightCueFilter="Off;On;" />
+				<CfgP VolumeLeveler="Off;On;" />
+				<CfgP LoudManagement="Off;On;" />
+				<CfgP SurDecoder="Off;On;" />
+				<CfgP CenterSpreading="Off;On;" />
+				<CfgP Virtualizer="Off;On;" />
+				<CfgP ORCControl="Off;On;" />
+				<CfgP ContentPostPro="Off;On;" />
+				<CfgP VirtualFrontAngleMin="0" VirtualFrontAngleMax="30" VirtualFrontAngleInterval="1" VirtualFrontAngleUint="deg" />
+				<CfgP VirtualSurAngleMin="0" VirtualSurAngleMax="30" VirtualSurAngleInterval="1" VirtualSurAngleUint="deg" />
+				<CfgP VirtualHeightAngleMin="0" VirtualHeightAngleMax="30" VirtualHeightAngleInterval="1" VirtualHeightAngleUint="deg" />
+				<CfgP VirtualRearSurAngleMin="0" VirtualRearSurAngleMax="30" VirtualRearSurAngleInterval="1" VirtualRearSurAngleUint="deg" />
+				<CfgP DRCCutMin="0" DRCCutMax="100" DRCCutInterval="1" DRCCutUint="" />
+				<CfgP DRCBoostMin="0" DRCBoostMax="100" DRCBoostInterval="1" DRCBoostUint="" />
+				<CfgP ProfileMode="Off;movie;music;night;" />
+			</CfgP>
+			<CfgP Module="DTS:X">
+				<CfgP NonDirectMode="Off;On;" />
+				<CfgP DialogControlMin="0" DialogControlMax="6" DialogControlInterval="1" DialogControlUint="dB" />
+				<CfgP DRCScaleMin="0" DRCScaleMax="100" DRCScaleInterval="1" DRCScaleUint="" />
+				<CfgP NerulaX="Off;On;" />
+				<CfgP AnalogCompensation="Off;On;" />
+				<CfgP Decode96kFrom192k="Off;On;" />
+				<CfgP TypelRelabel="Off;On;" />				
+				<CfgP OutMode="2.0;2.0.2;2.1;2.1.2;3.0;3.0.2;3.1;3.1.2;4.0;4.1;5.0.2;5.0.4;5.1;5.1.2;5.1.4;7.0.2;7.0.4;7.1;7.1.2;7.1.4;" />
+			</CfgP>
+			<CfgP Module="Ch Switch">
+			</CfgP>
+			<CfgP Module="DTS Virtual:X">
+			</CfgP>
+		</CfgP>
+			
+		<CfgC>
+			<CfgC Module="DTS Decoder">
+				<CfgC DTSDeCerModeCmd="dsp cdtsd 0" />
+				<CfgC DTSStereoModeCmd="dsp cdtsd 1" />
+				<CfgC DTSDeOutModeCmd="dsp cdtsd 2" />
+				<CfgC DTSDeLfeOutCmd="dsp cdtsd 3" />
+			</CfgC>
+			<CfgC Module="DDP Decoder">
+				<CfgC DDPDeCerModeCmd="dsp cddpd 0" />
+				<CfgC DDPDeOutModeCmd="dsp cddpd 1" />
+				<CfgC DDPDeSteModeCmd="dsp cddpd 2" />
+				<CfgC DDPDeDrcModeCmd="dsp cddpd 3" />
+				<CfgC DDPDeLfeOutCmd="dsp cddpd 4" />
+			</CfgC>
+			<CfgC Module="Measure">
+				<CfgC MeasureStaModeCmd="dsp cmes 0" />
+				<CfgC MeasureByoModeCmd="dsp cmes 1" />
+				<CfgC NormalModeCmd="dsp cmes 2" />
+			</CfgC>
+			<CfgC Module="ATMOS">
+				<CfgC AtmosCerModeCmd="dsp catmos 0" />
+				<CfgC AtmosDirModeCmd="dsp catmos 1" />
+				<CfgC AtmosHeiModeCmd="dsp catmos 2" />
+				<CfgC AtmosVolLevCmd="dsp catmos 4" />
+				<CfgC AtmosLouManCmd="dsp catmos 3" />
+				<CfgC AtmosSurDecCmd="dsp catmos 5" />
+				<CfgC AtmosCenSprCmd="dsp catmos 6" />
+				<CfgC AtmosVirLizCmd="dsp catmos 7" />
+				<CfgC AtmosDecConCmd="dsp catmos 8" />
+				<CfgC AtmosPosProCmd="dsp catmos 9" />
+				
+				<CfgC AtmosVirFrAnCmd="dsp catmos 10" />
+				<CfgC AtmosVirSuAnCmd="dsp catmos 11" />
+				<CfgC AtmosVirHeAnCmd="dsp catmos 12" />
+				<CfgC AtmosVirReAnCmd="dsp catmos 13" />
+				<CfgC AtmosRecCutCmd="dsp catmos 14" />
+				<CfgC AtmosDrcBooCmd="dsp catmos 15" />
+				<CfgC ProfilemodeCmd="dsp catmos 16" />
+			</CfgC>
+			<CfgC Module="DTS:X">
+				<CfgC DtsxCerModeCmd="dsp cdtsx 0" />
+				<CfgC DtsxNerulaXCmd="dsp cdtsx 1" />
+				<CfgC DtsxAnalogComCmd="dsp cdtsx 2" />
+				<CfgC DtsxDecode96Cmd="dsp cdtsx 3" />
+				<CfgC DtsxDrcScaCmd="dsp cdtsx 4" />
+				<CfgC DtsxNoDiModeCmd="dsp cdtsx 5" />
+				<CfgC DtsxDiaConCmd="dsp cdtsx 6" />
+				<CfgC TypelRelabelCmd="dsp cdtsx 8" />
+				<CfgC DtsxOutModeCmd="dsp cdtsx 7" />
+			</CfgC>
+			<CfgC Module="Ch Switch">
+				<CfgC ChSwitchCmd="dsp cchsw 0" />
+			</CfgC>
+			<CfgC Module="DTS Virtual:X">
+				<CfgC DTSVXCerModeCmd="dsp cvx 0" />
+			</CfgC>
+		</CfgC>
+	</CfgC>
+</CfgSet>

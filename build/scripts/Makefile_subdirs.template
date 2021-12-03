@@ -1,0 +1,8 @@
+include $(TOP)/build/scripts/config.mk
+
+#set sub-dirs to make
+DIRS += subdir_1
+DIRS += subdir_n
+
+#excute target build
+$(eval $(BUILD_TARGET))

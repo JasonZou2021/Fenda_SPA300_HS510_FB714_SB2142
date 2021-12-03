@@ -1,0 +1,12 @@
+
+# 23bytes (String)
+VENDOR_NAME = Sunplus Airlyra
+# 4bytes (int)
+PRODUCT_ID = 0x00000000
+# 2bytes (short)
+MAIN_VERSION = 0x0001
+# 2bytes (short)
+SUB_VERSION = 0x0001
+# 4bytes (int)
+MODE = 0x00010100
+

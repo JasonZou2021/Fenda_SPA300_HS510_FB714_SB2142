@@ -1,0 +1,191 @@
+/*
+** FILE : ispl.ldp
+** DESCRIPTION :
+** linker script for isp system (in little-endian mode)
+** this file is VERY IMPORTANT for all systems. please keep
+** every thing simple here for cleaness.
+*/
+#include "project_cfg.h"
+#include "mbase.h"
+#include "module.ldp"
+
+/* basic libraries in toolchain*/
+INPUT(-lm)
+INPUT(-lgcc)
+INPUT(-lc)
+
+#define K(y)        ((y) << 10)
+#define TO080(y)    (0x080000000 + K((y)))
+
+#define STACK_PTR   TO080(CFG_SDRAM_SIZE)
+
+MEMORY
+{
+    garbage           : org = 0x00000000,                             l = 1m
+
+    rom               : org = ISP_BOOT_START,                         l = K((CFG_SP_ROM_SIZE_ISP + CFG_ROMBIN_MIN_BLOCKSIZE - 1) & ~(CFG_ROMBIN_MIN_BLOCKSIZE - 1))
+
+    sdram_data        : org = TO080(ISP_DATA_SECTION_ST),             l = K(ISP_DATA_SECTION_SIZE)
+    sdram_isp         : org = TO080(ISP_CODE_ST),                     l = K(ISP_CODE_SIZE)
+    sdram_ispupgrade  : org = TO080(ISP_CODE_ST + ISP_CODE_SIZE),     l = K(ISP_CODE_SIZE)
+}
+
+SECTIONS
+{
+    .drv_isp :
+    {
+        _text_drv_isp = .;
+        *ispmain.o(.rodata*)
+        *ispmain.o(.text*)
+        *flash_interface.o(.text*)
+        *flash_interface.o(.rodata*)
+
+        *std_interfaces_isp.o(.text*)
+        *std_interfaces_isp.o(*rodata*)
+
+        *flash.o(.rodata*)
+        *flash_spi.o(.rodata*)
+
+        *flash.o(.text*)
+        *flash_spi.o(.text*)
+
+//BJ 2019.12.12 Merge new as below
+        //*memcmp.o(.text*)
+        //*memcmp.o(.rodata*)
+        *memcpy.o(.text*)
+        *memcpy.o(.rodata*)
+        *memset.o(.text*)
+        *memset.o(.rodata*)
+        *_Xdivsi3.o(.text*)
+        *_Xdivsi3.o(.rodata*)
+//BJ 2019.12.12 Merge end
+
+        . = ALIGN(16);
+        _text_drv_isp_end = .;
+    } > sdram_isp
+
+    .drv_ispupgrade :
+    {
+        _text_drv_ispupgrade = .;
+
+        *file_systerm.o(.text*)
+        *file_systerm.o(.rodata*)
+        *diskio.o(.text*)
+        *diskio.o(.rodata*)
+        *ff.o(.text*)
+        *ff.o(.rodata*)
+        *syscall.o(.text*)
+        *syscall.o(.rodata*)
+        *unicode.o(.text*)
+        *unicode.o(.rodata*)
+
+        *ehci_usb.o(.rodata*)
+        *ehci_usb.o(.text*)
+
+        *ispupgrade.o(.rodata*)
+        *ispupgrade.o(.text*)
+        . = ALIGN(16);
+        _text_drv_ispupgrade_end = .;
+    } > sdram_ispupgrade
+}
+
+SECTIONS
+{
+    .rom1 :
+    {
+        _text_rom_rom1 = .;
+        *init0.o(.text*)
+        *crt0.o(.text*)
+        *init0.o(.rodata*)
+        *crt0.o(.rodata*)
+        *boot.o(.rodata*)
+        *ispboot.o(.rodata*)
+        *module.o(.rodata*)
+        *bitop.o(.rodata*)
+        *boot.o(.text*)
+        *ispboot.o(.text*)
+        *module.o(.text*)
+        *bitop.o(.text*)
+        *hwcpu0.o(.text*)
+        *hwcpu0.o(.rodata*)
+        *busy_delay_isp.o(.text*)
+        *busy_delay_isp.o(.rodata*)
+        *lzoy_unpack_fast.o(.text*)
+        *lzoy_unpack_fast.o(.rodata*)
+        *(.text*)
+
+        . = ALIGN(16);
+        asdDraminits = .;
+#ifndef WO_DRAM_DATA
+        #include "dramscan.raw"
+#endif
+        asdDraminite = .;
+
+        . = ALIGN(16);
+        _text_rom_rom1_end = .;
+    } > rom
+
+    .ram1 :
+    {
+        asdData = .;
+        *(.data*)
+        _gp = .;
+        *(.sdata*)
+        *(.lit8*)
+        *(.lit4*)
+        *(.lita*)
+        asdEdata = .;
+        . = ALIGN(16);
+    } > sdram_data
+
+    .rom1_2 :
+    {
+        asdDataps = .;
+        . += SIZEOF(.ram1);
+        asdDatape = .;
+        . = ALIGN(16);
+    } > rom
+
+    .rom2 :
+    {
+        _text_rom_rom2 = .;
+        . = ALIGN(16);
+        _text_rom_rom2_end = .;
+    } > rom
+
+    .ramF :
+    {
+        . = ALIGN(16);
+    } > sdram_data
+
+    .ram2 :
+    {
+        asdBstart = .;
+        *(.sbss*)
+        *(.scommon*)
+        *(.bss*)
+        *(COMMON*)
+        . = ALIGN(16);
+        asdBend = .;
+    } > sdram_data
+
+    .rel :
+    {
+        *(.rel.dyn)
+    } > garbage
+
+    _etext = ADDR(.rom1) + SIZEOF(.rom1) + SIZEOF(.rom2);
+    _stextf = _etext + SIZEOF(.ram1);
+
+    _tt_gb_size = SIZEOF(.ram1) + SIZEOF(.ram2) + SIZEOF(.ramF);
+
+    ucDramInitPtr  = asdDraminits;
+    ucPartMapPtr   = ISP_BOOT_START + K((CFG_SP_ROM_SIZE_ISP + CFG_ROMBIN_MIN_BLOCKSIZE - 1) & ~(CFG_ROMBIN_MIN_BLOCKSIZE - 1));
+
+    ucStkptr    = STACK_PTR;
+
+    cfg_sdram_size = CFG_SDRAM_SIZE;
+}
+
+ENTRY(__romstart)
+

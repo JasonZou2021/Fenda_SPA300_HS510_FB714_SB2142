@@ -1,0 +1,132 @@
+/*
+** FILE : romL_isp2.ldp
+** DESCRIPTION :
+** linker script for isp2 system (in little-endian mode)
+** this file is VERY IMPORTANT for all systems. please keep
+** every thing simple here for cleaness.
+*/
+
+#include "project_cfg.h"
+#include "mbase.h"
+#include "mcode.i"
+#include "module.i"
+#include "module.ldp"
+
+//INPUT(-lm)
+//INPUT(-lgcc)
+//INPUT(-lc)
+
+#define K(y)        (1024*(y))
+
+#define TO080(y)    (0x080000000 + K((y)))
+#define TO088(y)    (0x088000000 + K((y)))
+
+// #define TO_DR(x,y)  (0x0bfff0000 + 1024 * (y) + x)
+
+// #define HEAP_PTR    TO080(DATA_SECTION_END)	// DATA_SECTION_END is always 0 when using Mcode.exe ....
+#define STACK_PTR   TO080(CFG_SDRAM_SIZE)	// No DSP, IOP, ...
+
+SECTIONS
+{
+    . = TO080(0);
+    .text :
+    {
+        KEEP(*j_init0.o(.text*))
+        *port_asm.o(.text*)
+        *init0.o(.text*)
+        *crt0.o(.text*)
+
+        . = ALIGN(4);
+        __init_driver_start = .;
+        KEEP(*(.__init.driver))
+        __init_driver_end = .;
+
+        . = ALIGN(4);
+        __init_ao_start = .;
+        KEEP(*(.__init.ao))
+        __init_ao_end = .;
+
+        . = ALIGN(4);
+        __init_ao_sync_start = .;
+        KEEP(*(.__init.ao_sync))
+        __init_ao_sync_end = .;
+
+        . = ALIGN(4);
+        __init_aoarg_start = .;
+        KEEP(*(.__init.aoarg))
+        __init_aoarg_end = .;
+
+        . = ALIGN(4);
+        __init_device_start = .;
+        KEEP(*(.__init.device))
+        __init_device_end = .;
+
+        . = ALIGN(4);
+        __init_cmd_start = .;
+        KEEP(*(.__init.cmd))
+        __init_cmd_end = .;
+
+        . = ALIGN(4);
+        __init_test_start = .;
+        KEEP(*(.__init.test))
+        __init_test_end = .;
+
+        . = ALIGN(4);
+        __init_idlehook_start = .;
+        KEEP(*(.__init.idlehook))
+        __init_idlehook_end = .;
+
+        . = ALIGN(4);
+        __init_edhook_start = .;
+        KEEP(*(.__init.edhook))
+        __init_edhook_end = .;
+
+        . = ALIGN(4);
+        __init_poweron_start = .;
+        KEEP(*(.__init.poweron))
+        __init_poweron_end = .;
+
+        . = ALIGN(4);
+        __init_fstable_start = .;
+        KEEP(*(.__init.fstable))
+        __init_fstable_end = .;
+
+        . = ALIGN(4);
+        __init_priomalloc_start = .;
+        KEEP(*(.__init.priomalloc))
+        __init_priomalloc_end = .;
+
+        *(.text*)
+        *(.rodata*)
+        . = ALIGN(16);
+    }
+
+    .data :
+    {
+        asdData = .;
+        *(.data*)
+        _gp = .;
+        *(.sdata*)
+        *(.lit8*)
+        *(.lit4*)
+        *(.lita*)
+        . = ALIGN(16);
+        asdEdata = .;
+
+        asdBstart = .;
+        *(.sbss*)
+        *(.scommon*)
+        *(.bss*)
+        *(COMMON*)
+        . = ALIGN(16);
+        asdBend = .;
+    }
+
+    ucHeap   = .;
+    ucDataSecEnd   = K(DATA_SECTION_END);
+    ucStkptr = STACK_PTR;
+    cfg_sdram_size = CFG_SDRAM_SIZE;
+}
+
+ENTRY(__romstart)
+

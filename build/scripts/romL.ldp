@@ -1,0 +1,98 @@
+/*
+** FILE : romL.ldp
+** DESCRIPTION :
+** linker script for system (in little-endian mode)
+** this file is VERY IMPORTANT for all systems. please keep
+** every thing simple here for cleaness.
+*/
+
+#include "project_cfg.h"
+#include "mbase.h"
+#include "mcode.i"
+#include "module.i"
+
+//INPUT(-lm)
+//INPUT(-lgcc)
+//INPUT(-lc)
+
+#define K(y)        ((y) << 10)
+#define M(y)        ((y) << 20)
+
+#define TO080(y)    (0x080000000 + K((y)))
+#define TO088(y)    (0x088000000 + K((y)))
+
+//#define TO_DR(x, y) (0x0bfff0000 + K((y)) + x)
+
+#define HEAP_PTR    TO080(DATA_SECTION_END)
+
+#define STACK_PTR   TO080(CFG_SDRAM_SIZE - IOP_CODE_SIZE_CFG - DSP_C_SIZE_CFG - DSP_H0_SIZE_CFG - DSP_H1_SIZE_CFG)	//pochou todo dynamic memmap
+
+#define ROM_OFFSET  (APPBIN_OFFSET + 0x80 + PINMUX_HEADER_SIZE)
+
+MEMORY
+{
+    garbage             : org = 0x00000000, l = 1m
+
+    rom                 : org = ISP_BOOT_START + ROM_OFFSET, l = K(CFG_ROM_MAXSIZE)		//length = flash romsize, late check in pack flow.
+
+    sdram_data          : org = TO080(DATA_SECTION_ST),     l = K(DATA_SECTION_SIZE)
+
+    sdram_base          : org = TO080(BASE_CODE_ST),        l = K(BASE_CODE_SIZE)
+    sdram_fs            : org = TO080(FS_CODE_ST),          l = K(FS_CODE_SIZE)
+    sdram_aud           : org = TO080(AUD_CODE_ST),         l = K(AUD_CODE_SIZE)
+    sdram_ap            : org = TO080(AP_CODE_ST),          l = K(AP_CODE_SIZE)
+    sdram_ap_demux      : org = TO080(AP_DEMUX_CODE_ST),    l = K(AP_DEMUX_CODE_SIZE)
+    sdram_fl            : org = TO080(FL_CODE_ST),          l = K(FL_CODE_SIZE)
+    sdram_fl_id3        : org = TO080(FL_ID3_CODE_ST),      l = K(FL_ID3_CODE_SIZE)
+    sdram_bt            : org = TO080(BT_CODE_ST),          l = K(BT_CODE_SIZE)
+    sdram_net           : org = TO080(NET_CODE_ST),         l = K(NET_CODE_SIZE)
+    sdram_airplay       : org = TO080(AIRPLAY_CODE_ST),     l = K(AIRPLAY_CODE_SIZE)
+    sdram_dlna          : org = TO080(DLNA_CODE_ST),        l = K(DLNA_CODE_SIZE)
+    sdram_cli           : org = TO080(CLI_CODE_ST),         l = K(CLI_CODE_SIZE)
+    sdram_user          : org = TO080(USER_CODE_ST),        l = K(USER_CODE_SIZE)
+    sdram_other         : org = TO080(OTHER_CODE_ST),       l = K(OTHER_CODE_SIZE)
+
+    //H_DSP put first then C_DSP
+    sdram_dsp_h1        : org = STACK_PTR,                  l = K(DSP_H1_SIZE_CFG)
+    sdram_dsp_h0        : org = STACK_PTR + K(DSP_H1_SIZE_CFG),                   l = K(DSP_H0_SIZE_CFG)
+    sdram_dsp_c         : org = STACK_PTR + K(DSP_H0_SIZE_CFG) + K(DSP_H1_SIZE_CFG),  l = K(DSP_C_SIZE_CFG)
+
+
+
+    sdram_iop0          : org = STACK_PTR + K(DSP_C_SIZE_CFG) + K(DSP_H0_SIZE_CFG) + K(DSP_H1_SIZE_CFG), l = K(IOP_CODE_SIZE_CFG)
+    sdram_iop1          : org = STACK_PTR + K(DSP_C_SIZE_CFG) + K(DSP_H0_SIZE_CFG) + K(DSP_H1_SIZE_CFG), l = K(IOP_CODE_SIZE_CFG)
+    sdram_iop2          : org = STACK_PTR + K(DSP_C_SIZE_CFG) + K(DSP_H0_SIZE_CFG) + K(DSP_H1_SIZE_CFG), l = K(IOP_CODE_SIZE_CFG)
+}
+
+
+#include "module.ldp"
+
+SECTIONS
+{
+    .rel :
+    {
+        *(.rel.dyn)
+    } > garbage
+
+    _stextf        = _etext + SIZEOF(.rom_data);
+
+    _tt_gb_size    = _data_size + _sbs_size + _com_size;
+
+    ucHeap         = HEAP_PTR;
+    ucDataSecEnd   = K(DATA_SECTION_END);
+    ucPartMapPtr   = ISP_BOOT_START + K((CFG_SP_ROM_SIZE_ISP + CFG_ROMBIN_MIN_BLOCKSIZE - 1) & ~(CFG_ROMBIN_MIN_BLOCKSIZE - 1));
+    ucABBIN        = ISP_BOOT_START + APPBIN_OFFSET;
+
+    ucStkptr       = STACK_PTR;
+
+    cfg_sdram_size = CFG_SDRAM_SIZE;
+    cfg_reserved_memsize = IOP_CODE_SIZE_CFG + DSP_H0_SIZE_CFG + DSP_H1_SIZE_CFG + DSP_C_SIZE_CFG;
+    cfg_iop_memsize = IOP_CODE_SIZE_CFG;
+    cfg_dsp_h0_memsize = DSP_H0_SIZE_CFG;
+    cfg_dsp_h1_memsize = DSP_H1_SIZE_CFG;
+    cfg_dsp_c_memsize = DSP_C_SIZE_CFG;
+}
+
+
+ENTRY(__romstart)
+

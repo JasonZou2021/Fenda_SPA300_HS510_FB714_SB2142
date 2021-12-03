@@ -1,0 +1,308 @@
+/**************************************************************************/
+/**
+*
+* \file AudUserControl.h
+*
+* \brief Audio Driver Enumeration for User Application
+*
+* \note Copyright (c) 2016 Sunplus Technology Co., Ltd. \n
+* All rights reserved.
+*
+*
+* \author
+* \version v0.01
+* \date 2016/12/12
+***************************************************************************/
+
+#ifndef __AUDUSERCONTROL_H__
+#define __AUDUSERCONTROL_H__
+
+// channel defines
+enum
+{
+	CH_FL   = 0,  //L
+	CH_FR   = 1,  //R
+	CH_SL   = 2,  //Ls
+	CH_SR   = 3,  //Rs
+	CH_FC   = 4,  //Center
+	CH_SUB  = 5   //Sub
+};
+
+// SPDIF 3 to 1 MUX
+typedef enum
+{
+	SPDIF_IN_0,
+	SPDIF_IN_1,
+	SPDIF_IN_2,
+	SPDIF_IN_ARC,
+	SPDIF_IN_OFF,
+} eAUD_SPDIF_IN_MUX;
+
+typedef enum
+{
+	L,	// L
+	R,	// R
+	Ls,	// Ls
+	Rs,	// Rs
+	C,	// C
+	Sub,// Sub
+	Lrs,// Lrs
+	Rrs,// Rrs
+	Ltf,// Ltf
+	Rtf,// Rtf
+	Ltr,// Ltr
+	Rtr,// Rtr
+	Lw,	// Lw
+	Rw,	// Rw
+	Ltm,// Ltm
+	Rtm,// Rtm
+
+	//Channle Link
+	CH_L_R_LINK = 16,
+	CH_LS_RS_LINK ,
+	CH_C_SUB_LINK,
+	CH_LTF_RTF_LINK,
+	CH_ALL_LINK,
+} I2S_OUT_CHANNEL_MAP;
+
+typedef enum
+{
+	PWM_SRC_L = 1,
+	PWM_SRC_R = 2,
+	PWM_SRC_SUB = 3,
+} PWM_OUT_MAP;
+
+typedef enum
+{
+	Mode_1N = 1,      //single end mode
+	Mode_2N = 2,		 //differential mode
+} PWM_OUT_Mode;
+
+typedef enum
+{
+	SET_EQ,
+	SET_SS3,
+	SET_SS4,
+	SET_DELAY,
+	SET_BASS,
+	SET_MMIX,
+	SET_VX,
+	SET_DRC,
+	SET_VOLUME,
+} eAUD_POST_PROCESSING;
+
+typedef enum
+{
+	GRP_MMIX0 = 0,
+	GRP_MMIX1,
+	GRP_MMIX2,
+	GRP_MMIX_MAX,
+}eMMIX_GROUP;
+
+typedef enum
+{
+	GRP_FILTER0 = 0,
+	GRP_FILTER1,
+	GRP_FILTER2,
+	GRP_FILTER_MAX,
+}eFILTER_GROUP;
+
+typedef enum
+{
+	GRP_BASS0 = 0,
+	GRP_BASS_MAX,
+}eBASS_GROUP;
+typedef enum
+{
+	GRP_DRC0 = 0,
+	GRP_DRC_MAX,
+}eDRC_GROUP;
+
+typedef enum
+{
+	GRP_DELAY0 = 0,
+	GRP_DELAY_MAX ,
+}eDELAY_GROUP;
+typedef enum
+{
+	GRP_VX0 = 0,
+	GRP_VX_MAX ,
+}eVX_GROUP;
+
+typedef enum
+{
+	GRP_SURROUND0 = 0,
+	GRP_SURROUND_MAX,
+}eSURROUND_GROUP;
+
+typedef enum
+{
+	SET_ON = -1,
+	SET_OFF,
+	MODE1,
+	MODE2,
+	MODE3,
+	MODE4,
+	MODE5,
+	MODE6,
+	MODE7,
+	MODE8,
+	MODE9,
+	MODE10,
+} eAUD_POST_PROCESSING_MODE;
+
+typedef enum
+{
+	U_I2S_PCM	=	0,
+	U_I2S_HDMI,
+	U_I2S_EXT_ADC,
+}eAUD_I2SID;
+
+typedef enum
+{
+	U_I2S_CFG_DELAY	=	0,
+	U_I2S_CFG_JUSTIFY,
+	U_I2S_CFG_DATA_WIDTH,
+	U_I2S_CFG_PARITY,
+	U_I2S_CFG_LRCYCLE,
+	U_I2S_CFG_EDGE,
+	U_I2S_CFG_LRSEL,
+}eAUD_I2SCMDID;
+
+typedef enum
+{
+	SP_ATMOS_DAP = 0,			//0
+	SP_ATMOS_TUNING_MODE,		//1
+    SP_ATMOS_DIRECT,			//2
+	SP_ATMOS_HEIGHT_FILTER,		//3
+    SP_ATMOS_LM,				//4
+    SP_ATMOS_VLAMP,				//5
+    SP_ATMOS_UPMIX,				//6
+    SP_ATMOS_CSPREAD,			//7
+    SP_ATMOS_CONFIG,			//8
+    SP_ATMOS_VIRT,				//9
+    SP_ATMOS_DRC,				//10
+
+	SP_ATMOS_POST,				//11
+	SP_ATMOS_PROFILE,			//12
+	SP_ATMOS_SURROUND_BOOST,	//13
+	SP_ATMOS_DIALOG_ENHANCER,	//14
+	SP_ATMOS_BASS_ENHANCER, 	//15
+
+    SP_ATMOS_OPTION_MAX,
+}eAUD_ATMOSCMDID;
+
+typedef enum
+{
+	SP_DTSX_NERULAX = 0,		// 0
+
+	SP_DTSX_ANALOGCOMP,			// 1
+    SP_DTSX_DECODE96FROM192,	// 2
+	SP_DTSX_DRC,				// 3
+    SP_DTSX_DIRECT_DECODE,		// 4
+    SP_DTSX_DIALOG_CONTROL,		// 5
+	SP_DTSX_DISABLET1RELABEL,   // 6
+	SP_DTSX_OPTION_MAX,
+}eAUD_DTSXCMDID;
+
+
+typedef enum
+{
+	FORMAT_NONE = 0x00,
+	FORMAT_PCM,
+	FORMAT_PCM_MCH,
+	FORMAT_DOLBY_DIGITAL,
+	FORMAT_DOLBY_DIGITAL_EX,
+	FORMAT_DD_PLUS,
+	FORMAT_DD_TRUEHD,
+	FORMAT_MAT,
+
+	FORMAT_DTS,
+	FORMAT_DTS_9624,
+	FORMAT_DTS_ES_M61,
+	FORMAT_DTS_ES_D61,
+	FORMAT_DTS_ES_D8,
+
+	FORMAT_DTS_HIRES,
+	FORMAT_DTS_MA,
+	FORMAT_DTS_LBR,
+	FORMAT_DTS_LOSSLESS,
+
+	FORMAT_DTS_UHD,
+	FORMAT_DTS_UHD_MA,
+	FORMAT_DTS_UHD_LOSSLESS,
+	FORMAT_DTS_UHD_GAME,
+
+	FORMAT_HDCD,
+	FORMAT_MP3,
+	FORMAT_MPEG2,
+	FORMAT_MPEG2_AAC_ADTS,
+	FORMAT_DSD,
+	FORMAT_WMA_PRO,
+	FORMAT_MAX
+}eAUD_FORMAT_ID;
+
+typedef enum
+{
+	AUDIO_FORMAT_NONE = 0x00,
+	AUDIO_FORMAT_PCM,
+	AUDIO_FORMAT_PCM_MCH,
+
+	AUDIO_FORMAT_DOLBY_DIGITAL,//AC3
+	AUDIO_FORMAT_DD_PLUS,//DDP
+	AUDIO_FORMAT_DOLBY_TRUEHD,//Dolby Atmos MAT_TruHD
+	AUDIO_FORMAT_DOLBY_MAT,//Dolby Atmos MAT_PCM
+
+	AUDIO_FORMAT_DTS,
+	AUDIO_FORMAT_DTS_HD,
+	AUDIO_FORMAT_DTS_X,//DTS_UHD
+
+	AUDIO_FORMAT_HDCD,
+	AUDIO_FORMAT_DSD,
+	AUDIO_FORMAT_WMA_PRO,
+	AUDIO_FORMAT_MPEG,
+	AUDIO_FORMAT_AAC,
+	AUDIO_FORMAT_WMA,
+	AUDIO_FORMAT_RA,
+	AUDIO_FORMAT_OGG,
+	AUDIO_FORMAT_FLAC,
+	AUDIO_FORMAT_APE,
+	AUDIO_FORMAT_ALAC,
+	AUDIO_FORMAT_SBC,
+	AUDIO_FORMAT_MAX
+}eAUD_CODEC_TYPE_ID;
+
+typedef enum
+{
+	NOT_DOLBY_ATMOS = 0x0000,
+	IS_DOLBY_SURROUND = 0x4000,
+	IS_DOLBY_ATMOS = 0x8000,
+}eDOLBY_PROC_TYPE;
+
+typedef enum
+{
+	SUPPORT_DEC1	= 0x1,
+	SUPPORT_ATMOS   = 0x2,
+	SUPPORT_ENC 	= 0x4,
+	SUPPORT_APP 	= 0x8,
+	SUPPORT_INTADC	= 0x10,
+	SUPPORT_I2S 	= 0x20,
+	SUPPORT_PDM0	= 0x40,
+	SUPPORT_PDM1	= 0x80,
+	SUPPORT_MIXER0	= 0x100,
+	SUPPORT_MIXER1	= 0x200,
+	SUPPORT_XEFF0	= 0x400,
+	SUPPORT_XEFF1	= 0x800,
+	SUPPORT_XEFF2	= 0x1000,
+	SUPPORT_XEFF3	= 0x2000,
+}eDSP_SUPPORTID;
+
+typedef enum
+{
+	AUDFLOW_LC = 0,
+	AUDFLOW_HE,
+	ADUFLOW_MAX,
+}eAUD_FLOWID;
+
+
+#endif

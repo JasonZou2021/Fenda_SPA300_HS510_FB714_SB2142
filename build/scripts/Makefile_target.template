@@ -1,0 +1,37 @@
+include $(TOP)/build/scripts/config.mk
+
+# Tell make to search include files from INCLUDE_DIR
+# [optional]default include already:<common|module|hardware|driver|qp|posix|fsi> under <src/include> and  <./include>
+# variable can use: [CUSTOM_INC_DIR ==> out/prjxxx/sdk/include]  [SRC_INC_DIR ==> src/include]
+# notice: custom code couldn't include .h under SRC_INC_DIR
+INCLUDE_DIR	+=
+
+# The source files to make.
+SOURCES += \
+	xxx1.c \
+	xxx2.c
+
+# [optional]Set API header file or folder, make will copy for release
+#RELEASE_API_H =
+
+# The lib name which you want to archive
+TARGET = libxxx.a
+
+# [optional][default by path]Set target type, may one of <sdk|test|custom>
+TARGET_TYPE = sdk
+
+# Set Module the target belong, maybe one of <MODULELIST> set in build/srcipts/config.mk
+# may be one of <base iop iop_rst fs aud aud_cfg ap ap_demux fl fl_id3 bt net airplay dlna cli user other
+TARGET_MODULE = other
+
+# [optional][default ram]may one of <ram|rom>
+TARGET_STORAGE= ram
+
+# [optional]set sub-dirs to make
+#DIRS +=
+
+# [optional]set makefile to make other target
+#OTHER_TARGET_MAKEFILE =
+
+#excute target build
+$(eval $(BUILD_TARGET))
