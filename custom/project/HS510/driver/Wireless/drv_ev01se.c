@@ -339,39 +339,21 @@ int EV01SE_Init(void)
 
 	LOGD("%s   fd : %d\n", __func__, pEV01SE->fd);
 
-	pEV01SE->init = 0;
 
-	para = NO_LINK_TO_SLEEP_TIME;
-	if(EV01SE_Write(EV01SE_REG_LOST_SLEEP, &para, sizeof(para)) == 0)
-	{
-		pEV01SE->init = 1;
-	
-		para = WAKEUP_TIME_VALUE << 4 | SLEEP_TIME_VALUE;
-		EV01SE_Write(EV01SE_REG_WAKEUP_TIME, &para, sizeof(para));
+	pEV01SE->init = 1;
 
-		para = 32; //  30s 
-		EV01SE_Write(EV01SE_REG_PAIR_TIME, &para, 1);	
+	para = 32; //  30s 
+	EV01SE_Write(EV01SE_REG_PAIR_TIME, &para, 1);	
 
-		//EV01SE_Write(EV01SE_REG_LED_SYNC, led_control[WIRELESS_CONNECTED], 2);
-		//EV01SE_Write(EV01SE_REG_LED_LOST, led_control[WIRELESS_DISCONNECTED], 2);
-		//EV01SE_Write(EV01SE_REG_LED_PAIR, led_control[WIRELESS_PAIRING], 2);
-		//EV01SE_Write(EV01SE_REG_LED_SLEEP, led_control[WIRELESS_SLEEP], 2);	
+	para = 0X02;	
+	EV01SE_Write(EV01SE_REG_NEW_PAIR, &para, 1);	
 
-		para = 0X02;	
-		EV01SE_Write(EV01SE_REG_NEW_PAIR, &para, 1);	
+	pEV01SE->status = EV01SE_POLL_CHECK_PAIR;
 
-		pEV01SE->status = EV01SE_POLL_CHECK_PAIR;
+	UINT16 version = 0;
+	EV01SE_Read(EV01SE_REG_TXVERSION, (UINT8 *)&version, 2);
+	LOGD("TX version : %d\n", version);
 
-		UINT16 version = 0;
-		EV01SE_Read(EV01SE_REG_TXVERSION, (UINT8 *)&version, 2);
-		LOGD("TX version : %d\n", version);
-
-		EV01SE_Read(EV01SE_REG_RXVERSION, (UINT8 *)&version, 2);
-		LOGD("RX version : %d\n", version);
-	}
-
-	EV01SE_Check_Type();
-	
 	return 0;
 }
 
@@ -477,14 +459,14 @@ int EV01SE_Mute(BYTE mute)
 	BYTE para[3] = {0};
 	if(mute == 1)     //mute
 	{
-		para[0] = CCH_10_SURR_MUTE;
-		para[1] = CCH_11_SUB_REG_MUTE;
+		para[0] = CCH_10_SURR_MUTE|CCH_10_SUB_MUTE;
+		para[1] = 0;
 		para[2] = 0;
 	}
 	else
 	{
 		para[0] = CCH_10_DEMUTE;
-		para[1] = CCH_11_SUB_REG_DEMUTE;
+		para[1] = 0;
 		para[2] = 0;
 	}
 

@@ -5656,11 +5656,14 @@ QState UserApp_home(UserApp *const me, QEvt const *const e)
 				#ifdef SUPPORT_AP
 				if(me->iSrc == APP_SRC_USB)
 				{
-					MFP_Ctrl(me->pAPInstance, MFP_SET_SWSRC_FLAG, (void *)1);
-					MFP_Destroy(me->pAPInstance);
-					me->pAPInstance = NULL;
-					//UserAppMute(me,1);
-					me->showErr = 0;
+			             if (me->playercreat == 1)
+					{
+						MFP_Ctrl(me->pAPInstance, MFP_SET_SWSRC_FLAG, (void *)1);
+						MFP_Destroy(me->pAPInstance);
+			    			me->playercreat = 0;
+			    			me->pAPInstance = NULL;
+			    		}
+
 				}
 				#endif
 
@@ -5681,11 +5684,13 @@ QState UserApp_home(UserApp *const me, QEvt const *const e)
 				#ifdef SUPPORT_AP
 				if(me->iSrc == APP_SRC_USB)
 				{
-					MFP_Ctrl(me->pAPInstance, MFP_SET_SWSRC_FLAG, (void *)1);
-					MFP_Destroy(me->pAPInstance);
-					me->pAPInstance = NULL;
-					//UserAppMute(me,1);
-					me->showErr = 0;
+					if (me->playercreat == 1)
+					{
+						MFP_Ctrl(me->pAPInstance, MFP_SET_SWSRC_FLAG, (void *)1);
+						MFP_Destroy(me->pAPInstance);
+			    			me->playercreat = 0;
+			    			me->pAPInstance = NULL;
+			    		}
 				}
 				#endif
 
@@ -5705,11 +5710,13 @@ QState UserApp_home(UserApp *const me, QEvt const *const e)
 				#ifdef SUPPORT_AP
 				if(me->iSrc == APP_SRC_USB)
 				{
-					MFP_Ctrl(me->pAPInstance, MFP_SET_SWSRC_FLAG, (void *)1);
-					MFP_Destroy(me->pAPInstance);
-					me->pAPInstance = NULL;
-					//UserAppMute(me,1);
-					me->showErr = 0;
+					if (me->playercreat == 1)
+					{
+						MFP_Ctrl(me->pAPInstance, MFP_SET_SWSRC_FLAG, (void *)1);
+						MFP_Destroy(me->pAPInstance);
+			    			me->playercreat = 0;
+			    			me->pAPInstance = NULL;
+			    		}
 				}
 				#endif
 
@@ -5725,6 +5732,19 @@ QState UserApp_home(UserApp *const me, QEvt const *const e)
 
 			
 		case HDMI_RELEASE_SIG:
+				#ifdef SUPPORT_AP
+				if(me->iSrc == APP_SRC_USB)
+				{
+					if (me->playercreat == 1)
+					{
+						MFP_Ctrl(me->pAPInstance, MFP_SET_SWSRC_FLAG, (void *)1);
+						MFP_Destroy(me->pAPInstance);
+			    			me->playercreat = 0;
+			    			me->pAPInstance = NULL;
+			    		}
+				}
+				#endif
+
 			if(me->iSrc != APP_SRC_ARC)
 			{
 				me->iSrc = APP_SRC_ARC;
@@ -5749,11 +5769,13 @@ QState UserApp_home(UserApp *const me, QEvt const *const e)
 				#ifdef SUPPORT_AP
 				if(me->iSrc == APP_SRC_USB)
 				{
-					MFP_Ctrl(me->pAPInstance, MFP_SET_SWSRC_FLAG, (void *)1);
-					MFP_Destroy(me->pAPInstance);
-					me->pAPInstance = NULL;
-					//UserAppMute(me,1);
-					me->showErr = 0;
+					if (me->playercreat == 1)
+					{
+						MFP_Ctrl(me->pAPInstance, MFP_SET_SWSRC_FLAG, (void *)1);
+						MFP_Destroy(me->pAPInstance);
+			    			me->playercreat = 0;
+			    			me->pAPInstance = NULL;
+			    		}
 				}
 				#endif
 
@@ -5772,6 +5794,18 @@ QState UserApp_home(UserApp *const me, QEvt const *const e)
 		case HDMI1_SRC_SIG:
 			if(me->iSrc != APP_SRC_HDMI1)
 			{
+				#ifdef SUPPORT_AP
+				if(me->iSrc == APP_SRC_USB)
+				{
+					if (me->playercreat == 1)
+					{
+						MFP_Ctrl(me->pAPInstance, MFP_SET_SWSRC_FLAG, (void *)1);
+						MFP_Destroy(me->pAPInstance);
+			    			me->playercreat = 0;
+			    			me->pAPInstance = NULL;
+			    		}
+				}
+				#endif
 				UserApp_DimmerSet(me);
 				SrcNameHint(me);
 				me->iSrc = APP_SRC_HDMI1;//5;
@@ -5786,6 +5820,18 @@ QState UserApp_home(UserApp *const me, QEvt const *const e)
 		case HDMI2_SRC_SIG:
 			if(me->iSrc != APP_SRC_HDMI2)
 			{
+				#ifdef SUPPORT_AP
+				if(me->iSrc == APP_SRC_USB)
+				{
+					if (me->playercreat == 1)
+					{
+						MFP_Ctrl(me->pAPInstance, MFP_SET_SWSRC_FLAG, (void *)1);
+						MFP_Destroy(me->pAPInstance);
+			    			me->playercreat = 0;
+			    			me->pAPInstance = NULL;
+			    		}
+				}
+				#endif
 				UserApp_DimmerSet(me);
 				SrcNameHint(me);
 				me->iSrc = APP_SRC_HDMI2;//6;
