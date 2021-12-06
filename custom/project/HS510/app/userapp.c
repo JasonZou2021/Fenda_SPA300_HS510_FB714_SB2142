@@ -153,14 +153,13 @@ float SrcGain_Tab[] =
 #define USER_SRC_END (0xFF)
 UINT8 gUserSrc_tbl[] =
 {
-	eAp_ARC_Src,
-	eAp_HDMI0_Src,
-	eAp_I2S_Src,
+	
 	eAp_SPDIF_Optical_Src,
 	eAp_SPDIF_Coaxial_Src,
-	eAp_AUX_Src,
+	eAp_ARC_Src,
+	eAp_I2S_Src,
 	eAp_USB_Src,
-	
+	eAp_AUX_Src,
 	USER_SRC_END,
 };
 

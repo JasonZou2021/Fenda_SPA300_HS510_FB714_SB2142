@@ -153,14 +153,13 @@ float SrcGain_Tab[] =
 #define USER_SRC_END (0xFF)
 UINT8 gUserSrc_tbl[] =
 {
-	eAp_ARC_Src,
-	eAp_HDMI0_Src,
-	eAp_I2S_Src,
+	
 	eAp_SPDIF_Optical_Src,
 	eAp_SPDIF_Coaxial_Src,
-	eAp_AUX_Src,
+	eAp_ARC_Src,
+	eAp_I2S_Src,
 	eAp_USB_Src,
-	
+	eAp_AUX_Src,
 	USER_SRC_END,
 };
 
@@ -781,7 +780,7 @@ int UserApp_SetFTLRVol(UserApp* const me, BYTE vol)
 	if(vol >= (sizeof(dsp_FTLR_vol)/sizeof(float)))
 		return -1;
 
-	/*调整前左顶以及前右顶的通道音量*/
+	/*调整前左顶以及前右顶的�?�道音量*/
 	AudDspService_Set_ChannelVol(&me->super, 0, DSP_CH_LTF, dsp_FTLR_vol[vol]);
 	AudDspService_Set_ChannelVol(&me->super, 0, DSP_CH_RTF, dsp_FTLR_vol[vol]);
 	
@@ -798,7 +797,7 @@ int UserApp_SetFSLRVol(UserApp* const me, BYTE vol)
 	if(vol >= (sizeof(dsp_FSLR_vol)/sizeof(float)))
 		return -1;
 
-	/*调整前左环绕以及前右环绕的通道音量*/
+	/*调整前左环绕以及前右环绕的�?�道音量*/
 	AudDspService_Set_ChannelVol(&me->super, 0, DSP_CH_LS, dsp_FSLR_vol[vol]);
 	AudDspService_Set_ChannelVol(&me->super, 0, DSP_CH_RS, dsp_FSLR_vol[vol]);
 	
@@ -815,7 +814,7 @@ int UserApp_SetRTLRVol(UserApp* const me, BYTE vol)
 	if(vol >= (sizeof(dsp_RTLR_vol)/sizeof(float)))
 		return -1;
 
-	/*调整后左顶以及后右顶的通道音量*/
+	/*调整后左顶以及后右顶的�?�道音量*/
 	AudDspService_Set_ChannelVol(&me->super, 0, DSP_CH_LTR, dsp_RTLR_vol[vol]);
 	AudDspService_Set_ChannelVol(&me->super, 0, DSP_CH_RTR, dsp_RTLR_vol[vol]);
 	

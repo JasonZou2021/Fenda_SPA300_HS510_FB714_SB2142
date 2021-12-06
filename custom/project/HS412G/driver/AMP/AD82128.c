@@ -271,7 +271,7 @@ static void SetAD82128Output(const AmpList *const pstAmpList, eAmpIdx eIdx)
 		}
 		else if(eIdx == eAmp2)  // C
 		{
-			AD82128Write(pstAmpList->peList[eIdx], AMP_INIT_LR[i][0], &AMP_INIT_LR[i][1], 1);
+			AD82128Write(pstAmpList->peList[eIdx], AMP_INIT_LTFRTF[i][0], &AMP_INIT_LTFRTF[i][1], 1);
 		}
 
 	}

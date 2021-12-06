@@ -188,15 +188,16 @@ typedef enum
 
 typedef enum
 {
-	APP_SRC_ARC,
-	APP_SRC_HDMI1,
-	APP_SRC_BT,
+	
 	APP_SRC_OPT,
 	APP_SRC_COAX,
-	APP_SRC_AUX,
+	APP_SRC_ARC,
+	APP_SRC_BT,
 	APP_SRC_USB,
+	APP_SRC_AUX,
+
 	APP_SRC_MAX,
-	
+	APP_SRC_HDMI1,
 	APP_SRC_HDMI2,
 	
 }eAPP_SRC;
