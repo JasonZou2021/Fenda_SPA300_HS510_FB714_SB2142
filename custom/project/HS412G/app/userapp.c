@@ -6360,19 +6360,19 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 		case BASS_UP_RELEASE_SIG:
 
 
-			if(me->Bass_vol < 18)
+			if(me->Bass_vol < 10)
 			{
 				me->Bass_vol++;
 				UserSetting_SaveBass(me->Bass_vol);
 			//	UserApp_SetBass(me, me->Bass_vol);
 				UserApp_SetSubwooferVol(me, me->Bass_vol);
 			}
-			if(me->Bass_vol > 9)
-				sprintf(strBuf, "BAS+%d", me->Bass_vol-9);
-			else if(me->Bass_vol < 10)
-				sprintf(strBuf, "BAS-%d", 9-me->Bass_vol);
+			if(me->Bass_vol > 5)
+				sprintf(strBuf, "BAS+%d", me->Bass_vol-5);
+			else if(me->Bass_vol < 6)
+				sprintf(strBuf, "BAS-%d", 5-me->Bass_vol);
 			else	
-				sprintf(strBuf, "BAS %d", 9-me->Bass_vol);
+				sprintf(strBuf, "BAS %d", 5-me->Bass_vol);
 			
 			UserAppDisplayOnce(me, strBuf, 3);
 			
@@ -6392,19 +6392,19 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 				UserApp_SetSubwooferVol(me, me->Bass_vol);
 			}
 
-			if(me->Bass_vol > 9)
-				sprintf(strBuf, "BAS+%d", me->Bass_vol-9);
-			else if(me->Bass_vol < 9)
-				sprintf(strBuf, "BAS-%d", 9-me->Bass_vol);
+			if(me->Bass_vol > 5)
+				sprintf(strBuf, "BAS+%d", me->Bass_vol-5);
+			else if(me->Bass_vol < 5)
+				sprintf(strBuf, "BAS-%d", 5-me->Bass_vol);
 			else	
-				sprintf(strBuf, "BAS %d", 9-me->Bass_vol);
+				sprintf(strBuf, "BAS %d", 5-me->Bass_vol);
 			UserAppDisplayOnce(me, strBuf, 3);
 			status = Q_HANDLED();
 			break;
 
 		case TREBLE_UP_TICK_SIG:
 		case TREBLE_UP_RELEASE_SIG:
-			if(me->Treble_vol < 12)
+			if(me->Treble_vol < 10)
 			{
 				me->Treble_vol++;
 				UserSetting_SaveTreble(me->Treble_vol);
@@ -6412,12 +6412,12 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 				UserApp_SetTreble(me, me->Treble_vol);
 			}
 
-			if(me->Treble_vol > 6)
-				sprintf(strBuf, "TREB  +%d", me->Treble_vol-6);
-			else if(me->Treble_vol == 6)
-				sprintf(strBuf, "TREB   %d", 6-me->Treble_vol);
+			if(me->Treble_vol > 5)
+				sprintf(strBuf, "TRE+%d", me->Treble_vol-5);
+			else if(me->Treble_vol == 5)
+				sprintf(strBuf, "TRE %d", 5-me->Treble_vol);
 			else
-				sprintf(strBuf, "TREB  -%d", 6-me->Treble_vol);
+				sprintf(strBuf, "TRE-%d", 5-me->Treble_vol);
 		
 			UserAppDisplayOnce(me, strBuf, 3);
 			status = Q_HANDLED();
@@ -6433,12 +6433,12 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 				UserApp_SetTreble(me, me->Treble_vol);
 			}
 
-			if(me->Treble_vol > 6)
-				sprintf(strBuf, "TREB  +%d", me->Treble_vol-9);
-			else if(me->Treble_vol == 6)
-				sprintf(strBuf, "TREB   %d", 6-me->Treble_vol);
+			if(me->Treble_vol > 5)
+				sprintf(strBuf, "TRE+%d", me->Treble_vol-5);
+			else if(me->Treble_vol == 5)
+				sprintf(strBuf, "TRE %d", 5-me->Treble_vol);
 			else
-				sprintf(strBuf, "TREB  -%d", 6-me->Treble_vol);
+				sprintf(strBuf, "TRE-%d", 5-me->Treble_vol);
 		
 			UserAppDisplayOnce(me, strBuf, 3);
 			status = Q_HANDLED();
@@ -6656,7 +6656,7 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 		{
 			ap_printf("[%s] EQ RELEASE; \n", __FUNCTION__);
 
-			if (me->EQMode < 2)
+			if (me->EQMode < 4)
 			{
 				me->EQMode++;
 			}
@@ -6664,7 +6664,7 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			{
 				me->EQMode = eApEQ_Mode_0;
 			}
-			UserApp_ScrollBackUp_ShowSource(me, STR_EQ0 + me->EQMode);
+			UserAppDisplayOnce(me, vfd_str[STR_EQ0 + me->EQMode],3);
 			//UserAppEQSet((QActive *)me, me->EQMode);
 			status = Q_HANDLED();
 			break;
@@ -6757,25 +6757,26 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			status = Q_HANDLED();
 			break;
 
-		case NIGHT_RELEASE_SIG:
+		case SPORT_RELEASE_SIG:
 			if(me->EQMode != 3)
 			{
 				me->EQMode = 3;
+				UserSetting_SaveEQ(me->EQMode);
+			}
+			UserAppDisplayOnce(me, "SPORT", 3);
+			status = Q_HANDLED();
+			break;
+
+		case NIGHT_RELEASE_SIG:
+			if(me->EQMode != 4)
+			{
+				me->EQMode = 4;
 				UserSetting_SaveEQ(me->EQMode);
 			}
 			UserAppDisplayOnce(me, "NIGHT", 3);
 			status = Q_HANDLED();
 			break;
 
-		case SPORT_RELEASE_SIG:
-			if(me->EQMode != 4)
-			{
-				me->EQMode = 4;
-				UserSetting_SaveEQ(me->EQMode);
-			}
-			UserAppDisplayOnce(me, "SPORT", 3);
-			status = Q_HANDLED();
-			break;
 
 
 /*

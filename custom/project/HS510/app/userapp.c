@@ -6656,7 +6656,7 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 		{
 			ap_printf("[%s] EQ RELEASE; \n", __FUNCTION__);
 
-			if (me->EQMode < 2)
+			if (me->EQMode < 4)
 			{
 				me->EQMode++;
 			}
@@ -6664,7 +6664,7 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			{
 				me->EQMode = eApEQ_Mode_0;
 			}
-			UserApp_ScrollBackUp_ShowSource(me, STR_EQ0 + me->EQMode);
+			UserAppDisplayOnce(me, vfd_str[STR_EQ0 + me->EQMode],3);
 			//UserAppEQSet((QActive *)me, me->EQMode);
 			status = Q_HANDLED();
 			break;
@@ -6757,23 +6757,23 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			status = Q_HANDLED();
 			break;
 
-		case NIGHT_RELEASE_SIG:
+		case SPORT_RELEASE_SIG:
 			if(me->EQMode != 3)
 			{
 				me->EQMode = 3;
 				UserSetting_SaveEQ(me->EQMode);
 			}
-			UserAppDisplayOnce(me, "NIGHT", 3);
+			UserAppDisplayOnce(me, "SPORT", 3);
 			status = Q_HANDLED();
 			break;
 
-		case SPORT_RELEASE_SIG:
+		case NIGHT_RELEASE_SIG:
 			if(me->EQMode != 4)
 			{
 				me->EQMode = 4;
 				UserSetting_SaveEQ(me->EQMode);
 			}
-			UserAppDisplayOnce(me, "SPORT", 3);
+			UserAppDisplayOnce(me, "NIGHT", 3);
 			status = Q_HANDLED();
 			break;
 
