@@ -73,7 +73,7 @@
 #include "vfd_seg_map.h"
 #include "wireless.h"
 
-#define AND_VER 12
+#define AND_VER 13
 
 // Merged from SPA300_TPV_20210205
 #define SUPPORT_DSP_VOL

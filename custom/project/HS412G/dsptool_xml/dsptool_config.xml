@@ -2734,7 +2734,7 @@
 <CfgI Ch="Rtm" Val="0" Gain="134217728"/>
 </CfgI>
 </CfgI>
-<CfgI ModeName="bypass" CurCh="1">
+<CfgI ModeName="bypass" CurCh="3">
 <CfgI>
 <CfgI Ch="L" Val="0" Gain="134217728"/>
 <CfgI Ch="R" Val="-140" Gain="13"/>
@@ -2754,7 +2754,7 @@
 <CfgI Ch="Rtm" Val="-140" Gain="13"/>
 </CfgI>
 <CfgI>
-<CfgI Ch="L" Val="-140" Gain="13"/>
+<CfgI Ch="L" Val="-3" Gain="95018875"/>
 <CfgI Ch="R" Val="0" Gain="134217728"/>
 <CfgI Ch="Ls" Val="-140" Gain="13"/>
 <CfgI Ch="Rs" Val="-140" Gain="13"/>
@@ -2828,14 +2828,14 @@
 <CfgI>
 <CfgI Ch="L" Val="-3" Gain="95018875"/>
 <CfgI Ch="R" Val="-3" Gain="95018875"/>
-<CfgI Ch="Ls" Val="-140" Gain="13"/>
-<CfgI Ch="Rs" Val="-140" Gain="13"/>
+<CfgI Ch="Ls" Val="-3" Gain="95018875"/>
+<CfgI Ch="Rs" Val="-3" Gain="95018875"/>
 <CfgI Ch="C" Val="-140" Gain="13"/>
 <CfgI Ch="Sub" Val="0" Gain="134217728"/>
 <CfgI Ch="Lrs" Val="-140" Gain="13"/>
 <CfgI Ch="Rrs" Val="-140" Gain="13"/>
-<CfgI Ch="Ltf" Val="-140" Gain="13"/>
-<CfgI Ch="Rtf" Val="-140" Gain="13"/>
+<CfgI Ch="Ltf" Val="-3" Gain="95018875"/>
+<CfgI Ch="Rtf" Val="-3" Gain="95018875"/>
 <CfgI Ch="Ltr" Val="-140" Gain="13"/>
 <CfgI Ch="Rtr" Val="-140" Gain="13"/>
 <CfgI Ch="Lw" Val="-140" Gain="13"/>
@@ -4779,7 +4779,7 @@
 </CfgI>
 </CfgG>
 <CfgG Node="DRC_LR" PageType="DRCView" ID="0">
-<CfgI En="1" CurMode="0" TMode="1">
+<CfgI En="0" CurMode="0" TMode="1">
 <CfgI ModeName="Mode1">
 <CfgI Val1="0x3;0x0;0x0;0xf9c1;0xf9c1;0x0;0x90d012b;0x18e0032;0x0;0x0;0x0;0x0;0x274a05bc;0x274a05bc;0x0;0x0;"/>
 <CfgI Val2="0x0;0x0;0x7feb4cd2;0x7feb4cd2;0x44973;0x892e7;0x44973;0x82f61f0d;0x3d1b06c1;0x10c3b0;0x21875f;0x10c3b0;0x85eb7e4e;0x3a579070;0x3e8939ed;0x82ed8c26;"/>
@@ -4811,7 +4811,7 @@
 </CfgI>
 </CfgG>
 <CfgG Node="DRC_TOP" PageType="DRCView" ID="1">
-<CfgI En="1" CurMode="0" TMode="1">
+<CfgI En="0" CurMode="0" TMode="1">
 <CfgI ModeName="Mode1">
 <CfgI Val1="0x300;0x0;0x0;0xfa49;0xfa49;0x0;0x90d012b;0xef001e;0x0;0x0;0x0;0x0;0x274a05bc;0x274a05bc;0x0;0x0;"/>
 <CfgI Val2="0x0;0x0;0x7feb4cd2;0x7feb4cd2;0x44973;0x892e7;0x44973;0x82f61f0d;0x3d1b06c1;0x10c3b0;0x21875f;0x10c3b0;0x85eb7e4e;0x3a579070;0x3e8939ed;0x82ed8c26;"/>
@@ -4843,7 +4843,7 @@
 </CfgI>
 </CfgG>
 <CfgG Node="DRC_LSRS" PageType="DRCView" ID="2">
-<CfgI En="1" CurMode="0" TMode="1">
+<CfgI En="0" CurMode="0" TMode="1">
 <CfgI ModeName="Mode1">
 <CfgI Val1="0xc;0x0;0x0;0xf88f;0xf88f;0x0;0x90d012b;0x18e0032;0x0;0x0;0x0;0x0;0x274a05bc;0x274a05bc;0x0;0x0;"/>
 <CfgI Val2="0x0;0x0;0x7feb4cd2;0x7feb4cd2;0x44973;0x892e7;0x44973;0x82f61f0d;0x3d1b06c1;0x10c3b0;0x21875f;0x10c3b0;0x85eb7e4e;0x3a579070;0x3e8939ed;0x82ed8c26;"/>
@@ -4928,7 +4928,7 @@
 </CfgG>
 <CfgG Node="Master Volume" PageType="VolumeView" ID="2">
 <CfgP Type="MasterVol" Unit="dB"/>
-<CfgI Ch="Master Vol" En="1" Val="-11" Min="-140" Max="0" Interval="0.1" Gain="0x241346f"/>
+<CfgI Ch="Master Vol" En="1" Val="0" Min="-140" Max="0" Interval="0.1" Gain="0x8000000"/>
 </CfgG>
 </CfgG>
 <CfgG Node="Headroom Gain" PageType="VolumeView" ID="0">
