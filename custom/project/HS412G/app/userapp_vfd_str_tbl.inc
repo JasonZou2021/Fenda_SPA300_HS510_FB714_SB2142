@@ -172,8 +172,8 @@ char *vfd_str[] =  //pointer to string address
 	"NEWS ",
 	"SPORT",
 	"NIGHT",
-	"MUSIC",
-	"MOVIE",
+	"SUR OFF",
+	"SUR ON",
 	"SPORT",
 	"EAR",//30
 	"SUB",

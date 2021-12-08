@@ -27,26 +27,25 @@
 
 BYTE src_map[] = 
 {
-	
-	BT_MODE_ARC,
-	BT_MODE_HDMI,
-	BT_MODE_BT,	
+
 	BT_MODE_OPT,
 	BT_MODE_COAX,
-	BT_MODE_AUX,
+	BT_MODE_ARC,
+	BT_MODE_BT,	
 	BT_MODE_USB,
+	BT_MODE_AUX,
+
 	
 };
 
 BYTE *src_str[] = 
 {	
-	" ARC",
-	" HDMI",
-	" BT ",
 	" OPT",
 	" COAX",
-	" AUX",
+	" ARC",
+	" BT ",
 	" USB",
+	" AUX",
 	
 };
 

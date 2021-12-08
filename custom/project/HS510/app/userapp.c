@@ -6637,16 +6637,16 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 		{
 			ap_printf("[%s] 3D surround; \n", __FUNCTION__);
 
-			if (me->Surround_3D < eApSurround_Mode_Max)
+			if (me->Surround_3D == eApSurround_Mode_0)
 			{
-				me->Surround_3D++;
+				me->Surround_3D = eApSurround_Mode_1;
 			}
 			else
 			{
 				me->Surround_3D = eApSurround_Mode_0;
 			}
 
-			UserAppDisplayOnce(me, vfd_str[STR_SU0 + me->Surround_3D], 3);
+			UserApp_ScrollBackUp_ShowSource(me, STR_SU0 + me->Surround_3D);
 
 			UserAppSurroundSet((QActive *)me, me->Surround_3D);
 			status = Q_HANDLED();
