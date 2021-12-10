@@ -213,7 +213,7 @@ char *vfd_str[] =  //pointer to string address
 	"CUS D",
 	"EPUP",
 	"BT_UP",
-	"BT CONNECTED",
+	"BT_IN",
 	"NO BT",
 	"PAIRING",
 	"RESET",

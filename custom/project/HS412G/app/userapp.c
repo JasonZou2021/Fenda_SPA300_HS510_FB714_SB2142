@@ -5283,7 +5283,7 @@ void UserApp_DimmerSet(UserApp *const me)
 	if(me->DIMMER == DIMMER_OFF)
 	{
 		vfd_dimmer(DIMMER_HIGH);
-		me->dimmer_cnt = 20*5; // 20s
+		me->dimmer_cnt = 3*5; // 3s
 	}
 }
 
@@ -6689,7 +6689,7 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			if(me->DIMMER == DIMMER_OFF)
 			{
 				me->DIMMER = DIMMER_HIGH;
-				me->dimmer_cnt = 20*5; // 20s
+				me->dimmer_cnt = 3*5; // 3s
 			}
 			else
 			{
@@ -9414,7 +9414,7 @@ QState UserApp_active_I2S_in(UserApp *const me, QEvt const *const e)
 				me->bt_connect = 0;
 				me->bt_play = 0;
 				UserAppDisplay(me, STR_BT_NOBT);
-				UserAppCallHint(me, eHint_BtReady);
+				//UserAppCallHint(me, eHint_BtReady);
 				UserApp_DimmerSet(me);
 				status = Q_HANDLED();
 			}
@@ -9427,7 +9427,7 @@ QState UserApp_active_I2S_in(UserApp *const me, QEvt const *const e)
 				ap_BurnTest_log("BT_CONNECT_SOUNDHINT_SIG\n");
 				me->bt_connect = 1;
 				UserAppCallHint(me, eHint_BtConnect);
-				UserAppDisplay(me, STR_BT);
+				UserAppDisplay(me, STR_BT_CONNECTED);
 				UserApp_DimmerSet(me);
 			}
 			status = Q_HANDLED();
