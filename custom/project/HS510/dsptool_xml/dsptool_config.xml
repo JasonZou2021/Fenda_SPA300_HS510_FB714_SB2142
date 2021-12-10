@@ -2153,8 +2153,8 @@
 <CfgP>
 <CfgP Ch="L;R;Ls;Rs;C;Sub;Lrs;Rrs;Ltf;Rtf;Ltr;Rtr;Lw;Rw;Ltm;Rtm;"/>
 </CfgP>
-<CfgI En="1" CurMode="2" TMode="3">
-<CfgI ModeName="2.0 input" CurCh="5">
+<CfgI En="1" CurMode="0" TMode="3">
+<CfgI ModeName="2.0 input" CurCh="4">
 <CfgI>
 <CfgI Ch="L" Val="0" Gain="134217728"/>
 <CfgI Ch="R" Val="-140" Gain="13"/>
@@ -2228,8 +2228,8 @@
 <CfgI Ch="Rtm" Val="-140" Gain="13"/>
 </CfgI>
 <CfgI>
-<CfgI Ch="L" Val="-3" Gain="95018875"/>
-<CfgI Ch="R" Val="-3" Gain="95018875"/>
+<CfgI Ch="L" Val="-6" Gain="67268212"/>
+<CfgI Ch="R" Val="-6" Gain="67268212"/>
 <CfgI Ch="Ls" Val="-140" Gain="13"/>
 <CfgI Ch="Rs" Val="-140" Gain="13"/>
 <CfgI Ch="C" Val="0" Gain="134217728"/>
