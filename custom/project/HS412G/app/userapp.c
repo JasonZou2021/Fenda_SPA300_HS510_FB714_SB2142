@@ -54,6 +54,8 @@
 #include "uart_app.h"
 #include "hdmi_app.h"
 
+#include "usb.h"
+
 #define LOG_MODULE_ID ID_APUSR
 #include "log_utils.h"
 #ifdef MCU_IF_RSR
@@ -73,7 +75,7 @@
 #include "vfd_seg_map.h"
 #include "wireless.h"
 
-#define AND_VER 13
+#define AND_VER 3
 
 // Merged from SPA300_TPV_20210205
 #define SUPPORT_DSP_VOL
@@ -353,6 +355,8 @@ typedef struct __userapp       /* the UserApp active object */
 	int hdmi_sw_cnt;
 	eSoundMenu menu_status;
 	INT64 usb_playtime;
+
+	BYTE usb_mode;
 	
 } UserApp;
 
@@ -841,8 +845,8 @@ int UserApp_SetLsRsVol(UserApp* const me, BYTE vol)
 
 const float dsp_Bass_vol[] = 
 {
-	-18,-17,-16,-15,-14,-13,-12,-11, -10,
-	-9, -8, -7, -6, -5 -4, -3, -2, -1, 0
+
+	-10, -9, -8, -7, -6, -5 -4, -3, -2, -1, 0
 };
 
 
@@ -851,28 +855,22 @@ int UserApp_SetBass(UserApp* const me, BYTE vol)
 	if(vol >= (sizeof(dsp_Bass_vol)/sizeof(float)))
 		return -1;
 
-	AudDspService_Set_Filter(&me->super, 1, CMD_GAIN, DSP_CH_L, 1, dsp_Bass_vol[vol]);
-	AudDspService_Set_Filter(&me->super, 1, CMD_GAIN, DSP_CH_R, 1, dsp_Bass_vol[vol]);
-	AudDspService_Set_Filter(&me->super, 1, CMD_GAIN, DSP_CH_SUB, 1, dsp_Bass_vol[vol]);
-	//AudDspService_Set_Filter(&me->super, 1, DSP_CH_RS, 1, dsp_Bass_vol[vol]);
+	AudDspService_Set_AppMode(&me->super, SET_EQ,GRP_FILTER2,MODE11-vol);
 	ap_printf("[%s] : %d \n", __FUNCTION__, vol);
 	return 0;
 }
 
 const float dsp_Treble_vol[] = 
 {
-    -12,-11, -10,-9, -8, -7, -6, -5,-4, -3, -2, -1, 0,
+      -10,-9, -8, -7, -6, -5,-4, -3, -2, -1, 0,
 };
 
 int UserApp_SetTreble(UserApp* const me, BYTE vol)
 {
 	if(vol >= (sizeof(dsp_Treble_vol)/sizeof(float)))
 		return -1;
-
-	AudDspService_Set_Filter(&me->super, 1, CMD_GAIN, DSP_CH_L, 0, dsp_Treble_vol[vol]);
-	AudDspService_Set_Filter(&me->super, 1, CMD_GAIN, DSP_CH_R, 0, dsp_Treble_vol[vol]);
-	AudDspService_Set_Filter(&me->super, 1, CMD_GAIN, DSP_CH_C, 0, dsp_Treble_vol[vol]);
-	ap_printf("------dsp_Treble_vol[%d] = %f\n ",vol,dsp_Treble_vol[vol]);
+	
+	AudDspService_Set_AppMode(&me->super, SET_EQ,GRP_FILTER1,MODE11-vol);
 	ap_printf("[%s] : %d \n", __FUNCTION__, vol);
 	return 0;
 }
@@ -4853,10 +4851,13 @@ UINT32 UserApp_GetAudioFormat(UserApp *const me)
 			last_format = cur_format;
 			ap_printf(" audio format change %d\n ", cur_format);
 
-			if(cur_format != AUDIO_FORMAT_DISPLAY_NONE && cur_format != AUDIO_FORMAT_DISPLAY_OTHER)
+			if(cur_format == AUDIO_FORMAT_DISPLAY_PCM)
 			{
-			
-				//UserApp_SetMix(me, me->channel_num); 
+				AudDspService_Set_MasterVol(&me->super, DSP_HEADROOM_GAIN, -24);
+			}
+			else
+			{
+				AudDspService_Set_MasterVol(&me->super, DSP_HEADROOM_GAIN, -20);
 			}
 		}
 		else
@@ -4867,6 +4868,9 @@ UINT32 UserApp_GetAudioFormat(UserApp *const me)
 	}
 	else
 	{
+		if(me->spdif_format != AUDIO_FORMAT_DISPLAY_PCM)
+			AudDspService_Set_MasterVol(&me->super, DSP_HEADROOM_GAIN, -24);
+		
 		me->spdif_format = AUDIO_FORMAT_DISPLAY_PCM;
 
 		if(me->channel_num != eInput_2p0_ch)
@@ -6311,13 +6315,13 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 
 			AudDspService_Set_CustomTDM(&me->super, ODSP_CUSTOMTDM_ENABLE, ODSP_CUSTOMTDM_LsRs);
 
-			SpHdsp_Set_DownmixConfig(&me->super, SPKCONFIG_LR_BIT|SPKCONFIG_LTFRTF_BIT|SPKCONFIG_LSRS_BIT|SPKCONFIG_SUB_BIT);
-			SpHdsp_Set_UpmixConfig(&me->super, SPKCONFIG_LR_BIT|SPKCONFIG_LTFRTF_BIT|SPKCONFIG_LSRS_BIT|SPKCONFIG_SUB_BIT);
+			//SpHdsp_Set_DownmixConfig(&me->super, SPKCONFIG_LR_BIT|SPKCONFIG_LTFRTF_BIT|SPKCONFIG_LSRS_BIT|SPKCONFIG_SUB_BIT);
+			//SpHdsp_Set_UpmixConfig(&me->super, SPKCONFIG_LR_BIT|SPKCONFIG_LTFRTF_BIT|SPKCONFIG_LSRS_BIT|SPKCONFIG_SUB_BIT);
 
 			
 		//	SpHdsp_setAtmos(&me->super, SP_ATMOS_VIRT, 0, 1); // if 2.x 3.x 4.x 5.x output, must set this function, can dialsy atmos format
-			SpHdsp_setAtmos(&me->super, SP_ATMOS_CONFIG, 0, 1);
-			SpHdsp_Reset(NULL, 0);
+		//	SpHdsp_setAtmos(&me->super, SP_ATMOS_CONFIG, 0, 1);
+		//	SpHdsp_Reset(NULL, 0);
 			
 			SrcNameHint(me);
 
@@ -6329,20 +6333,10 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 		//	AudDspService_Set_AppMode(&me->super, SET_EQ, GRP_FILTER1, MODE1);
 		//	AudDspService_Set_AppMode(&me->super, SET_BASS, GRP_BASS0, MODE1);
 
-		//	UserApp_SetBass(me, me->Bass_vol);
-	//		UserApp_SetTreble(me, me->Treble_vol);
-		//	UserApp_SetCenterVol(me, me->Centel_vol);
-	//		UserApp_SetLRVol(me, me->Top_vol);
-		//	UserApp_SetLsRsVol(me, me->Ls_vol);
-//
-		//	UserApp_SetSubwooferVol(me, me->Bass_vol);
-		//	
-		//	AudDspService_Set_AppMode(&me->super, SET_EQ, GRP_FILTER2, MODE1);  // for subwoofer lowpass
-			
 		//  add for hdmi init src	
             		ap_printf("---power on\n");
-		//	status = Q_TRAN(&UserApp_PowerOn);
-			status = UserAppTranSrc(me, me->aUserSrc_tbl[me->iSrc]);
+			status = Q_TRAN(&UserApp_PowerOn);
+		//	status = UserAppTranSrc(me, me->aUserSrc_tbl[me->iSrc]);
 
 			break;
 		}
@@ -6364,8 +6358,8 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			{
 				me->Bass_vol++;
 				UserSetting_SaveBass(me->Bass_vol);
-			//	UserApp_SetBass(me, me->Bass_vol);
-				UserApp_SetSubwooferVol(me, me->Bass_vol);
+				UserApp_SetBass(me, me->Bass_vol);
+			//	UserApp_SetSubwooferVol(me, me->Bass_vol);
 			}
 			if(me->Bass_vol > 5)
 				sprintf(strBuf, "BAS+%d", me->Bass_vol-5);
@@ -6388,8 +6382,8 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 				me->Bass_vol--;
 				UserSetting_SaveBass(me->Bass_vol);
 
-				//UserApp_SetBass(me, me->Bass_vol);
-				UserApp_SetSubwooferVol(me, me->Bass_vol);
+				UserApp_SetBass(me, me->Bass_vol);
+				//UserApp_SetSubwooferVol(me, me->Bass_vol);
 			}
 
 			if(me->Bass_vol > 5)
@@ -6444,7 +6438,23 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			status = Q_HANDLED();
 			break;
 
+		case POWER_TICK_SIG:
+			if(cnt++ == 20)
+			{
+				me->usb_mode ^= 1;
+				usb_mode_switch(me->usb_mode); // host
 
+				sprintf(strBuf, "%s", me->usb_mode?"Host":"device");
+			
+				UserAppDisplayOnce(me, strBuf, 3);
+			}
+			status = Q_HANDLED();
+			break;
+
+		case POWER_SIG:
+			cnt = 0;
+			status = Q_HANDLED();
+			break;
 		
 		case PLAY_TICK_SIG:
 			if(cnt++ == 10)
@@ -10041,7 +10051,7 @@ QState UserApp_active_ARC(UserApp * const me, QEvt const * const e) {
 				AudDspService_SPDIF_STOP(&me->super);
 				AudDspService_Flow_Stop(&me->super);
 				AudDspService_Prepare_8CH_IISIN(&me->super, IIS8CH_HDMIHBR);
-		       	AudDspService_Set_SourceGain(&me->super, SrcGain_Tab[eAp_ARC_Src]);
+		       		AudDspService_Set_SourceGain(&me->super, SrcGain_Tab[eAp_ARC_Src]);
 		        	AudDspService_Flow_Play(&me->super);
 		        	AudDspService_SPDIF_PLAY(&me->super);
 				#endif
@@ -10056,7 +10066,7 @@ QState UserApp_active_ARC(UserApp * const me, QEvt const * const e) {
 		        	AudDspService_SPDIF_STOP(&me->super);
 		        	AudDspService_Flow_Stop(&me->super);
 				AudDspService_Prepare_SPDIF(&me->super, SPDIF_IEC1);
-		       	AudDspService_Set_SourceGain(&me->super, SrcGain_Tab[eAp_ARC_Src]);
+		       		AudDspService_Set_SourceGain(&me->super, SrcGain_Tab[eAp_ARC_Src]);
 		        	AudDspService_Flow_Play(&me->super);
 		        	AudDspService_SPDIF_PLAY(&me->super);
 				#endif
@@ -12074,7 +12084,8 @@ QState UserApp_PowerOn(UserApp *const me, QEvt const *const e)
 		case SRC_HINT_TIME_SIG://SCROLL_BACK_TIMER_SIG:
 		{
 			
-			
+			UserApp_SetBass(me, me->Bass_vol);
+			UserApp_SetTreble(me, me->Treble_vol);
 			AudDspService_Set_AppMode(&me->super, SET_MMIX, GRP_MMIX0, MODE1);
 			
 		    	ap_printf("----HINT_END_TIME_SIG\n");
