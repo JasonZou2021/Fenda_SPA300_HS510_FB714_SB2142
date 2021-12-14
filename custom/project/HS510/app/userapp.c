@@ -6330,7 +6330,7 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			UserApp_DimmerSet(me);
 
 		//	AudDspService_Set_AppMode(&me->super, SET_MMIX, GRP_MMIX0, MODE1);
-		//	AudDspService_Set_AppMode(&me->super, SET_EQ, GRP_FILTER1, MODE1);
+		AudDspService_Set_AppMode(&me->super, SET_EQ, GRP_FILTER0, MODE1+me->EQMode);
 		//	AudDspService_Set_AppMode(&me->super, SET_BASS, GRP_BASS0, MODE1);
 
 		//	UserApp_SetBass(me, me->Bass_vol);
@@ -6675,7 +6675,7 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 		{
 			ap_printf("[%s] EQ RELEASE; \n", __FUNCTION__);
 
-			if (me->EQMode < 4)
+			if (me->EQMode < 2)
 			{
 				me->EQMode++;
 			}
@@ -6684,7 +6684,7 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 				me->EQMode = eApEQ_Mode_0;
 			}
 			UserAppDisplayOnce(me, vfd_str[STR_EQ0 + me->EQMode],3);
-			//UserAppEQSet((QActive *)me, me->EQMode);
+			AudDspService_Set_AppMode(&me->super, SET_EQ, GRP_FILTER0, MODE1+me->EQMode);
 			status = Q_HANDLED();
 			break;
 		}
@@ -6751,6 +6751,7 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			{
 				me->EQMode = 0;
 				UserSetting_SaveEQ(me->EQMode);
+				AudDspService_Set_AppMode(&me->super, SET_EQ, GRP_FILTER0, MODE1+me->EQMode);
 			}
 			UserAppDisplayOnce(me, "MUSIC", 3);
 			status = Q_HANDLED();
@@ -6761,6 +6762,7 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			{
 				me->EQMode = 1;
 				UserSetting_SaveEQ(me->EQMode);
+				AudDspService_Set_AppMode(&me->super, SET_EQ, GRP_FILTER0, MODE1+me->EQMode);
 			}
 			UserAppDisplayOnce(me, "MOVIE", 3);
 			status = Q_HANDLED();
@@ -6771,6 +6773,7 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			{
 				me->EQMode = 2;
 				UserSetting_SaveEQ(me->EQMode);
+				AudDspService_Set_AppMode(&me->super, SET_EQ, GRP_FILTER0, MODE1+me->EQMode);
 			}
 			UserAppDisplayOnce(me, "NEWS ", 3);
 			status = Q_HANDLED();
