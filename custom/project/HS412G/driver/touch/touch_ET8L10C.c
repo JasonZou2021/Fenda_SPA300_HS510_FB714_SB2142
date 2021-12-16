@@ -392,7 +392,7 @@ static int TouchApp_get_key(void)  // polling 50ms
 	BYTE key_val1 = 0;
 	BYTE key_val2 = 0;
 	UINT32 sig = CUSTOMER_PRIVATE_SIG_MAX;
-	volatile int *pRsm_Magic = (int * )SRAM_ADDR_ISP_UPGRADE;
+	//volatile int *pRsm_Magic = (int * )SRAM_ADDR_ISP_UPGRADE;
 	static BYTE cnt = 0;
 
 	if(cnt++ < 3)
@@ -524,7 +524,7 @@ static int TouchApp_get_key(void)  // polling 50ms
 		{
 			 if(sig+touch->key.key_type == POWER_RELEASE_SIG || sig+touch->key.key_type == POWER_LONG_PRESS_SIG)
 			 {
-			 	*pRsm_Magic = 0;
+			 	
 			 	ret = 1;
 		 	 }
 		}

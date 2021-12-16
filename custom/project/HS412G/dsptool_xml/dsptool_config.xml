@@ -8882,11 +8882,11 @@
 <CfgI En="1" CurMode="0" TMode="3">
 <CfgI ModeName="2.0 input" CurCh="9">
 <CfgI>
-<CfgI Ch="L" Val="0" Gain="134217728"/>
+<CfgI Ch="L" Val="-6" Gain="67268212"/>
 <CfgI Ch="R" Val="-140" Gain="13"/>
 <CfgI Ch="Ls" Val="-140" Gain="13"/>
 <CfgI Ch="Rs" Val="-140" Gain="13"/>
-<CfgI Ch="C" Val="-3" Gain="95018875"/>
+<CfgI Ch="C" Val="-6" Gain="67268212"/>
 <CfgI Ch="Sub" Val="-140" Gain="13"/>
 <CfgI Ch="Lrs" Val="-140" Gain="13"/>
 <CfgI Ch="Rrs" Val="-140" Gain="13"/>
@@ -8901,10 +8901,10 @@
 </CfgI>
 <CfgI>
 <CfgI Ch="L" Val="-140" Gain="13"/>
-<CfgI Ch="R" Val="0" Gain="134217728"/>
+<CfgI Ch="R" Val="-6" Gain="67268212"/>
 <CfgI Ch="Ls" Val="-140" Gain="13"/>
 <CfgI Ch="Rs" Val="-140" Gain="13"/>
-<CfgI Ch="C" Val="-3" Gain="95018875"/>
+<CfgI Ch="C" Val="-6" Gain="67268212"/>
 <CfgI Ch="Sub" Val="-140" Gain="13"/>
 <CfgI Ch="Lrs" Val="-140" Gain="13"/>
 <CfgI Ch="Rrs" Val="-140" Gain="13"/>
@@ -9172,11 +9172,11 @@
 </CfgI>
 <CfgI ModeName="5.1 input" CurCh="5">
 <CfgI>
-<CfgI Ch="L" Val="0" Gain="134217728"/>
+<CfgI Ch="L" Val="-6" Gain="67268212"/>
 <CfgI Ch="R" Val="-140" Gain="13"/>
 <CfgI Ch="Ls" Val="-140" Gain="13"/>
 <CfgI Ch="Rs" Val="-140" Gain="13"/>
-<CfgI Ch="C" Val="-3" Gain="95018875"/>
+<CfgI Ch="C" Val="-6" Gain="67268212"/>
 <CfgI Ch="Sub" Val="-140" Gain="13"/>
 <CfgI Ch="Lrs" Val="-140" Gain="13"/>
 <CfgI Ch="Rrs" Val="-140" Gain="13"/>
@@ -9191,10 +9191,10 @@
 </CfgI>
 <CfgI>
 <CfgI Ch="L" Val="-140" Gain="13"/>
-<CfgI Ch="R" Val="0" Gain="134217728"/>
+<CfgI Ch="R" Val="-6" Gain="67268212"/>
 <CfgI Ch="Ls" Val="-140" Gain="13"/>
 <CfgI Ch="Rs" Val="-140" Gain="13"/>
-<CfgI Ch="C" Val="-3" Gain="95018875"/>
+<CfgI Ch="C" Val="-6" Gain="67268212"/>
 <CfgI Ch="Sub" Val="-140" Gain="13"/>
 <CfgI Ch="Lrs" Val="-140" Gain="13"/>
 <CfgI Ch="Rrs" Val="-140" Gain="13"/>
