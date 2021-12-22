@@ -26,6 +26,7 @@
 #include "bt_ao_comment_action.h"
 #include "bt_ao.h"
 #include "bt_ao_service_api.h"
+#include "user_def.h"
 
 
 //extern void BtRegServiceCBK(void);
@@ -395,7 +396,11 @@ int BtDoEnable(int *pResult,Init_Parm st_Init_Parm)
 	//SDK_AVRCP_CtProviderName(st_Init_Parm.avrcpCtProviderName, strlen(st_Init_Parm.avrcpCtProviderName));
 	//SDK_AVRCP_CtServiceName(st_Init_Parm.avrcpCtServiceName, strlen(st_Init_Parm.avrcpCtServiceName));
 
-	if(TRUE == SDK_BASE_IF_BtServerInit())
+    #ifdef BT_CHIP_TYPE_CSR_8811
+		if(TRUE == SDK_BASE_IF_BtServerInit(1)) // 0 for SPHE900; 1 for i1188-se
+    #else
+		if(TRUE == SDK_BASE_IF_BtServerInit(0)) // 0 for SPHE900; 1 for i1188-se
+    #endif
 	{
 		*pResult = SUCCESS;
 	}

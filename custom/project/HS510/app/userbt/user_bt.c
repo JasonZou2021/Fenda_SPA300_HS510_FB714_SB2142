@@ -2,6 +2,7 @@
 #define __BT_USER_C__
 #include "user_bt.h"
 #include "bt_ao_service_api.h"
+#include "bt_mw_core.h"
 
 
 #define USER_CBK(P_CB, P_CBACK, ...)\
@@ -21,6 +22,7 @@ typedef int (*BtSearchFinishPost)(void);
 typedef int (*BtPairReqInfoPost)(BTPairDev *pdata);
 typedef int (*BtPairFinishPost)(BTPairDev *pdata);
 typedef int (*BtUnpairInfoPost)(BTPairDev *pdata);
+typedef int (*BtAclDisconnectInfoPost)(BtAddr_t *pdata);
 typedef int (*BtConnectInfoPost)(stBtDevInfo *pdata);
 typedef int (*BtDisconnectInfoPost)(stBtDevInfo *pdata);
 typedef int (*BtConnectResultInfoPost)(stBtDevInfo *pdata);
@@ -37,6 +39,11 @@ typedef int (*BtCtrPlayPost)(BtAddr_t *pAddr);
 typedef int (*BtCtrPausePost)(BtAddr_t *pAddr);
 typedef int (*BtAclConnectReqPost)(BTConnectReqInfo *pInfo);
 typedef int (*BtSourcePlayerStatePost)(BtDevPlayState *pDevPlayerInfo);
+typedef int (*BtRemoteDeviceInfoPost)(BTConnectRemoteInfo *pdata);
+typedef int (*BtMusicPlayStatusPost)(t_btmusic_play_status *pdata);
+typedef int (*BtMusicCodecInfoPost)(stBtAudioPlayInfo *pdata);
+typedef int (*BtMusicInfoPost)(t_btmusic_musicinfo *pdata);
+typedef int (*BtRemoteDeviceRssiPost)(stBtReadRssi *pdata);
 
 
 typedef struct stDevCBKIF
@@ -50,6 +57,7 @@ typedef struct stDevCBKIF
 	BtPairReqInfoPost PairPost;
 	BtPairFinishPost PairFinish;
 	BtUnpairInfoPost  UnpairPost;
+	BtAclDisconnectInfoPost  AclDisconnectPost;
 	BtConnectInfoPost ConnectReqPost;
 	BtDisconnectInfoPost DisconnectReqPost;
 	BtConnectResultInfoPost ConnectResultPost;
@@ -65,6 +73,11 @@ typedef struct stDevCBKIF
 	BtCtrPlayPost		PlayReqPost;
 	BtCtrPausePost		PauseReqPost;
 	BtSourcePlayerStatePost SourcePlayerStatePost;
+	BtRemoteDeviceInfoPost RemoteDevicePost;
+	BtMusicPlayStatusPost MusicPlayStatusPost;
+	BtMusicCodecInfoPost MusicCodecInfoPost;
+	BtMusicInfoPost MusicInfoPost;
+	BtRemoteDeviceRssiPost RemoteDeviceRssiPost;
 } BtCBKFunc;
 
 
@@ -77,6 +90,7 @@ static int BtAclReqSend(BTConnectReqInfo *pInfo);
 static int PairFinishDevInfoSend(BTPairDev *pdata);
 static int PairReqInfoSend(BTPairDev *pdata);
 static int UnPairInfoSend(BTPairDev *pdata);
+static int AclDisconnectInfoSend(BtAddr_t *pdata);
 static int ConnectReqInfoSend(stBtDevInfo *pdata);
 static int DisconnectReqInfoSend(stBtDevInfo *pdata);
 static int ConnectOkInfoSend(stBtDevInfo *pdata);
@@ -91,8 +105,11 @@ static int BtNextPlaySend(BtAddr_t *pAddr);
 static int BtPlaySend(BtAddr_t *pAddr);
 static int BtPauseSend(BtAddr_t *pAddr);
 static int BtSourcePlayerStateSend(BtDevPlayState *pDevPlayerInfo);
-//static int BtRemoteDeviceNameSend(BTPairDev *pdata);
-
+static int BtRemoteDeviceInfoSend(BTConnectRemoteInfo *pdata );
+static int BtMusicPlayStatusSend(t_btmusic_play_status *pdata );
+static int BtMusicCodecInfoSend(stBtAudioPlayInfo *pdata );
+static int BtMusicInfoSend(t_btmusic_musicinfo *pdata );
+static int BtRemoteDeviceRssiSend(stBtReadRssi *pdata );
 
 
 static QActive *pDesActive = NULL;
@@ -108,6 +125,7 @@ static BtCBKFunc gUserCbkPost =
 	PairReqInfoSend,
 	PairFinishDevInfoSend,
 	UnPairInfoSend,    //pair fail or unpair finish
+	AclDisconnectInfoSend,
 	ConnectReqInfoSend,
 	DisconnectReqInfoSend,
 	ConnectOkInfoSend,
@@ -123,7 +141,11 @@ static BtCBKFunc gUserCbkPost =
 	BtPlaySend,
 	BtPauseSend,
 	BtSourcePlayerStateSend,
-	//BtRemoteDeviceNameSend,
+	BtRemoteDeviceInfoSend,
+	BtMusicPlayStatusSend,
+	BtMusicCodecInfoSend,
+	BtMusicInfoSend,
+	BtRemoteDeviceRssiSend,
 };
 
 
@@ -252,6 +274,21 @@ static int UnPairInfoSend(BTPairDev *pdata)
 	return SUCCESS;
 }
 
+static int AclDisconnectInfoSend(BtAddr_t *pdata)
+{
+	QActive *const me = GetDesActiveAo();
+	QActive *const sender = GetBtAo();
+	(void)sender;
+
+	if (pdata == NULL)
+	{
+		return FAIL;
+	}
+
+	BtAppCBKEvt *msg = UserBtMsgPackage(BT_APP_ACL_DISCONNECT_OK_SIG, pdata, sizeof(BtAddr_t));
+	QACTIVE_POST(me, (QEvt *)msg, sender);
+	return SUCCESS;
+}
 
 static int SearchDevResultSend(BTSearchDevInfo *pdata)
 {
@@ -510,14 +547,93 @@ static int BtSourcePlayerStateSend(BtDevPlayState *pDevPlayerInfo)
 	return SUCCESS;
 }*/
 
+static int BtRemoteDeviceInfoSend(BTConnectRemoteInfo *pdata)
+{
+	QActive * const me = GetDesActiveAo();
+	QActive * const sender = GetBtAo();
+	(void)sender;
+
+	if(pdata == NULL)
+	{
+		return FAIL;
+	}
+	BtAppCBKEvt *msg = UserBtMsgPackage(BT_APP_REMOTE_DEVICE_INFO_SIG,pdata,sizeof(BTConnectRemoteInfo));
+	QACTIVE_POST(me, (QEvt *)msg, sender);
+	return SUCCESS;
+}
 
 
+static int BtMusicPlayStatusSend(t_btmusic_play_status *pdata)
+{
+	QActive * const me = GetDesActiveAo();
+	QActive * const sender = GetBtAo();
+	(void)sender;
+
+	if(pdata == NULL)
+	{
+		return FAIL;
+	}
+	BtAppCBKEvt *msg = UserBtMsgPackage(BT_APP_MUSIC_PLAY_STATUS_SIG,pdata,sizeof(t_btmusic_play_status));
+	QACTIVE_POST(me, (QEvt *)msg, sender);
+	return SUCCESS;
+}
+
+static int BtMusicCodecInfoSend(stBtAudioPlayInfo *pdata)
+{
+	QActive * const me = GetDesActiveAo();
+	QActive * const sender = GetBtAo();
+	(void)sender;
+
+	if(pdata == NULL)
+	{
+		return FAIL;
+	}
+	BtAppCBKEvt *msg = UserBtMsgPackage(BT_APP_MUSIC_CODEC_INFO_SIG,pdata,sizeof(stBtAudioPlayInfo));
+	QACTIVE_POST(me, (QEvt *)msg, sender);
+	return SUCCESS;
+}
+
+static int BtMusicInfoSend(t_btmusic_musicinfo *pdata)
+{
+	QActive * const me = GetDesActiveAo();
+	QActive * const sender = GetBtAo();
+	(void)sender;
+
+	if(pdata == NULL)
+	{
+		return FAIL;
+	}
+	BtAppCBKEvt *msg = UserBtMsgPackage(BT_APP_MUSIC_INFO_SIG,pdata,sizeof(t_btmusic_musicinfo));
+	QACTIVE_POST(me, (QEvt *)msg, sender);
+	return SUCCESS;
+}
+
+static int BtRemoteDeviceRssiSend(stBtReadRssi *pdata)
+{
+	QActive * const me = GetDesActiveAo();
+	QActive * const sender = GetBtAo();
+	(void)sender;
+
+	if(pdata == NULL)
+	{
+		return FAIL;
+	}
+	BtAppCBKEvt *msg = UserBtMsgPackage(BT_APP_REMOTE_DEVICE_RSSI_SIG,pdata,sizeof(stBtReadRssi));
+	QACTIVE_POST(me, (QEvt *)msg, sender);
+	return SUCCESS;
+}
 
 static int UserBtBaseCbkHandle(void *pMsg, BTCBK_EVTSIG_e type)
 {
 	BtCBKFunc *UserCBK = _GetBtAppCbkPostFunc();
 	BTSearchDevInfo *pBtSearchInfo = NULL;
 	BTPairDev *pPairInfo = NULL;
+	BtAddr_t *pAclDisconnectInfo = NULL;
+	BTConnectRemoteInfo *pRemoteDeviceInfo = NULL;
+	stBtAudioPlayInfo *pMusicCodecInfo = NULL;
+    t_btmusic_play_status *pMusicPlayStatus = NULL;
+	t_btmusic_musicinfo *pMusicInfo = NULL;
+	stBtReadRssi *pRemoteDeviceRssiInfo = NULL;
 
 	switch (type)
 	{
@@ -570,6 +686,42 @@ static int UserBtBaseCbkHandle(void *pMsg, BTCBK_EVTSIG_e type)
 		{
 			pPairInfo = (BTPairDev *)pMsg;
 			USER_CBK(UserCBK, UnpairPost, pPairInfo);
+			break;
+		}
+		case BT_CBK_ACL_DISCONNECT_OK_SIG:
+		{
+			pAclDisconnectInfo = (BtAddr_t *)pMsg;
+			USER_CBK(UserCBK, AclDisconnectPost, pAclDisconnectInfo);
+			break;
+		}
+		case BT_CBK_REMOTE_DEVICE_INFO_SIG:
+		{
+			pRemoteDeviceInfo = (BTConnectRemoteInfo *)pMsg;
+			USER_CBK(UserCBK, RemoteDevicePost, pRemoteDeviceInfo);
+			break;
+		}
+		case BT_CBK_MUSIC_PLAY_STATUS_SIG:
+		{
+			pMusicPlayStatus = (t_btmusic_play_status *)pMsg;
+			USER_CBK(UserCBK, MusicPlayStatusPost, pMusicPlayStatus);
+			break;
+		}
+		case BT_CBK_MUSIC_CODEC_IND_SIG:
+		{
+			pMusicCodecInfo = (stBtAudioPlayInfo *)pMsg;
+			USER_CBK(UserCBK, MusicCodecInfoPost, pMusicCodecInfo);
+			break;
+		}
+		case BT_CBK_MUSIC_INFO_IND_SIG:
+		{
+			pMusicInfo = (t_btmusic_musicinfo *)pMsg;
+			USER_CBK(UserCBK, MusicInfoPost, pMusicInfo);
+			break;
+		}
+		case BT_CBK_REMOTE_DEVICE_RSSI_SIG:
+		{
+			pRemoteDeviceRssiInfo = (stBtReadRssi *)pMsg;
+			USER_CBK(UserCBK, RemoteDeviceRssiPost, pRemoteDeviceRssiInfo);
 			break;
 		}
 		default:
@@ -721,7 +873,7 @@ static int UserAppBtCbkHandle(void *pMsg, BTCBK_EVTSIG_e type)
 			UserBtSppCbkHandle(pDev, type);
 			break;
 		}
-		case BT_CBK_READY_SIG...BT_CBK_UNPAIRED_OK_SIG:
+		case BT_CBK_READY_SIG...BT_CBK_REMOTE_DEVICE_RSSI_SIG:
 		{
 			UserBtBaseCbkHandle(pMsg, type);
 			break;

@@ -700,6 +700,7 @@ int PhoneIsPlaying(int *pIsTrue)
 	return FALSE;
 }
 
+
 //int BtSourceInit(stBtDevAction **pAction)
 int BtSourceInit(void)
 {

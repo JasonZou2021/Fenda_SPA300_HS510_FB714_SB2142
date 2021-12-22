@@ -866,8 +866,8 @@ static int _MainBtModeOffAction(void)
 					BtSetCurAutoState(OFF);
 					BtAutoSet(OFF,ROLE_PHONE,&BtAddr);
 				}
-
 				_MainBtDisconnect(&BtAddr);
+				BtDoSppDisconnect(&BtAddr);
 			}
 			else
 			{

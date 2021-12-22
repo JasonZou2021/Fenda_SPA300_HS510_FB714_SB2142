@@ -11,7 +11,8 @@ INCLUDE_DIR	+= -I$(OUT_SDK_INC_DIR)/bt \
 		-I$(OUT_SDK_INC_DIR)/audDspService \
 		-I$(OUT_SDK_INC_DIR)/settingmanager \
 		-I$(OUT_SDK_INC_DIR)/systemservice \
-		-I$(OUT_SDK_INC_DIR)
+		-I$(OUT_SDK_INC_DIR) \
+		-I$(CUSTOM_INC_DIR)/bt \
 
 
 

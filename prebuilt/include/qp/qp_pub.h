@@ -382,7 +382,7 @@ enum QEVTSIG
     ODSP_PREPARE_VA,        /* VA prepare sig */
     ODSP_SET_VA_SIG,        /* Set va param sig */
     ODSP_SMART_MODE_SIG,    /* Set SmartMode sig */
-    ODSP_SET_APPMODE_SIG,
+    ODSP_SET_MUTE_SIG,
     ODSP_RESET_SIG,
 
     //Add HDSP sig

@@ -2034,9 +2034,39 @@ static int BtBaseMsgCbkHandle(BtCBKEvt *msg)
 			BT_ACTION(me->pBtAction,ConnectReqResult,pResultInfo);
 			break;
 		}
+		case BT_ACL_DISCONNECT_OK_SIG:
+		{
+			bt_ao_printf("BT_ACL_DISCONNECT_OK_SIG!");
+			break;
+		}
 		case BT_REMOTE_DEVICE_NAME_SIG:
 		{
 			bt_ao_printf("bt get name!");
+			break;
+		}
+		case BT_REMOTE_DEVICE_INFO_SIG:
+		{
+			bt_ao_printf("BT_REMOTE_DEVICE_INFO_SIG!");
+			break;
+		}
+		case BT_MUSIC_PLAY_STATUS_SIG:
+		{
+			bt_ao_printf("BT_MUSIC_PLAY_STATUS_SIG!");
+			break;
+		}
+		case BT_MUSIC_CODEC_IND_SIG:
+		{
+			bt_ao_printf("BT_MUSIC_CODEC_IND_SIG!");
+			break;
+		}
+		case BT_MUSIC_INFO_IND_SIG:
+		{
+			bt_ao_printf("BT_MUSIC_INFO_IND_SIG!");
+			break;
+		}
+		case BT_REMOTE_DEVICE_RSSI_SIG:
+		{
+			bt_ao_printf("BT_REMOTE_DEVICE_RSSI_SIG!");
 			break;
 		}
 		default:

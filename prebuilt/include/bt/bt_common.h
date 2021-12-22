@@ -359,9 +359,11 @@ typedef struct BtRemoteDevRssi_ {
 
 typedef struct
 {
-	BtAddr_t bt_addr;
-	UINT16 codec_type;
-	UINT32 sample_rate;
+	UINT8   result;//0, 读取成功; 255, 由于A2DP未连接, 获取codec信息失败。失败时codec_type, sample_rate无效。
+    BtAddr_t bt_addr;
+    UINT16 codec_type; // 0, SBC; 2, AAC
+    UINT32 sample_rate;
+    UINT32 bitrate; //目前解码不在SDK实现,无法获取bitrate。保留备用, 默认填写0。
 }stBtAudioPlayInfo;
 
 #define Connected_Device_Max 5

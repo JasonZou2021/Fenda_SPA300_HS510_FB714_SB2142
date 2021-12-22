@@ -474,6 +474,12 @@ typedef enum {
 
 typedef enum
 {
+	AUDDSP_DEMUTE 	= 0,
+	AUDDSP_MUTE 	= 1,
+}AudDsp_Mute_e;
+
+typedef enum
+{
 	ODSP_SPDIF_IEC0 = 0x0,
 	ODSP_SPDIF_IEC1 = 0x1,
 	ODSP_SPDIF_IEC2 = 0x2,
@@ -845,6 +851,20 @@ void spAudapi_ramp(UINT32 dP0, UINT32 dP1);
 
 void AudDspService_Set_CustomTDM(QActive *pSender,UINT8 enable, UINT8 channel);
 
+/*****************************************************************************
+ *
+ * \fn 			void AudDspService_Set_Dsp_MuteSyncmode(QActive *pSender, UINT8 bMute)
+ *
+ * \brief 		Send Mute or Demute signal to DSP-C and wait for dsp ack
+ *
+ * \param [in] 	pSender:
+ * \param [in] 	bMute: 0: demute, 1: mute
+ * \return 		none
+ *
+ * \note
+ *
+ ******************************************************************************/
+void AudDspService_Set_Dsp_MuteSyncmode(QActive *pSender, UINT8 bMute);
 
 
 /** @brief enable/disable smart mode
@@ -871,6 +891,10 @@ void AudDspService_Set_SoundMode(QActive *pSender,UINT32 Src_id);
 void AudDspService_Set_VirtualX(QActive *pSender, UINT16 wIdx, UINT16 wCmd, INT32 dValue);
 
 void AudDspService_Set_FIFO_Level(QActive *pSender, UINT16 wblock);
+
+void AudDspService_Set_ADC_Channel_Swap(QActive *pSender, UINT16 wParam0); // wParam0: 0 :Swap L/R Channel |  1:Normal
+
+
 
 UINT32 VAdBtoLineQ527(double dB);
 

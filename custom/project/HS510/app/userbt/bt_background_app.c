@@ -6,6 +6,7 @@
 #include "Usersetting.h"
 #include "AudDspService.h"
 #include "amp.h"
+#include "bt_mw_core.h"
 
 
 static const UINT16 bDspSubVolTable[41] =
@@ -126,6 +127,21 @@ int BtSaveDevInfo(BTPairDev *stPairDev,DevInfoType_e type)
 
 	return SUCCESS;
 }
+
+int BtGetRemoteAddress(BtAddr_t *pAddress)
+{
+	BtAddr_t Addr = {{0}};
+	UserSetting_ReadBtAutoConDev(&Addr);
+
+	if(pAddress != NULL)
+	{
+		*pAddress = Addr;
+		return SUCCESS;
+	}
+
+	return FAIL;
+}
+
 
 /******************************************************************************************/
 /**
@@ -511,6 +527,7 @@ int BtAppA2dpHandle(BtBackGroundQMSM *const me, BtAppCBKEvt *msg)
 {
 	stBtDevInfo *pDev = NULL;
 	(void)pDev;
+	//BT_PROFILE_STATE_e meA2dpProfileState = DISCONNECT_OK;
 
 	if (msg->pdata != NULL)
 	{
@@ -537,6 +554,8 @@ int BtAppA2dpHandle(BtBackGroundQMSM *const me, BtAppCBKEvt *msg)
 				UserBtHintPlay(me, BT_CONNECT_SUCCESS);
 			}*/ //zehai.liu todo
 
+			ap_printf("%s:IsAVDPConnect = %d.\n", __FUNCTION__,IsAVDPConnect);
+			ap_printf("%s:IsBtModeFlag = %d.\n", __FUNCTION__,IsBtModeFlag);
 			if(IsAVDPConnect == FALSE)
 			{
 			 	if (IsBtModeFlag == TRUE)
@@ -565,6 +584,25 @@ int BtAppA2dpHandle(BtBackGroundQMSM *const me, BtAppCBKEvt *msg)
 			}*/ //zehai.liu todo
 
 			//BtScanModeSet(BOTH_DISCOVERY_CONNECTABLE); //zehai.liu todo
+
+
+			/*sBtCheckAllDeviceProfileState(AVDTP,&meA2dpProfileState);
+
+			ap_printf("%s:AVDTP status = %d.\n", __FUNCTION__,meA2dpProfileState);
+
+			if (meA2dpProfileState == CONNECT_OK) break;    //for this BT_APP_AVDP_DISCONNECT_SUCCESS_SIG is not from the first linked remote BT device.
+
+			ap_printf("%s:IsAVDPConnect = %d.\n", __FUNCTION__,IsAVDPConnect);
+			ap_printf("%s:IsBtModeFlag = %d.\n", __FUNCTION__,IsBtModeFlag);
+
+			if(IsAVDPConnect == TRUE)
+			{
+			    if (IsBtModeFlag == TRUE)
+				{
+					UserBtHintPlay(me, BT_CONNECT_READY);
+				}
+				IsAVDPConnect = FALSE;
+			}*/
 
 			me->IsDevConnected[pDev->DevRole] = FALSE;
 			break;
@@ -802,6 +840,92 @@ int BtAppPlayerStateCbkHandle(BtBackGroundQMSM *const me, BtAppCBKEvt *pMsg)
 }
 /******************************************************************************************/
 /**
+ * \fn		 int BtAppOsdCbkHandle(BtBackGroundQMSM * const me,BtAppCBKEvt *msg)
+ *
+ * \brief		bt a2dp&&avrcp connect handle
+ *
+ * \param		QActive * const me:(Input) the UserApp handler here,\n
+ *              		BtAppCBKEvt msg:(input)
+ *
+ * \return	    void
+ *
+ ******************************************************************************************/
+
+int BtAppOsdCbkHandle(BtBackGroundQMSM *const me, BtAppCBKEvt *msg)
+{
+    (void)me;
+	static BYTE last_status;
+
+	switch (msg->type)
+	{
+	    case BT_APP_REMOTE_DEVICE_INFO_SIG:
+		{
+			BTConnectRemoteInfo *pstConInfo = (BTConnectRemoteInfo *)msg->pdata;
+			BtAddr_t *pBtAddr = (BtAddr_t *)(&pstConInfo->addr);
+			ap_printf("[0x%02x][0x%02x][0x%02x][0x%02x][0x%02x][0x%02x]......\n",
+			pBtAddr->address[0],pBtAddr->address[1],
+			pBtAddr->address[2],pBtAddr->address[3],
+			pBtAddr->address[4],pBtAddr->address[5]);
+			ap_printf("Name:%s\n", pstConInfo->name);
+			ap_printf("Name len:%d\n",pstConInfo->name_len);
+			break;
+		}
+		case BT_APP_MUSIC_PLAY_STATUS_SIG:
+		{
+			t_btmusic_play_status *pstConInfo = (t_btmusic_play_status *)msg->pdata;
+		    ap_printf("play_status:%d\n",pstConInfo->play_status);
+
+			if(last_status != pstConInfo->play_status)
+			{
+				if(pstConInfo->play_status == 1) // BTMUSIC_STATUS_PLAYING
+					QACTIVE_POST(UserApp_get(), Q_NEW(QEvt, BT_APP_PLAY_STATUS), (void*)0);
+				else
+					QACTIVE_POST(UserApp_get(), Q_NEW(QEvt, BT_APP_PAUSE_STATUS), (void*)0);
+
+				last_status = pstConInfo->play_status ;
+			}
+			ap_printf("totalTime:%d,currentTime:%d\n",pstConInfo->totalTime,pstConInfo->currentTime);
+			break;
+		}
+		case BT_APP_MUSIC_CODEC_INFO_SIG:
+		{
+			stBtAudioPlayInfo *pstConInfo = (stBtAudioPlayInfo *)msg->pdata;
+			ap_printf("codec_type:%d,sample_rate:%d\n",pstConInfo->codec_type,pstConInfo->sample_rate);
+			break;
+		}
+	    case BT_APP_MUSIC_INFO_SIG:
+		{
+			t_btmusic_musicinfo *pstConInfo = (t_btmusic_musicinfo *)msg->pdata;
+			ap_printf("title:%s\n",pstConInfo->title.string);
+			ap_printf("artist:%s\n",pstConInfo->artist.string);
+			ap_printf("album:%s\n",pstConInfo->album.string);
+			ap_printf("genre:%s\n",pstConInfo->genre.string);
+			break;
+		}
+	    case BT_APP_REMOTE_DEVICE_RSSI_SIG:
+		{
+			stBtReadRssi *pstConInfo = (stBtReadRssi *)msg->pdata;
+			ap_printf("rssi:%d\n", pstConInfo->rssi);
+			break;
+		}
+		default:
+		{
+			ap_printf("%s default  \n", __FUNCTION__);
+			break;
+		}
+
+	}
+
+	if (msg->pdata != NULL)
+	{
+		BtFree(msg->pdata);
+		msg->pdata = NULL;
+	}
+	return 0;
+}
+
+/******************************************************************************************/
+/**
  * \fn		int BtAppUserActionHandle(BtBackGroundQMSM * const me,BtAppCBKEvt *pMsg)
  *
  * \brief		bt spp connect handle
@@ -928,7 +1052,7 @@ static void BtAppSigHandle(BtBackGroundQMSM *const me, BtAppCBKEvt const *const 
 	BtAppCBKEvt *msg = (BtAppCBKEvt *)e;
 	//BtAddr_t BtAddr = {{0}};   //zehai.liu todo
 	//BtAddr_t TempAddr = {{0}};  //zehai.liu todo
-	BT_PROFILE_STATE_e state = DISCONNECT_OK;
+	BT_PROFILE_STATE_e meA2dpProfileState = DISCONNECT_OK;
 
 	switch (msg->type)
 	{
@@ -1081,14 +1205,21 @@ static void BtAppSigHandle(BtBackGroundQMSM *const me, BtAppCBKEvt const *const 
 		case BT_APP_UNPAIRED_OK_SIG:
 		{
 			ap_printf("%s:BT_APP_UNPAIRED_OK_SIG \n", __FUNCTION__);
+			break;
+		}
+		case BT_APP_ACL_DISCONNECT_OK_SIG:
+		{
+			ap_printf("%s:BT_APP_ACL_DISCONNECT_OK_SIG \n", __FUNCTION__);
 
-			BtCheckAllDeviceProfileState(AVDTP,&state);
 
-			LOGD("[%d]!!!\n",__LINE__);
+			BtCheckAllDeviceProfileState(AVDTP,&meA2dpProfileState);
 
-			if (state == CONNECT_OK) break;
+			ap_printf("%s:AVDTP status = %d.\n", __FUNCTION__,meA2dpProfileState);
 
-			LOGD("[%d]!!!\n",__LINE__);
+			if (meA2dpProfileState == CONNECT_OK) break;
+
+			ap_printf("%s:IsAVDPConnect = %d.\n", __FUNCTION__,IsAVDPConnect);
+			ap_printf("%s:IsBtModeFlag = %d.\n", __FUNCTION__,IsBtModeFlag);
 
 			if(IsAVDPConnect == TRUE)
 			{
@@ -1119,6 +1250,11 @@ static void BtAppSigHandle(BtBackGroundQMSM *const me, BtAppCBKEvt const *const 
 		case BT_APP_SOURCE_STATE_UPDATE_SIG:
 		{
 			BtAppPlayerStateCbkHandle(me, msg);
+			break;
+		}
+		case BT_APP_REMOTE_DEVICE_INFO_SIG...BT_APP_REMOTE_DEVICE_RSSI_SIG:
+		{
+			BtAppOsdCbkHandle(me, msg);
 			break;
 		}
 		default:

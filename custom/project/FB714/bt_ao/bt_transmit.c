@@ -152,13 +152,13 @@ void TransferBufInit(void)
 
 	if(pSppTransBuf == NULL)
 	{
-		transfer_buf_start = (UINT32 *)BtZoreMalloc(TRANSFER_PAYLOAD_SIZE<<10);//(UINT32 *)(MemGet(SYS_TRANSFER)->addr);
+		transfer_buf_start = (UINT32 *)BtZoreMalloc(TRANSFER_PAYLOAD_SIZE<<10);
 		pSppTransBuf = (Spp_playload *)transfer_buf_start;//all Spp_playload max:8k,here just 2k (4 trans nums)
 	}
 
 	if(pSppRecvBuf == NULL)
 	{
-		receiver_buf_start = (UINT32 *)BtZoreMalloc(RECEIVER_PAYLOAD_SIZE<<10);//(UINT32 *)(MemGet(SYS_RECEIVER)->addr);
+		receiver_buf_start = (UINT32 *)BtZoreMalloc(RECEIVER_PAYLOAD_SIZE<<10);
 		pSppRecvBuf = (Spp_playload *)receiver_buf_start;
 	}
 }

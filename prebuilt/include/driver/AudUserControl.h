@@ -149,7 +149,6 @@ typedef enum
 	MODE8,
 	MODE9,
 	MODE10,
-	MODE11,
 } eAUD_POST_PROCESSING_MODE;
 
 typedef enum

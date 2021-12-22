@@ -170,6 +170,41 @@ static void _APP_dut(char **pParam __UNUSED, const char paramNum __UNUSED)
     QACTIVE_POST(UserApp_get(), Q_NEW(QEvt, USERAPP_CLI_BT_ENTER_DUT_SIG), (void*)0);
 }
 
+static void _APP_remoteinfo(char **pParam __UNUSED, const char paramNum __UNUSED)
+{
+    QACTIVE_POST(UserApp_get(), Q_NEW(QEvt, USERAPP_CLI_BT_REMOTE_INFO_SIG), (void*)0);
+}
+
+static void _APP_musicinfo(char **pParam __UNUSED, const char paramNum __UNUSED)
+{
+    QACTIVE_POST(UserApp_get(), Q_NEW(QEvt, USERAPP_CLI_BT_MUSIC_INFO_SIG), (void*)0);
+}
+
+static void _APP_playstatus(char **pParam __UNUSED, const char paramNum __UNUSED)
+{
+    QACTIVE_POST(UserApp_get(), Q_NEW(QEvt, USERAPP_CLI_BT_PLAY_STATUS_SIG), (void*)0);
+}
+
+static void _APP_ffseek(char **pParam __UNUSED, const char paramNum __UNUSED)
+{
+    QACTIVE_POST(UserApp_get(), Q_NEW(QEvt, USERAPP_CLI_BT_FORWARD_SEEK_SIG), (void*)0);
+}
+
+static void _APP_fbseek(char **pParam __UNUSED, const char paramNum __UNUSED)
+{
+    QACTIVE_POST(UserApp_get(), Q_NEW(QEvt, USERAPP_CLI_BT_REVERSE_SEEK_SIG), (void*)0);
+}
+
+static void _APP_remoterssi(char **pParam __UNUSED, const char paramNum __UNUSED)
+{
+    QACTIVE_POST(UserApp_get(), Q_NEW(QEvt, USERAPP_CLI_BT_REMOTE_RSSI_SIG), (void*)0);
+}
+
+static void _APP_a2dpcodec(char **pParam __UNUSED, const char paramNum __UNUSED)
+{
+    QACTIVE_POST(UserApp_get(), Q_NEW(QEvt, USERAPP_CLI_BT_A2DP_CODEC_SIG), (void*)0);
+}
+
 static void _APP_i2s(char **pParam __UNUSED, const char paramNum __UNUSED)
 {
     QACTIVE_POST(UserApp_get(), Q_NEW(QEvt, USERAPP_CLI_SRC_I2S_SIG), (void*)0);
@@ -468,6 +503,13 @@ static APPCMD_LIST appcmd_list[] =
     {"bt",          _APP_bt,        ""},
     {"clearbt",     _APP_clearbt,   ""},
     {"dut",         _APP_dut,       ""},
+    {"remoteinfo",  _APP_remoteinfo,""},
+    {"musicinfo",   _APP_musicinfo, ""},
+    {"playstatus",  _APP_playstatus,""},
+    {"ffseek",      _APP_ffseek,    ""},
+    {"fbseek",      _APP_fbseek,    ""},
+    {"rssi",        _APP_remoterssi,""},
+    {"codec",       _APP_a2dpcodec, ""},
     {"i2s",         _APP_i2s,       ""},
     {"earc",        _APP_earc,      ""},
     {"demo",        _APP_demo,      ""},

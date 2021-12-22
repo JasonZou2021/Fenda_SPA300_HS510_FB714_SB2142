@@ -52,6 +52,7 @@ typedef enum
 void BtBackGroup_Ctor(BtBackGroundQMSM **pBtQmsm, QActive *TargetAo);
 int UserAppVolumeNotifyToBt(INT16 Vol, INT8 MuteState);
 int UserAppSetSubVolumeToBt(UINT8 Vol);
+int BtGetRemoteAddress(BtAddr_t *pAddress);
 
 
 #endif

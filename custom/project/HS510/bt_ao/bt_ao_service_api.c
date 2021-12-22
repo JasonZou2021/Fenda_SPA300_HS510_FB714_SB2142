@@ -1823,6 +1823,36 @@ static int _BtAoServiceUserCbkAction(void *pMsg,int SigType)
 		MsgType = BT_CBK_UNPAIRED_OK_SIG;
 		break;
 	}
+	case BT_ACL_DISCONNECT_OK_SIG:
+	{
+		MsgType = BT_CBK_ACL_DISCONNECT_OK_SIG;
+		break;
+	}
+	case BT_REMOTE_DEVICE_INFO_SIG:
+	{
+		MsgType = BT_CBK_REMOTE_DEVICE_INFO_SIG;
+		break;
+	}
+	case BT_MUSIC_PLAY_STATUS_SIG:
+	{
+		MsgType = BT_CBK_MUSIC_PLAY_STATUS_SIG;
+		break;
+	}
+	case BT_MUSIC_CODEC_IND_SIG:
+	{
+		MsgType = BT_CBK_MUSIC_CODEC_IND_SIG;
+		break;
+	}
+	case BT_MUSIC_INFO_IND_SIG:
+	{
+		MsgType = BT_CBK_MUSIC_INFO_IND_SIG;
+		break;
+	}
+	case BT_REMOTE_DEVICE_RSSI_SIG:
+	{
+		MsgType = BT_CBK_REMOTE_DEVICE_RSSI_SIG;
+		break;
+	}
 	case BT_A2DP_CONNECT_ING_SIG:
 	{
 		MsgType = BT_CBK_A2DP_CONNECT_ING_SIG;
@@ -1965,11 +1995,6 @@ static int _BtAoServiceUserCbkAction(void *pMsg,int SigType)
 	case BT_REMOTE_DEVICE_NAME_SIG:
 	{
 		MsgType = BT_CBK_REMOTE_DEVICE_NAME_SIG;
-		break;
-	}
-	case BT_REMOTE_DEVICE_RSSI_SIG:
-	{
-		MsgType = BT_CBK_REMOTE_DEVICE_RSSI_SIG;
 		break;
 	}
 	default:

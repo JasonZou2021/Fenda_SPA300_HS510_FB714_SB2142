@@ -281,5 +281,6 @@ int SystemSetting_Init(void);
  *
  ******************************************************************************************/
 int SystemSetting_ReadALL(stSystemSetting_T *pstSetting);
+int SystemSetting_CleanResume(void);
 
 #endif //__SYSTEMSETTING_H__

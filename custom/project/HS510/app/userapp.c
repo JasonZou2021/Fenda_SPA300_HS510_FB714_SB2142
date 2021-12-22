@@ -55,6 +55,7 @@
 #include "hdmi_app.h"
 
 #include "usb.h"
+#define MODE11 11
 
 #define LOG_MODULE_ID ID_APUSR
 #include "log_utils.h"

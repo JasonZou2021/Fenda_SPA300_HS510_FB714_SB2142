@@ -314,7 +314,59 @@ typedef struct
 	u_int8 reason;
 }t_disconnect_DeviceInfo;
 
-int SDK_BASE_IF_BtServerInit();
+ typedef struct
+{
+    t_bdaddr addr;
+    char     name[NAME_LEN];
+    char     name_len;
+}BTConnectRemoteInfo;
+
+#define     BT_MAX_BTMUSIC_INFO_CHAR      (255)
+
+typedef struct
+{
+ UINT16 char_set;//character set  常用字符集： ascii: 0x0003   utf-8: 0x006a   GBK: 0x0071  UNICODE: 0x03E8  gb2312: 0x07E9
+ UINT8  string[BT_MAX_BTMUSIC_INFO_CHAR+1];
+} t_display_string;
+
+typedef struct
+{
+       t_bdaddr addr;
+       u_int32   curNum;
+       u_int32   totalNum;
+       u_int32   playingTime; //maybe not use this value,we should use  t_avrcp_status_ind ->currentTime and  totalTime/* in millisecond*/
+       t_display_string    title;
+       t_display_string    artist;
+       t_display_string    album;
+       t_display_string    genre;
+}t_btmusic_musicinfo;
+
+/*typedef enum
+{
+    BTMUSIC_STATUS_STOPPED,
+    BTMUSIC_STATUS_PLAYING,
+    BTMUSIC_STATUS_PAUSED,
+    BTMUSIC_STATUS_FWD_SEEK,
+    BTMUSIC_STATUS_REV_SEEK,
+    BTMUSIC_STATUS_ERROR = 0xff
+} t_BTMUSIC_PLAY_STATUS;*/
+
+typedef struct
+{
+    t_bdaddr addr;
+    u_int16 play_status; //t_BTMUSIC_PLAY_STATUS
+    u_int32 totalTime;
+    u_int32 currentTime;
+}t_btmusic_play_status;
+
+typedef struct
+{
+    t_bdaddr bd_addr;
+    INT8 rssi;  //-128 ~127 dB
+}stBtReadRssi;
+
+//int SDK_BASE_IF_BtServerInit();
+int SDK_BASE_IF_BtServerInit(int bt_chip_type);
 int SDK_BASE_IF_StartSearch();
 int SDK_BASE_IF_StopSearch();
 int SDK_BASE_IF_StartPair(t_bdaddr *address);
@@ -392,6 +444,7 @@ int SDK_BASE_IF_Set_LocalBtAddr(u_int8 bd[6]);///设置本地蓝牙地址,请在蓝牙初始化
 int SDK_BASE_IF_Set_InquiryScanActivity(u_int16 inquiry_scan_window,u_int16 inquiry_scan_interval);
 int SDK_BASE_IF_link_connect(BtAddr_t* bd_addr);
 int SDK_BASE_IF_ReadRemoteRSSI(BtAddr_t* bd_addr);
+int SDK_Music_IF_Get_A2DP_Codec(BtAddr_t* bd_addr);
 int SDK_Music_IF_EnableA2DPAAC(int is_enable);
 
 #define MSG_MASK                           	0xFFFF0000
@@ -609,11 +662,13 @@ typedef enum _BLUETOOTH_A2D_MSG {
 	A2DP_MUSIC_MUSICINFO_IND,
 	A2DP_MUSIC_PLAYTIME_IND,
 
-	A2DP_MUSIC_SETABSOLUTEVOLUME_UP,
+	A2DP_MUSIC_SETABSOLUTEVOLUME_IND,//0X23 A2DP_MUSIC_SETABSOLUTEVOLUME_UP,
 	A2DP_MUSIC_SETABSOLUTEVOLUME_DOWN,
 
 	AVRCP_VENDOR_COMPANY_ID,
 	AVRCP_REMOTE_CONTROL,
+
+	A2DP_MUSIC_CODEC_IND,
 
 	STOP_A2D_PROFILE,
 } BT_A2D_MSG_E;
@@ -683,6 +738,11 @@ typedef enum _BLUETOOTH_HID_MSG {
 
 extern int init_cbk_task(void);
 extern int SDK_Music_IF_PlayStatus();
+extern int SDK_BASE_IF_Remote_device(BtAddr_t *address);  // 0, success; otherwise, fail
+extern int SDK_Music_IF_Get_Music_Info(BtAddr_t *address);  // 0, success; otherwise, fail
+extern int SDK_Music_IF_Get_PlayStatus(BtAddr_t *address);  // 0, success; otherwise, fail
+extern int SDK_Music_IF_Forward_Seek(BtAddr_t *address); //快进   0, success; otherwise, fail
+extern int SDK_Music_IF_Reverse_Seek(BtAddr_t *address); //快退  0, success; otherwise, fail
 extern int SDK_TEST_IF_EnterBRTestMode(void);///always return BTMW_RESULT_OK
 
 /* SDK_TEST_IF_CFG_FREQ(txrx_freq_us,  loopback_offset,  report_freq)
