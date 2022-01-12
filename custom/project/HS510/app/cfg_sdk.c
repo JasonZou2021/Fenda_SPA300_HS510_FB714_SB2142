@@ -271,7 +271,7 @@ static CFG_SDK_T gstSDKConfig =
 		   Channel_Map[15] : I2S out data7 right channel selection.
 		   */
 		
-		.Channel_Map = {L, R, Ls, Rs, C, Sub, Ltf, Rtf, Lrs, Rrs, Ltr, Rtr, Lw, Rw, Ltm, Rtm},
+		.Channel_Map = {L, R, Ls, Rs, C, Ltf, Sub, Rtf, Lrs, Rrs, Ltr, Rtr, Lw, Rw, Ltm, Rtm},
 
 		//configure option for DSP Support Function switch
 		.DSP_SUPPORT = SUPPORT_DEC1 | SUPPORT_ATMOS | SUPPORT_APP |

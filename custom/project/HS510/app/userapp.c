@@ -6183,7 +6183,7 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			QTimeEvt_armX(&me->timeSrcDelay, TICKS_PER_100MS, 0);
 
 			// TDM setting, woofer MIX LsRs
-			AudDspService_Set_CustomTDM(&me->super, ODSP_CUSTOMTDM_ENABLE, ODSP_CUSTOMTDM_LsRs);
+			//AudDspService_Set_CustomTDM(&me->super, ODSP_CUSTOMTDM_ENABLE, ODSP_CUSTOMTDM_LsRs);
 
 
 #if 0
