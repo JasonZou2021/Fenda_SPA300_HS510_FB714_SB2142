@@ -99,6 +99,5 @@ typedef struct
 	CFG_DDP_T DDPCfg;
 	CFG_DTS_T DTSCfg;
 } CFG_AUD_T;
-
 #endif
 

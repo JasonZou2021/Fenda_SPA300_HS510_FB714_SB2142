@@ -376,6 +376,28 @@ typedef enum
 	VA_Set_MIXCh,
 } VA_CtrlID;
 
+typedef enum _AUD_VA_ChannelIdx_e
+{
+	VA_CHANNEL_LF 		= (0x1<<0),		/*!< Left Front */
+	VA_CHANNEL_RF		= (0x1<<1),		/*!< Right Front */
+	VA_CHANNEL_LS 		= (0x1<<2),		/*!< Left Surround */
+	VA_CHANNEL_RS 		= (0x1<<3),		/*!< Right Surround */
+	VA_CHANNEL_CENTER 	= (0x1<<4),		/*!< Center */
+	VA_CHANNEL_LFE 	= (0x1<<5),		/*!< Subwoofer */
+	VA_CHANNEL_LRS		= (0x1<<6),		/*!< Left Rear Surround */
+	VA_CHANNEL_RRS		= (0x1<<7),		/*!< Right Rear Surround */
+	VA_CHANNEL_LTF		= (0x1<<8),		/*!< Left Top Front*/
+	VA_CHANNEL_RTF		= (0x1<<9),		/*!< Right Top Front */
+	VA_CHANNEL_LTR		= (0x1<<10),	/*!< Left Top Rear */
+	VA_CHANNEL_RTR		= (0x1<<11),	/*!< Right Top Rear */
+	VA_CHANNEL_LW		= (0x1<<12),	/*!< Left Wide */
+	VA_CHANNEL_RW		= (0x1<<13),	/*!< Right Wide */
+	VA_CHANNEL_LTM		= (0x1<<14),	/*!< Left Top Middle */
+	VA_CHANNEL_RTM		= (0x1<<15),	/*!< Right Top Middle */
+	VA_CHANNEL_LINK	= 0xffff,
+} AUD_VA_ChannelIdx_e;
+
+
 typedef struct _Servicer_VA_param
 {
 	UINT16 Ch_L_bitmark_MIXER0;
