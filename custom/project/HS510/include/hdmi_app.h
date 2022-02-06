@@ -39,6 +39,7 @@ extern int Hdmi_SetUpgSig(QActive *send);
 
 extern HDMI_FUNC hdmi_rep_func;
 extern HDMI_FUNC ite_rep;
+extern HDMI_FUNC ite_it6622;
 
 #define CMD_ARC_SYS_CLOSE	(0x53)
 #define CMD_POWER_STANDBY	(0x50)

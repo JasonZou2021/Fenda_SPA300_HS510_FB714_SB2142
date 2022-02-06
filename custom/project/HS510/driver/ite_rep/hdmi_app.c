@@ -13,7 +13,7 @@
 #include "log_utils.h"
 #include "hdmi_app.h"
 
-HDMI_FUNC *hdmi_func = &ite_rep;
+HDMI_FUNC *hdmi_func = &ite_it6622;
 
 
 int hdmi_cfg(BYTE mode, BYTE src, BYTE vol, BYTE volmax)

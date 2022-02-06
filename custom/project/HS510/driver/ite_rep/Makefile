@@ -14,7 +14,8 @@ INCLUDE_DIR	+= -I$(OUT_SDK_INC_DIR)/posix \
 				
 SOURCES	+= \
       hdmi_app.c\
-      ITE_REP.c
+      IT6622.c\
+IT6622_Fw_Update.c\
 
      
 TARGET = libhdmiite.a
