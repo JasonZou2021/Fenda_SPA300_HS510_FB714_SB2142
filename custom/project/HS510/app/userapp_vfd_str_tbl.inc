@@ -123,6 +123,8 @@ enum _STR_ID_
 	STR_SW_PAIRING,
 	STR_SW_CONNECTED,
 	STR_HELLO,
+	STR_TV_SYMPHONY_OFF,
+	STR_TV_SYMPHONY_ON,
 };
 
 char *vfd_str[] =  //pointer to string address
@@ -234,5 +236,7 @@ char *vfd_str[] =  //pointer to string address
 	"SW PAIRING",
 	"SW CONNECTED",
 	"HELLO",
+	"TV SYMPHONY OFF",
+	"TV SYMPHONY ON",
 };
 

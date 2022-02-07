@@ -11,6 +11,18 @@
 
 #define HDMI_STANDBY_SYS_AUDIO_TIME		20  // 2s
 
+
+
+typedef struct
+{
+    QEvt stEvt;
+    UINT8 Header;
+	UINT8 Opcode;
+	UINT8 Operand[22];
+	UINT8 MsgLen;
+
+}stUserCECEvt_t;
+
 typedef struct _hdmi_func
 {
 	int (*cfg)(BYTE, BYTE,BYTE, BYTE);
@@ -21,8 +33,11 @@ typedef struct _hdmi_func
 	int (*check_eARC)(void);
 	int (*check_ADOType)(void);
 	int (*ver)(void);
+	int (*vendor)(stUserCECEvt_t *);
 	
 }HDMI_FUNC;
+
+
 
 extern int hdmi_cfg(BYTE mode, BYTE src, BYTE vol, BYTE volmax);
 extern int hdmi_init(BYTE mode, BYTE src);
@@ -32,6 +47,7 @@ extern int hdmi_upg(void);
 extern int hdmi_CheckEARC(void);
 extern int hdmi_CheckADOType(void);
 extern int hdmi_GetVersion(void);
+extern int hdmi_VendorSend(stUserCECEvt_t *cmd);
 
 extern int Hdmi_SetHandleSig(QActive *send, int cmd, int para1, int para2);
 extern int Hdmi_SetInitSig(QActive *send, int src, int vol, int volmax);

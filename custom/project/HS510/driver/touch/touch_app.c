@@ -132,7 +132,7 @@ int Hdmi_SetUpgSig(QActive *send)
 	return 0;
 }
 
-
+void Set_device_id0(void);
 QState TouchKey_Active(TouchSrv *const me, QEvt const *const e)
 {
 	QState status;
@@ -154,6 +154,7 @@ QState TouchKey_Active(TouchSrv *const me, QEvt const *const e)
 		case Q_INIT_SIG:
 		{
 			LOGD("TouchKey INIT; \n");
+			Set_device_id0();
 			status = Q_HANDLED();
 			break;
 		}
@@ -191,6 +192,14 @@ QState TouchKey_Active(TouchSrv *const me, QEvt const *const e)
 			status = Q_HANDLED();
 			break;
 
+		case HDMI_SEND_VENDOR_CMD_SIG:{
+			LOGD("HDMI_VENDOR_CMD_SIG \n");
+			stUserCECEvt_t *evt = (stUserCECEvt_t *)e;
+			hdmi_VendorSend(evt);
+			status = Q_HANDLED();
+			break;
+		}
+		
 		case TOUCH_TIME_SIG:
 			QTimeEvt_armX(&me->timeEvtTouch, TICKS_PER_100MS, 0);
 

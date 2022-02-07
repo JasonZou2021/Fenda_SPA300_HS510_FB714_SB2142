@@ -177,7 +177,7 @@ int Vfd_Drv_Deinit(void)
 
     return sdRet;
 }
-
+void Set_device_id1(void);
 extern void InitVfd_Nec16312(void);
 extern int InitVfd_Pt6315(void);
 extern int vfd_init(void);
@@ -197,6 +197,7 @@ void Insert_VfdAppdrv(void)
 {
 	g_pstVfd = &g_stVfdApp;
 	//vfd_init();
+		Set_device_id1();
 }
 
 /*

@@ -3,6 +3,10 @@
 #ifndef UserApp_h
 #define UserApp_h
 
+
+#define SUPPORT_RUKOTV
+
+
 //=============macro for function config==============
 
 //=============macro for function config==============

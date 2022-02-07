@@ -20,6 +20,8 @@
 #include "IT6622.h"
 
 
+static BYTE cec_buf[16];
+static BYTE cec_buf_len = 0;
 #define SB_VOL_DEFAULT		(10)
 //#define SB_VOL_MAX		(33)
 
@@ -39,6 +41,8 @@ BOOL IT6622_Write(BYTE, BYTE reg, int len, BYTE *bBuf);
 BOOL IT6622_Read(BYTE, BYTE reg, int len, BYTE *buf);
 
 int IT6622_MCU_UPG    (void);
+int IT6622_GetVendorCmd(BYTE *buf);
+int IT6622_GetVendorCmd_Standby(BYTE *buf);
 
 #define ITE_ADDR  0x80
 #define SB_I2C_Write(u8Offset, u16Len, u8Buf)	IT6622_Write(ITE_ADDR, u8Offset, u16Len, u8Buf)
@@ -836,6 +840,11 @@ if((u8I2cInt & I2C_INT_READY_MASK) == I2C_INT_READY_CLR){
 						LOGX(" %02X", u8CecCmd[u8Cnt]);
 					}
 					LOGD("\n");
+
+					if(g_u8SbPower == SB_POWER_ON)
+						IT6622_GetVendorCmd(u8CecCmd);
+					else
+						IT6622_GetVendorCmd_Standby(u8CecCmd);
 				}
 
 				if (u8IteCecReq & 0x30) {
@@ -1015,6 +1024,88 @@ static int IT6622_CmdHandle(BYTE u8Cmd, BYTE para1, BYTE para2){
 	return 0;
 }
 
+int IT6622_SendVendorCmd(stUserCECEvt_t *cmd)
+{
+	BYTE cec_buf[16];
+	BYTE i=0;
+	
+	cec_buf[0] = cmd->Header;
+	cec_buf[1] = cmd->Opcode;
+	cec_buf[2] = cmd->Operand[0];
+	cec_buf[3] = cmd->Operand[1];
+	cec_buf[4] = cmd->Operand[2];
+	cec_buf[5] = cmd->Operand[3];
+	for(i=0; i<cmd->MsgLen-2-4; i++)
+		cec_buf[6+i] =cmd->Operand[4+i];
+	
+	SB_I2C_Write(I2C_CEC_TRANS_DATA, cmd->MsgLen, cec_buf);
+
+	SB_I2C_Write(I2C_SYS_CEC_TRANS_CNT, 1, &cmd->MsgLen);
+
+	LOGD(" %s : Opcode 0x%x, len 0x%x\n", __func__, cmd->Opcode, cmd->MsgLen);
+
+	return 0;
+}
+
+
+int IT6622_GetVendorCmd(BYTE *buf)
+{
+	BYTE i=0;
+	BYTE len;
+
+	SB_I2C_Read(I2C_SYS_CEC_RECV_CNT, 1, &len);
+	
+	stUserCECEvt_t *eCEC;
+	eCEC = Q_NEW(stUserCECEvt_t,HDMI_GET_VENDOR_CMD_SIG);
+	eCEC->Opcode = buf[1];
+	eCEC->MsgLen = len;
+	
+	for(i = 0; i < (eCEC->MsgLen-2); i++)
+	{
+    		eCEC->Operand[i]= buf[2];  
+	}
+	QACTIVE_POST(UserApp_get(),(QEvt *)eCEC, (void *)0);
+
+	LOGD(" %s : Opcode 0x%x, len 0x%x\n", __func__, eCEC->Opcode, eCEC->MsgLen);
+
+	return 0;
+}
+
+int IT6622_GetVendorCmd_Standby(BYTE *buf)
+{
+	BYTE i=0;
+	BYTE len;
+
+	SB_I2C_Read(I2C_SYS_CEC_RECV_CNT, 1, &len);
+
+	cec_buf_len = len;
+	for(i = 0; i < (len); i++)
+	{
+    		cec_buf[i]= buf[i];  
+	}
+
+	return 0;
+}
+
+int IT6622_CheckVendorCmd(stUserCECEvt_t *eCEC)
+{
+	BYTE i=0;
+	BYTE len = cec_buf_len;
+	cec_buf_len = 0;
+	
+	if(len > 0)
+	{
+		eCEC->Opcode = cec_buf[1];
+		eCEC->MsgLen = len;
+		
+		for(i = 0; i < (eCEC->MsgLen-2); i++)
+		{
+	    		eCEC->Operand[i]= cec_buf[2];  
+		}
+	}
+	
+	return len;
+}
 
 HDMI_FUNC ite_it6622 = 
 {
@@ -1026,6 +1117,7 @@ HDMI_FUNC ite_it6622 =
 	IT6622_CheckEARC,
 	NULL,
 	IT6622_GetVersion,
+	IT6622_SendVendorCmd,
 };
 
 

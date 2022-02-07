@@ -17,9 +17,9 @@ typedef unsigned long iTE_u32, *iTE_pu32;
 #define SB_STANDBY				(2)
 #define SB_PASS_THROUGH			(3)
 
-iTE_u8 const CEC_VENDOR_ID[3] = { 0xA8, 0xF7, 0x66 };		// ITE
-iTE_u8 const CEC_OSD_NAME[14] = "IT6622SB";
-iTE_u8 const CEC_OSD_STRING[13] = "IT6622_SB";
+iTE_u8 const CEC_VENDOR_ID[3] = { 0xA8, 0x82, 0x00 };		// ITE
+iTE_u8 const CEC_OSD_NAME[14] = "HS510";
+iTE_u8 const CEC_OSD_STRING[13] = "HS510";
 
 //****************************************************************************
 
@@ -470,6 +470,7 @@ iTE_u8 const CEC_OSD_STRING[13] = "IT6622_SB";
 #define I2C_SYS_RX_MODE_1		(0xF7)
 #define I2C_SYS_RX_MODE_2		(0xF8)
 #define I2C_SYS_RX_MODE_3		(0xF9)
+#define I2C_SYS_CEC_RECV_CNT	(0xFB)
 #define I2C_SYS_CEC_TRANS_CNT	(0xFC)
 #define I2C_SYS_CEC_LATCH_CNT	(0xFD)
 #define I2C_SYS_CHANGE			(0xFE)

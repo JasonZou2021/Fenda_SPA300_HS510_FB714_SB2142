@@ -69,12 +69,13 @@ typedef struct
 	UINT8 Surround_3D;
 	UINT8 Repeat;
 	UINT8 Shuffle;
-	UINT16 KokBgm_Vol;
-	UINT16 KokMic1_Vol;
-	UINT16 KokMic2_Vol;
-	UINT16 Kok_KeyShift;
+	UINT8 device_id[6];
+	UINT8 KokBgm_Vol;
+	UINT8 KokMic1_Vol;
+	UINT8 KokMic2_Vol;
+	UINT8 Kok_KeyShift;
 	UINT16 Kok_Echo;
-	UINT32 Kok_Threshold;
+	UINT16 Kok_Threshold;
 	UINT32 AUD_DPS_UserGain; //AUD_DPS_UPDATE_USRGAIN #dps
 	UINT16 PairDevRecordIndex;
 	BTPairDev PairDev[BT_DEVICE_NUM];
@@ -153,6 +154,7 @@ int UserSetting_SaveDimmer(UINT8 dimer);
 int UserSetting_SaveFTLRVol(UINT8 volume);
 int UserSetting_SaveFSLRVol(UINT8 volume);
 int UserSetting_SaveRTLRVol(UINT8 volume);
-
+int UserSetting_SaveDeviceID(BYTE * id);
+int UserSetting_ReadDeviceID(BYTE * id);
 #endif
 

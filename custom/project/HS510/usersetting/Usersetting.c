@@ -1060,6 +1060,44 @@ int UserSetting_ReadBtAutoConDev(BtAddr_t * auto_addr)
     return SETTING_READ_INFO_SUCCESS;
 }
 
+
+
+int UserSetting_SaveDeviceID(BYTE * id)
+{
+    UINT16 Offset ;
+    int ret = SUCCESS;
+    UserSetting_T stUserSetting;
+
+    memcpy(&stUserSetting.device_id, id, sizeof(stUserSetting.device_id));
+    //UserSetting_printf("stUserSetting.PairDev = %d..\n",stUserSetting.Repeat);
+    Offset = (UINT16)((UINT8*)(&stUserSetting.device_id) - (UINT8*)(&stUserSetting));
+    ret = UserSettingPool_SaveInfo(Offset, (UINT8*)(&stUserSetting.device_id),sizeof(stUserSetting.device_id),WRITETHROUGH);
+
+    if(ret != SUCCESS)
+    {
+       // LOGDT("UserSetting Error! %s : %d\n", __FUNCTION__, State);
+        return SETTING_SAVE_INFO_FAIL;
+    }
+    return SETTING_SAVE_INFO_SUCCESS;
+}
+
+int UserSetting_ReadDeviceID(BYTE * id)
+{
+    int ret = SUCCESS;
+    UINT16 Offset ;
+    UserSetting_T stReadBtAutoAddr;
+
+    Offset = (UINT16)((UINT8*)(&stReadBtAutoAddr.device_id) - (UINT8*)&stReadBtAutoAddr);
+    ret = UserSettingPool_ReadInfo(Offset, (UINT8*)(&stReadBtAutoAddr.device_id),sizeof(stReadBtAutoAddr.device_id));
+    if(ret != SUCCESS)
+    {
+        return SETTING_READ_INFO_FAIL;
+    }
+    memcpy(id,&stReadBtAutoAddr.device_id,sizeof(stReadBtAutoAddr.device_id));
+    return SETTING_READ_INFO_SUCCESS;
+}
+
+
 #if (SUPPORT_VA)
 /******************************************************************************************/
 /**

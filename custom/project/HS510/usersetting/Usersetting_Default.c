@@ -75,7 +75,7 @@ static UserSetting_T gstDefaultUserSetting =
 	.dimmer = USERAPP_Dimmer_DEFAULT,
 
 	.VirtualSurround = 1,
-	
+	.device_id = {0},
 	.WIRELESS_Volume = USERAPP_WIRELESS_VOL_DEFAULT,
 	.EarVolume = USERAPP_EAR_VOL_DEFAULT,
 	.EQ_State = USERAPP_EQ_DEFAULT,

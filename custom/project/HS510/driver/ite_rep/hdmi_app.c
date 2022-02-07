@@ -124,3 +124,16 @@ int hdmi_GetVersion(void)
 	return ret;
 }
 
+int hdmi_VendorSend(stUserCECEvt_t *cmd)
+{
+	int ret = -1;
+	HDMI_FUNC *pfunc = hdmi_func;
+
+	if(pfunc && pfunc->vendor)
+	{
+		ret = pfunc->vendor(cmd);
+	}
+
+	return ret;
+}
+

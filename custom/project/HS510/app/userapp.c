@@ -239,7 +239,7 @@ typedef struct __userapp       /* the UserApp active object */
 	int BT_Ver;
 	int Display;
 	int dolby_status;
-	
+	uint8_t device_id[6];
 	int vol;
 	int Wireless_vol;
 	int mute;
@@ -357,9 +357,18 @@ typedef struct __userapp       /* the UserApp active object */
 	eSoundMenu menu_status;
 	INT64 usb_playtime;
 	BYTE usb_mode;
+
+
+	BYTE TV_Symphony;
+	BYTE TV_Symphony_flag;
 } UserApp;
 
-static UserApp l_UserApp; /* the UserApp active object */
+static UserApp l_UserApp =
+{
+	.device_id = {0x84, 0x14, 0x22, 0x00, 0x00, 0x00},
+}; /* the UserApp active object */
+
+#include "Hisense_SmartTv.c"
 
 static AutoSrcTest_t AutoSrcTestBuf;
 static AutoRepeatSignalTest_t AutoRepeatSignalTestBuf;
@@ -448,7 +457,7 @@ int UserApp_WIRELESS_VolumeDown(UserApp *const me);
 #endif
 void UserAppDspCodecInfoFromDspC_Listener(QActive * const me, void *pParam);
 UINT8 *pbList = NULL;
-
+void UserApp_Standby_CECCmd_Handle(void);
 typedef QState (*UserappState_t)(UserApp *const me, QEvt const *const e);
 
 //SUNPLUS support all the sources as below
@@ -1178,6 +1187,8 @@ uint32_t UserApp_Standby_Polling(uint8_t src)
 */
 	if(hdmi_get_status(HDMI_SYS_STANDBY) == 1)
 		res = 1;
+
+	UserApp_Standby_CECCmd_Handle();
 
 	return res;
 }
@@ -4484,6 +4495,17 @@ void UserAppFactoryReset(UserApp * const me)
 	// Step 7 Source reset to ARC
 	UserSetting_SaveSrc(APP_SRC_ARC);// //--{{ Modified by Zanchen  at [20210205] for set src to ARC
 
+
+	me->EQMode = 0;
+	me->Surround_3D = 1;
+	me->Bass_vol = 5;
+	me->Treble_vol = 5;
+	Hisese_SmartTv_SendCmd(me);
+
+	#ifdef SUPPORT_RUKOTV
+	UserApp_ROKU_Setting_Send(me);
+	#endif
+
 	status = Q_HANDLED();
 	return ;
 }
@@ -5316,6 +5338,97 @@ void UserApp_DimmerTimeout(UserApp *const me)
 	
 }
 
+BYTE check_device_id(BYTE *id)
+{
+	ap_printf(" check id 0x%x-0x%x-0x%x-0x%x-0x%x-0x%x\n ", id[0], id[1], id[2], id[3],id[4], id[5]);
+
+	if(id[0]== 0 || id[1]== 0 ||id[2]== 0 ||id[3]== 0 ||id[4]== 0 ||id[5]== 0 )
+	{
+		ap_printf(" addr fail, 0\n"); 
+		return 0;
+	}
+	else if(id[0]== 0xff || id[1]== 0xff ||id[2]== 0xff ||id[3]== 0xff||id[4]== 0xff ||id[5]== 0xff )
+	{
+		ap_printf(" addr fail, 0xff\n"); 
+		return 0;
+	}
+
+	return 1;
+}
+
+void Set_device_id0(void)
+{
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	l_UserApp.device_id[3] = (tv.tv_usec)&0xff;
+}
+
+void Set_device_id1(void)
+{
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	l_UserApp.device_id[4] = (tv.tv_usec>>8)&0xff;
+}
+
+void Set_device_id2(void)
+{
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	l_UserApp.device_id[5] = (tv.tv_sec)&0xff;
+}
+
+int IT6622_CheckVendorCmd(stUserCECEvt_t *eCEC);
+void UserApp_Standby_CECCmd_Handle(void)
+{
+
+	stUserCECEvt_t cec;
+	UserApp *me = &l_UserApp;
+
+	if(IT6622_CheckVendorCmd(&cec) > 0)
+	{
+		ap_printf("[%s] opcode -> [0x%x]\n",__FUNCTION__, cec.Opcode);
+	
+		if(cec.Opcode == 0xA0)
+		{
+			if(cec.Operand[0] == 0xA8 && cec.Operand[1] == 0x82 && cec.Operand[2] == 0x00) // Hisense
+				Hisese_SmartTv_Standby_Handle(me, &cec);		
+
+			#ifdef SUPPORT_RUKOTV
+			if(cec.Operand[0] == 0x8a && cec.Operand[1] == 0xc7 && cec.Operand[2] == 0x2e) // RuTV indecation
+				UserApp_ROKU_Standby_Handle(me, &cec);
+			#endif	
+		}
+	}
+	
+}
+
+
+void UserApp_CECCmd_Handle(UserApp * const me, stUserCECEvt_t *eCECRX)
+{
+	ap_printf(" %s , Opcode 0x%x\n ", __func__ , eCECRX->Opcode);
+	
+	switch(eCECRX->Opcode)
+	{
+		case 0xA0:
+		{
+			ap_printf(" Verdor ID 0x%x-0x%x-0x%x\n ", eCECRX->Operand[0], eCECRX->Operand[1], eCECRX->Operand[2]);
+
+			if(eCECRX->Operand[0] == 0xA8 && eCECRX->Operand[1] == 0x82 && eCECRX->Operand[2] == 0x00) // Hisense
+				Hisese_SmartTv_Handle(me, eCECRX);
+
+			#ifdef SUPPORT_RUKOTV
+			if(eCECRX->Operand[0] == 0x8a && eCECRX->Operand[1] == 0xc7 && eCECRX->Operand[2] == 0x2e) // RuTV indecation
+				UserApp_ROKU_Handle(me, eCECRX);
+			#endif
+			
+			break;
+		}
+
+		default:
+			break;
+	}
+}
+
 QState UserApp_home(UserApp *const me, QEvt const *const e)
 {
 #ifdef BUILT4ISP2
@@ -5369,6 +5482,19 @@ QState UserApp_home(UserApp *const me, QEvt const *const e)
 #ifndef SDK_RELEASE
 			Userapp_BurnTestParameterInit(&me->super);
 #endif
+
+			BYTE id[6] = {0};
+			UserSetting_ReadDeviceID(id);
+			if(check_device_id(id) == 0)
+			{
+				Set_device_id2();
+				UserSetting_SaveDeviceID(me->device_id);
+			}
+			else
+			{
+				memcpy(me->device_id, id, 6);
+			}
+			
 
 			first_power_up = First_Power_Standby();
 
@@ -5653,6 +5779,12 @@ QState UserApp_home(UserApp *const me, QEvt const *const e)
 		{
 			ap_printf("[%s] ZERO_RELEASE_SIG -> [%d]\n", __FUNCTION__, __LINE__);
 			UserAppMemoryCheck();
+			status = Q_HANDLED();
+			break;
+		}
+
+		case HDMI_GET_VENDOR_CMD_SIG:{
+			UserApp_CECCmd_Handle(me, (stUserCECEvt_t *)e);
 			status = Q_HANDLED();
 			break;
 		}
@@ -6396,6 +6528,12 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 				sprintf(strBuf, "BAS %d", 5-me->Bass_vol);
 			
 			UserAppDisplayOnce(me, strBuf, 3);
+
+			Hisese_SmartTv_SendCmd(me);
+
+			#ifdef SUPPORT_RUKOTV
+			UserApp_ROKU_Setting_Send(me);
+			#endif
 			
 			status = Q_HANDLED();
 			break;
@@ -6419,6 +6557,13 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			else	
 				sprintf(strBuf, "BAS %d", 5-me->Bass_vol);
 			UserAppDisplayOnce(me, strBuf, 3);
+			
+			Hisese_SmartTv_SendCmd(me);
+
+			#ifdef SUPPORT_RUKOTV
+			UserApp_ROKU_Setting_Send(me);
+			#endif
+			
 			status = Q_HANDLED();
 			break;
 
@@ -6440,6 +6585,13 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 				sprintf(strBuf, "TRE-%d", 5-me->Treble_vol);
 		
 			UserAppDisplayOnce(me, strBuf, 3);
+
+			Hisese_SmartTv_SendCmd(me);
+
+			#ifdef SUPPORT_RUKOTV
+			UserApp_ROKU_Setting_Send(me);
+			#endif
+			
 			status = Q_HANDLED();
 			break;
 
@@ -6461,6 +6613,13 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 				sprintf(strBuf, "TRE-%d", 5-me->Treble_vol);
 		
 			UserAppDisplayOnce(me, strBuf, 3);
+
+			Hisese_SmartTv_SendCmd(me);
+
+			#ifdef SUPPORT_RUKOTV
+			UserApp_ROKU_Setting_Send(me);
+			#endif
+			
 			status = Q_HANDLED();
 			break;
 
@@ -6669,6 +6828,13 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			UserApp_ScrollBackUp_ShowSource(me, STR_SU0 + me->Surround_3D);
 
 			UserAppSurroundSet((QActive *)me, me->Surround_3D);
+
+			Hisese_SmartTv_SendCmd(me);
+
+			#ifdef SUPPORT_RUKOTV
+			UserApp_ROKU_Setting_Send(me);
+			#endif
+			
 			status = Q_HANDLED();
 			break;
 		}
@@ -6686,6 +6852,13 @@ QState UserApp_active(UserApp *const me, QEvt const *const e)
 			}
 			UserAppDisplayOnce(me, vfd_str[STR_EQ0 + me->EQMode],3);
 			AudDspService_Set_AppMode(&me->super, SET_EQ, GRP_FILTER0, MODE1+me->EQMode);
+
+			Hisese_SmartTv_SendCmd(me);
+
+			#ifdef SUPPORT_RUKOTV
+			UserApp_ROKU_Setting_Send(me);
+			#endif
+
 			status = Q_HANDLED();
 			break;
 		}
